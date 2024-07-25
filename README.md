@@ -25,46 +25,47 @@ valuable for you to follow the exercises along the lectures.
 
 The lectures will be recorded and the recordings will be available in Panopto in Canvas.
 
-### From last year
+### The example applications
 
-<details>
+In the course we will mainly be building two example applications:
 
-The course was taught in
-the [Spring of 2022 by Johannes Brodwall](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures)
-and in the Fall of 2022 by Bogdan Marculescu. In 2021, the first half of this course was taught by
-[Andrea Arcuri](https://github.com/arcuri82/web_development_and_api_design)
-and the second half by
-[Johannes Brodwall](https://github.com/kristiania-pg6301-2021/pg6301-react-and-express-lectures)
+* The todo-application: This is a very common example, and you can see lots of examples
+  using this online. The application lets to users create tasks and mark them as
+  complete. In addition, we will be adding details to the tasks and give access to
+  tasks to other users
+* Cash accounting: The teacher serves as treasurer for the local school marching band.
+  On the annual dugnads they need to keep track of cash sales, something that most
+  accounting software isn't good at. So we're using this chance to build a application
+  with a real need.
 
-Lectures of 2023 that has a corresponding lecture in 2022 will have a reference to the code
-from that year's lecture.
-
-</details>
 
 ## Lectures
 
 ### Lecture 1: A tour of React, Express and Heroku
 
-<details>
-
 We explore the most important parts to the whole application up and running on
 a server. This lecture will be *way too fast to understand* and will serve merely
 as a teaser to topics that will be important through the course. After the
 lecture, you will only be expected to know the basics of how to create a React
-application with Parcel and React Router
+application with Vite and React Router
 
+* [Commit log from lecture (only available after lecture)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/01)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/01)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/01/start/README.md)
+
+<details>
+<summary>Material from previous years</summary>
+
+#### Material from previous years
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/01)
 * [Commit log from lecture (only available after lecture)](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/01)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/reference/01)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/01/start/README.md)
 * [Exercise answer](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/01/solution)
-
-#### Material from 2022
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/01)
-
 </details>
 
-### Lecture 2: React and Jest
+### Lecture 2: React, use state and props
 
 <details>
 
@@ -74,16 +75,25 @@ also explore React Router more in depth
 
 See [Creating the frontend project](#creating-the-frontend-project) for a summary of the steps to set up the application
 
-* [Commit log from lecture (only available after lecture)](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/02)
-* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/reference/02)
-* [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/02/start/README.md)
-* [Exercise solution](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/02/solution)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/02)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/02)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/start/README.md)
 
 #### Useful video
 
 * [Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
 
 </details>
+<details>
+
+<summary>Material from previous years</summary>
+
+* [Commit log from lecture (only available after lecture)](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/02)
+* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/reference/02)
+* [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/02/start/README.md)
+* [Exercise solution](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/02/solution)
+</details>
+
 
 ### Lecture 3: Implementing a React backend on Express
 
@@ -92,27 +102,27 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 We will create an Express server which serves a React application that uses an API implemented in Express to implement
 functionality.
 See [Convert to serve from Express](#converting-react-to-serve-from-express) on the steps to take the code from the
-previous lecture
-to be served from Express.
+previous lecture to be served from Express.
 
 We will look at routing in Express and user interaction and error handling in React.
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/03)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/start/README.md)
+
+Reference material
+
+* [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
+* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/03)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/03)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/03/start/README.md)
 * [Exercise solution](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/03/solution)
-
-#### From 2022
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/04)
-* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/04)
-* [Exercise text](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/blob/exercise/04/start/README.md)
-* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04)
-
-#### Useful videos
-
-* [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
-* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 </details>
 
@@ -125,13 +135,23 @@ See [the steps to deploy to Heroku](#deploy-to-heroku)
 
 If we have time, we will take a look at the details of `<BrowserRouter>`.
 
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/04)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/04/start/README.md)
+
+Reference material
+
+* [Heroku's documentation on using Node.js](https://www.heroku.com/nodejs)
+* [Heroku free credits for students](https://www.heroku.com/github-students)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
+
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/04)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/04)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/04/start/README.md)
 * [Exercise solution](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/04/solution)
-
-* [Heroku's documentation on using Node.js](https://www.heroku.com/nodejs)
-* [Heroku free credits for students](https://www.heroku.com/github-students)
 
 #### Material from 2022
 
@@ -141,21 +161,25 @@ If we have time, we will take a look at the details of `<BrowserRouter>`.
 
 </details>
 
-### Lecture 5: Quality code, Prettier and Jest
+### Lecture 5: Quality code, Prettier, Jest, Husky and GitHub Actions
 
 <details>
 
 In this lecture, we will look at ways to make sure our code is good, from formatting, to linting, to testing.
-We will look at the tools prettier, jest, eslint and Typescript. We will also be using GitHub to run our quality
+We will look at the tools prettier, jest and Typescript. We will also be using GitHub to run our quality
 checks automatically.
 
-* Creating a `npm run check` task to check code
-    * `npm run check` in the root should run `check:prettier`, `check:client` and `check:server`
-* `check:prettier`:
+TODO: This description must be updated with Vitest.
+
+* Creating a `npm test` task to check code
+    * `npm tet` in the root should run `test:prettier`, `test:client` and `test:server`
+* `test:prettier`:
     * `npm install --save-dev prettier`
-    * `npm pkg set scripts.check:prettier="prettier check .""`
-* `check:client` and `check:server` should run `npm test`, `npm run check:typescript` and `npm run check:eslint` in
+    * `npm pkg set scripts.test:prettier="prettier check .""`
+* `test:client` and `test:server` should run `npm run test:jest`, `npm run check:typescript` and `npm run check:eslint` in
   the `client` and `server` directories, respectively
+    * `npm pkg set scripts.test:client="cd client && npm test""`
+    * `npm pkg set scripts.test:server="cd server && npm test""`
 * `npm test` for client:
     * `npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer`
     * [Add a babel section to package.json to configure](https://jestjs.io/docs/tutorial-react) @babel/preset-env and
@@ -166,17 +190,22 @@ checks automatically.
     * `npm install --save-dev jest babel-jest @babel/preset-env supertest`
     * Add a babel section to package-json to configure `@babel/preset-env`
     * The easiest way to test express is with [Supertest](https://github.com/ladjs/supertest#readme)
-* `npm check:typescript`
+* `npm test:typescript`
     * `npm install typescript`
     * `npx tsc --init`
     * `npm pkg set scripts.check:typescript="tsc --noEmit"`
     * `npm install --save-dev ts-jest`
     * `npx ts-jest config:init`
-* `npm check:eslint`
-    * `npm install --save-dev eslint`
-    * `npm init @eslint/config`
 
 Installing Jest can be tricky and is [described in the course notes](#testing)
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/05)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/05/start/README.md)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/05)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/05)
@@ -211,6 +240,13 @@ continue.
       removing `babel.config.js`
 * Test drive <AddMovieForm />
 
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/06/start/README.md)
+</details>
+<details>
+<summary>Material from previous years</summary>
+
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/06)
 * Exercise text
   is [the same as lecture 6](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/03)
@@ -226,7 +262,23 @@ continue.
 
 <details>
 
-Bonus content: The secret of <BrowserRouter />, Express middleware and the bodyParser trap
+[Reading and writing data to MongoDB](#mongodb)
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/07)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/07)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/07/start/README.md)
+
+Reference material
+
+* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc) - very useful and brief
+* [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
+* [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
+* [MongoDB documentation: How to query collections](https://www.mongodb.com/docs/manual/reference/operator/query/)
+* [MongoDB documentation: How to insert a document](https://www.mongodb.com/docs/drivers/node/current/usage-examples/insertOne/)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/07)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/07)
@@ -240,14 +292,6 @@ Bonus content: The secret of <BrowserRouter />, Express middleware and the bodyP
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/07)
 * [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/07)
 
-#### Useful links
-
-* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc) - very useful and brief
-* [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
-* [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
-* [MongoDB documentation: How to query collections](https://www.mongodb.com/docs/manual/reference/operator/query/)
-* [MongoDB documentation: How to insert a document](https://www.mongodb.com/docs/drivers/node/current/usage-examples/insertOne/)
-
 </details>
 
 ### Lecture 8: Async/await, Promises and interaction between client and server
@@ -256,6 +300,16 @@ Bonus content: The secret of <BrowserRouter />, Express middleware and the bodyP
 
 Loading spinner and error handling, as well as using React context to centralize interaction between client and server.
 We will also revisit BrowserRouter and why fix how it was broken with Express.
+
+TODO: Should we include suspense?
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/08/start/README.md)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/08)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/08)
@@ -280,6 +334,14 @@ We will also revisit BrowserRouter and why fix how it was broken with Express.
 
 In this lecture we will implement "log in with Google"-functionality. We will also explore other identity
 services that also implement OpenID Connect, such as ID-porten and Active Directory.
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/09/start/README.md)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/09)
@@ -311,6 +373,20 @@ are sent as JSON objects.
 In our example, we will create a web application that lets users chat with each
 other.
 
+See [course reference material](#reference-material)
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/10)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/10)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/10/start/README.md)
+
+Reference material
+
+* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
+
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/10)
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/10)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/10/start/README.md)
@@ -320,15 +396,12 @@ other.
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
 
-#### Useful links
-
-* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
-
 </details>
 
-### Lecture 11: OpenID Connect and Active Directory
+### Lecture 11: TODO
 
 <details>
+<summary>Material from previous years</summary>
 
 In this lecture, I will demonstrate how to set up an already created OpenID Connect server with Active Directory, then
 implement the necessary steps using another ID-provider, so the exact code is left as an exercise
@@ -349,7 +422,11 @@ implement the necessary steps using another ID-provider, so the exact code is le
 
 We start with a basic application and develop the student's favorite functionality during the lecture.
 
-* [Commit log from lecture](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/lectures/12)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/12)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
 
 #### Material from 2022
 
@@ -369,8 +446,7 @@ After all the steps, you will have a resulting structure that looks something li
 ```
 <root-directory>/
   client/
-    .parcel-cache/   # temporary files generated by parcel (add to .gitignore. Delete if parcel behaves strange)
-    dist/            # The output from the build process - generated by parcel (add to .gitignore)
+    dist/            # The output from the build process - generated by vite (add to .gitignore)
     node_modules/    # The local copy of dependencies - generated by npm (add to .gitignore)
     package.json     # Contains scripts to run and dependencies
     index.html       # The starting point for the client code
@@ -388,14 +464,14 @@ After all the steps, you will have a resulting structure that looks something li
 <details>
 
 1. Create a new directory. In IntelliJ, you can use File > New > Project. I recommend creating an Empty project
-2. When creating a project, make sure you add `node_modules`, `.parcel-cache` and `dist` to `.gitignore`
+2. When creating a project, make sure you add `node_modules` and `dist` to `.gitignore`
 3. Create a subdirectory for the client (`mkdir client`)
 4. In the client directory, create the `package.json` file and add dependencies with the following commands
     1. `cd client`
-    2. `npm install --save-dev parcel`
+    2. `npm install --save-dev vite`
     3. `npm install react react-dom react-router-dom`
-5. Set up the "dev" command to run parcel
-    * `npm pkg set scripts.dev="parcel serve index.html"`
+5. Set up the "dev" command to run vite
+    * `npm pkg set scripts.dev="vite"`
 6. You can now run `npm run dev`, although this will fail until you create an index.html-file (next step)
 
 ### Creating the initial React application files
@@ -406,10 +482,10 @@ After all the steps, you will have a resulting structure that looks something li
       <body>
         <div id="root"></div>
       </body>
-      <script src="index.jsx" type="module"></script>
+      <script src="src/main.jsx" type="module"></script>
    </html>
    ```
-2. Create a minimal `index.jsx`:
+2. Create a minimal `src/main.jsx`:
    ```jsx
    import React from "react";
    import ReactDOM from "react-dom/client";
@@ -442,6 +518,8 @@ function Application() {
 
 <details>
 
+TODO: This was written with Parcel in mind and needs to be updated for Vite.
+
 1. Create a subdirectory on the top level (next to the `client` directory): `mkdir server`
 2. In the server directory, create the `package.json` file and add dependencies with the following commands:
     1. `cd server`
@@ -453,13 +531,7 @@ function Application() {
     * `npm pkg set type="module"`
 5. You can now run `npm run dev` in the server directory, although this will fail until you create a server.js-file
    (next step)
-6. You should update the client project. Instead of `parcel` running the server ("parcel serve"), it should just
-   "watch" for changes and output the contents of the `dist` directory
-    * `cd ../client`
-    * `npm pkg set scripts.dev="parcel watch index.html"`
-    * (The `package.json` file generated with `npm init` will contain the line `"main": "index.js"`, which parcel
-      doesn't
-      like. You should delete this line)
+6. You should update the client project. To make vite access the API, you need to configure the proxy settings (TODO)
 
 #### Create a minimal `server.js`
 
@@ -470,7 +542,6 @@ you can access it at http://localhost:3000
 import express from "express";
 
 const app = express();
-app.use(express.static("../client/dist"))
 app.listen(3000);
 ```
 
@@ -518,7 +589,7 @@ For more information on deploying with Heroku Git (instead of GitHub), see [Depl
     * `npm pkg set scripts.start="cd server && npm start"`
 3. In the client project, define `npm run build`
     * `cd client`
-    * `npm pkg set scripts.build="parcel build index.html"`
+    * `npm pkg set scripts.build="vite build"`
     * `cd ..`
 4. In the server project, define `npm start`
     * `cd server`
@@ -541,11 +612,6 @@ For more information on deploying with Heroku Git (instead of GitHub), see [Depl
 
 Common problems:
 
-* "sh: 1: parcel: not found": This means that you ran `npm install` instead of `npm install --include=dev` on
-  the `client` project
-* Strange error message during `npm run build`: It's possible that parcel or some library that parcel uses had a
-  short-lived bug. Search the web for the error message
-  and see if you should `override` some dependency. Alternatively, use an older version of `parcel`
 * The application crashes
     * View the log under More > View logs
     * The log is often truncated. To see the whole log when the application runs, try More > Restart all dynos
@@ -656,6 +722,8 @@ function AddMovieForm() {
 
 #### The useLoading hook
 
+TODO: Replace with Suspense?
+
 <details>
 
 ```javascript
@@ -739,6 +807,8 @@ app.use((req, res, next) => {
 
 </details>
 
+### Mongodb
+
 #### Reading data from MongoDb
 
 <details>
@@ -775,6 +845,8 @@ new MongoClient(process.env.MONGODB_URL)
 </details>
 
 ### Testing
+
+TODO: This should be updated using @testing-library/react and vitest
 
 #### Installing
 
@@ -935,6 +1007,10 @@ describe("...", () => {
 ### Client side:
 
 <details>
+
+Reference material
+
+* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
 
 ```javascript
     // Connect to ws on the same host as we got the frontend (support both http/ws and https/wss)
