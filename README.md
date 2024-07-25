@@ -43,6 +43,10 @@ In the course we will mainly be building two example applications:
 
 ### Lecture 1: A tour of React, Express and Heroku
 
+<details open>
+
+[Mentimenter](https://www.menti.com/alkd1oaizxmy)
+
 We explore the most important parts to the whole application up and running on
 a server. This lecture will be *way too fast to understand* and will serve merely
 as a teaser to topics that will be important through the course. After the
@@ -53,6 +57,7 @@ application with Vite and React Router
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/01)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/01/start/README.md)
 
+</details>
 <details>
 <summary>Material from previous years</summary>
 
@@ -68,6 +73,8 @@ application with Vite and React Router
 ### Lecture 2: React, use state and props
 
 <details>
+
+[Mentimenter](https://www.menti.com/al36tnmnnr2g)
 
 We will review the React topics from the last lecture: Creating a React app,
 creating functional components and using props, state and effects. We will
