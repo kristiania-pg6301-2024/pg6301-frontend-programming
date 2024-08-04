@@ -1,8 +1,13 @@
 import React, {useMemo, useState} from 'react';
 
 const DenominationTypes = {
+    "kr1000": {
+        description: "tusenlapper",
+        value: 1000,
+    },
     "kr500": {
         description: "femhundrelapper",
+        value: 500
     }
 }
 
@@ -21,6 +26,16 @@ function BillCountInput({settlement, setSettlement, denomination}) {
             }))}
         />
     </div>;
+}
+
+function sumBalance(balance) {
+    let sum = 0;
+    for (const denonimation in DenominationTypes) {
+        if (balance[denonimation]?.count) {
+            sum += balance[denonimation].count * DenominationTypes[denonimation].value;
+        }
+    }
+    return sum;
 }
 
 export function NewSettlementForm() {
@@ -44,10 +59,7 @@ export function NewSettlementForm() {
     const [settlement, setSettlement] = useState({
         balance: {}
     })
-    const sum = useMemo(() => (
-        (settlement.balance["kr1000"]?.count || 0) * 1000
-        + (settlement.balance["kr500"]?.count || 0) * 500
-    ), [settlement]);
+    const sum = useMemo(() => sumBalance(settlement.balance), [settlement]);
 
     return <form>
         <h2>Registrere kontanter</h2>
