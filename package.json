@@ -7,7 +7,7 @@
     "start": "cd server && npm start",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install --include=dev && npm run build",
-    "build:server": "cd server && npm install --include=dev",
+    "build:server": "cd server && npm install",
     "heroku:push": "git push heroku reference/01:main",
     "heroku:logs": "heroku logs --tail"
   },
