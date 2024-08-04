@@ -4,7 +4,12 @@ import { createRoot } from "react-dom/client";
 const root = createRoot(document.getElementById("root"));
 
 function AddTaskForm() {
-    return <form>
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log("Submit TaskForm");
+    }
+
+    return <form onSubmit={handleSubmit}>
         <div>
             <label>
                 Task:
