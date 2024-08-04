@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 
 const BillDenominationTypes = {
     "kr1000": {
@@ -46,26 +46,19 @@ const CoinDenominationTypes = {
     },
 };
 
-function BillCountInput({settlement, setSettlement, denomination}) {
+function BillCountInput({balance, setBalance, denomination}) {
     return <div>
         <div>Antall {BillDenominationTypes[denomination].description}:</div>
         <input
             type="number"
-            value={settlement.balance[denomination]?.count || ""}
-            onChange={(e) => setSettlement(old => ({
-                ...old,
-                balance: {
-                    ...old.balance,
-                    [denomination]: { count: e.target.value }
-                }
-            }))}
+            value={balance[denomination]?.count || ""}
+            onChange={e => setBalance(denomination, {count: e.target.value})}
         />
     </div>;
 }
 
-function CoinCountInput({settlement, setSettlement, denomination}) {
-    const count = settlement.balance[denomination]?.count;
-    const weight = settlement.balance[denomination]?.weight;
+function CoinCountInput({balance, setBalance, denomination}) {
+    const {count, weight} = balance[denomination] || {};
     const coinType = CoinDenominationTypes[denomination];
     return <div>
         <div>{coinType.description}:</div>
@@ -75,13 +68,7 @@ function CoinCountInput({settlement, setSettlement, denomination}) {
                 type="number"
                 disabled={weight}
                 value={count || Math.round(weight/coinType.gramsPerCoin) || ""}
-                onChange={(e) => setSettlement(old => ({
-                    ...old,
-                    balance: {
-                        ...old.balance,
-                        [denomination]: {count: e.target.value}
-                    }
-                }))}
+                onChange={(e) => setBalance(denomination, {count: e.target.value})}
             />
             {" "}
             Vekt:
@@ -89,13 +76,7 @@ function CoinCountInput({settlement, setSettlement, denomination}) {
                 type="number"
                 disabled={count}
                 value={weight || count*coinType.gramsPerCoin || ""}
-                onChange={(e) => setSettlement(old => ({
-                    ...old,
-                    balance: {
-                        ...old.balance,
-                        [denomination]: {weight: e.target.value}
-                    }
-                }))}
+                onChange={(e) => setBalance(denomination, {weight: e.target.value})}
             />
             g
         </div>
@@ -129,6 +110,15 @@ export function NewSettlementForm() {
         balance: {}
     })
     const sum = sumBalance(settlement.balance);
+    function setBalance(denomination, value) {
+        setSettlement(old => ({
+            ...old,
+            balance: {
+                ...old.balance,
+                [denomination]: value
+            }
+        }));
+    }
 
     return <form>
         <h2>Registrere kontanter</h2>
@@ -145,16 +135,15 @@ export function NewSettlementForm() {
         {Object.keys(BillDenominationTypes).map(d =>
             <BillCountInput
                 key={d}
-                settlement={settlement}
-                setSettlement={setSettlement}
+                balance={settlement.balance}
+                setBalance={setBalance}
                 denomination={d}
             />
         )}
         {Object.keys(CoinDenominationTypes).map(d =>
-            <CoinCountInput
-                key={d}
-                settlement={settlement}
-                setSettlement={setSettlement}
+            <CoinCountInput key={d}
+                balance={settlement.balance}
+                setBalance={setBalance}
                 denomination={d}
             />
         )}
