@@ -27,22 +27,22 @@ const CoinDenominationTypes = {
     "kr20": {
         description: "20-kroninger",
         value: 20,
-        unitWeight: 9.9
+        gramsPerCoin: 9.9
     },
     "kr10": {
         description: "tikroninger",
         value: 10,
-        unitWeight: 6.8
+        gramsPerCoin: 6.8
     },
     "kr5": {
         description: "femkroninger",
         value: 5,
-        unitWeight: 7.85
+        gramsPerCoin: 7.85
     },
     "kr1": {
         description: "kronestykker",
         value: 1,
-        unitWeight: 4.35
+        gramsPerCoin: 4.35
     },
 };
 
@@ -74,7 +74,7 @@ function CoinCountInput({settlement, setSettlement, denomination}) {
             <input
                 type="number"
                 disabled={weight}
-                value={count || Math.round(weight/coinType.unitWeight) || ""}
+                value={count || Math.round(weight/coinType.gramsPerCoin) || ""}
                 onChange={(e) => setSettlement(old => ({
                     ...old,
                     balance: {
@@ -88,7 +88,7 @@ function CoinCountInput({settlement, setSettlement, denomination}) {
             <input
                 type="number"
                 disabled={count}
-                value={weight || count*coinType.unitWeight || ""}
+                value={weight || count*coinType.gramsPerCoin || ""}
                 onChange={(e) => setSettlement(old => ({
                     ...old,
                     balance: {
@@ -114,7 +114,7 @@ function sumBalance(balance) {
         if (balance[denonimation]?.count) {
             sum += balance[denonimation].count * type.value;
         } else if (balance[denonimation]?.weight) {
-            sum += Math.round(balance[denonimation].weight/type.unitWeight) * type.value;
+            sum += Math.round(balance[denonimation].weight/type.gramsPerCoin) * type.value;
         }
     }
     return sum;
