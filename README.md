@@ -54,8 +54,8 @@ lecture, you will only be expected to know the basics of how to create a React
 application with Vite and React Router
 
 * [Commit log from lecture (only available after lecture)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/01)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/01)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/01/start/README.md)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/01) [deployed app](https://pg6301-reference-01-e3c9a1cd874d.herokuapp.com/)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/01/start/README.md)
 
 </details>
 <details>
@@ -84,7 +84,7 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/02)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/02)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/02/start/README.md)
 
 #### Useful video
 
@@ -115,7 +115,7 @@ We will look at routing in Express and user interaction and error handling in Re
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/03)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md)
 
 Reference material
 
@@ -137,6 +137,8 @@ Reference material
 
 <details>
 
+[Mentimenter](https://www.menti.com/alax91fi8cus)
+
 In this lecture, we will upload a simple web application to a cloud service and look at automatic deploys.
 See [the steps to deploy to Heroku](#deploy-to-heroku)
 
@@ -144,7 +146,7 @@ If we have time, we will take a look at the details of `<BrowserRouter>`.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/04)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/04/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/04/start/README.md)
 
 Reference material
 
@@ -208,7 +210,7 @@ Installing Jest can be tricky and is [described in the course notes](#testing)
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/05)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/05/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
 
 </details>
 <details>
@@ -249,7 +251,7 @@ continue.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/06/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/06/start/README.md)
 </details>
 <details>
 <summary>Material from previous years</summary>
@@ -273,7 +275,7 @@ continue.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/07)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/07)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/07/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/07/start/README.md)
 
 Reference material
 
@@ -312,7 +314,7 @@ TODO: Should we include suspense?
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/08/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/08/start/README.md)
 
 </details>
 <details>
@@ -344,7 +346,7 @@ services that also implement OpenID Connect, such as ID-porten and Active Direct
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/09/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/09/start/README.md)
 
 </details>
 <details>
@@ -384,7 +386,7 @@ See [course reference material](#reference-material)
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/10)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/10)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/10/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/10/start/README.md)
 
 Reference material
 
@@ -551,11 +553,66 @@ import express from "express";
 const app = express();
 app.listen(3000);
 ```
+</details>
 
-When you can get this to work, you will need to master the following:
+#### Create an API in `server.js`
 
-* Make Express respond to API calls
-* Make React call API calls on the backend (using `fetch`)
+<details>
+
+```js
+export const moviesApi = new express.Router();
+moviesApi.get("/api/movies", (req, res) => {
+  res.send([
+    { title: "Oppenheimer" },
+    { title: "Barbie" },
+  ])
+});
+
+app.use(moviesApi);
+```
+
+#### Setup `client/vite.config.js` to proxy `/api` to express
+
+```js
+import {defineConfig} from "vite";
+
+export default defineConfig({
+  server: {
+    proxy: {
+       "/api": "http://localhost:3000"
+    }
+  }
+});
+```
+</details>
+
+#### Read data from an API in React
+
+<details>
+
+```js
+function ListMovies() {
+  const [movies, setMovies] = useState([]);
+
+  async function loadMovies() {
+    const res = await fetch("/api/movies");
+    setMovies(await res.json());
+  }
+
+  useEffect(() => {
+    loadMovies();
+  }, []);
+
+  return (
+    <>
+      <h1>Movies</h1>
+      {movies.map((m) => (
+        <div>{m.title}</div>
+      ))}
+    </>
+  );
+}
+```
 
 </details>
 
@@ -589,7 +646,7 @@ For more information on deploying with Heroku Git (instead of GitHub), see [Depl
 1. In the root project make sure `npm install` is run at `postinstall`
     * `npm pkg set scripts.postinstall="npm run install:client && npm run install:server"`
     * `npm pkg set scripts.install:client="cd client && npm install --include=dev"`
-    * `npm pkg set scripts.install:server="cd server && npm install --include=dev"`
+    * `npm pkg set scripts.install:server="cd server && npm install"`
 2. In the root project, define `npm run build` and `npm start`
     * `npm pkg set scripts.build="npm run build:client"`
     * `npm pkg set scripts.build:client="cd client && npm run build"`
@@ -615,6 +672,7 @@ For more information on deploying with Heroku Git (instead of GitHub), see [Depl
     1. `heroku login`
     2. `heroku git:remote -a <app name>`
     3. `git push heroku`
+    4. `heroku logs --tail` (optional): See the logs from Heroku in your console 
 9. You can see the deployment log under Activity in the Heroku Dashboard for your app and the runtime log under More > View logs
 
 Common problems:
@@ -626,52 +684,6 @@ Common problems:
 </details>
 
 ### Crucial tasks
-
-#### Consume an API from React
-
-<details>
-
-Expose an API from Express (in `server/`):
-
-```js
-export const moviesApi = new express.Router();
-moviesApi.get("/api/movies", (req, res) => {
-  res.send([
-    { title: "Oppenheimer" },
-    { title: "Barbie" },
-  ])
-});
-
-app.use(moviesApi);
-```
-
-Read an API from React:
-
-```jsx
-function ListMovies() {
-  const [movies, setMovies] = useState([]);
-
-  async function loadMovies() {
-    const res = await fetch("/api/movies");
-    setMovies(await res.json());
-  }
-
-  useEffect(() => {
-    loadMovies();
-  }, []);
-
-  return (
-    <>
-      <h1>Movies</h1>
-      {movies.map((m) => (
-        <div>{m.title}</div>
-      ))}
-    </>
-  );
-}
-```
-
-</details>
 
 #### Posting data to server
 
