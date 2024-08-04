@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react';
 
-const DenominationTypes = {
+const BillDenominationTypes = {
     "kr1000": {
         description: "tusenlapper",
         value: 1000,
@@ -8,12 +8,24 @@ const DenominationTypes = {
     "kr500": {
         description: "femhundrelapper",
         value: 500
-    }
+    },
+    "kr200": {
+        description: "tohundrelapper",
+        value: 200
+    },
+    "kr100": {
+        description: "hundrelapper",
+        value: 100
+    },
+    "kr50": {
+        description: "femtilapper",
+        value: 50
+    },
 }
 
 function BillCountInput({settlement, setSettlement, denomination}) {
     return <div>
-        <div>Antall {DenominationTypes[denomination].description}:</div>
+        <div>Antall {BillDenominationTypes[denomination].description}:</div>
         <input
             type="number"
             value={settlement.balance[denomination]?.count || ""}
@@ -30,9 +42,9 @@ function BillCountInput({settlement, setSettlement, denomination}) {
 
 function sumBalance(balance) {
     let sum = 0;
-    for (const denonimation in DenominationTypes) {
+    for (const denonimation in BillDenominationTypes) {
         if (balance[denonimation]?.count) {
-            sum += balance[denonimation].count * DenominationTypes[denonimation].value;
+            sum += balance[denonimation].count * BillDenominationTypes[denonimation].value;
         }
     }
     return sum;
@@ -42,19 +54,6 @@ export function NewSettlementForm() {
     const allDepartments = [
         "Auksjon", "Bilder", "Bøker", "Cafeteria", "Elektro", "Godteri", "Kjøkken", "Møbler", "Popcorn", "Sport",
     ];
-
-    function handleChangeCount(e) {
-        setSettlement(old => ({
-            ...old,
-            balance: {
-                ...old.balance,
-                ["kr1000"]: {
-                    count: e.target.value
-                }
-            }
-        }))
-
-    }
 
     const [settlement, setSettlement] = useState({
         balance: {}
@@ -73,16 +72,14 @@ export function NewSettlementForm() {
                 {allDepartments.map(d => <option key={d} value={d}>{d}</option>)}
             </select>
         </div>
-        <div>
-            <div>Antall tusenlapper</div>
-            <input type="text" value={settlement.balance["kr1000"]?.count || ""} onChange={e => handleChangeCount(e)}/>
-        </div>
-        <BillCountInput
-            settlement={settlement}
-            setSettlement={setSettlement}
-            denomination={"kr500"}
-        />
-
+        {Object.keys(BillDenominationTypes).map(d =>
+            <BillCountInput
+                key={d}
+                settlement={settlement}
+                setSettlement={setSettlement}
+                denomination={d}
+            />
+        )}
         <div>
             Sum: {sum}
         </div>
