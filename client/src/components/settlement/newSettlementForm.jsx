@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export function NewSettlementForm() {
+    const allDepartments = [
+        "Auksjon", "Bilder", "Bøker", "Cafeteria", "Elektro", "Godteri", "Kjøkken", "Møbler", "Popcorn", "Sport",
+    ];
+    const [settlement, setSettlement] = useState({})
+
     return <form>
         <h2>Registrere kontanter</h2>
         <div>
             <div>Avdeling:</div>
-            <select>
-                <option>Auksjon</option>
-                <option>Bilder</option>
-                <option>Bøker</option>
-                <option>Cafeteria</option>
-                <option>Kjøkken</option>
+            <select onChange={e => setSettlement(old => ({
+                ...old,
+                department: e.target.value
+            }))}>
+                <option></option>
+                {allDepartments.map(d => <option key={d} value={d}>{d}</option>)}
             </select>
         </div>
         <div>
@@ -21,5 +26,9 @@ export function NewSettlementForm() {
             <div>Antall femhundrelapper:</div>
             <input type="text"/>
         </div>
+
+        <pre>
+            {JSON.stringify(settlement, null, 2)}
+        </pre>
     </form>;
 }
