@@ -3,12 +3,13 @@ import {createRoot} from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
 
-function AddTaskForm() {
+function AddTaskForm({onAddTask}) {
     const [title, setTitle] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("Submit TaskForm", {title});
+        onAddTask({title});
+        setTitle("");
     }
 
     return <form onSubmit={handleSubmit}>
@@ -28,11 +29,14 @@ function AddTaskForm() {
 }
 
 function TaskManagerApplication() {
+    function handleAddTask(task) {
+        console.log("handleAddTask", task);
+    }
     return <>
         <h1>PG6301 React Task Manager</h1>
         <h2>Existing tasks</h2>
         <h2>Create new tasks</h2>
-        <AddTaskForm/>
+        <AddTaskForm onAddTask={handleAddTask} />
     </>;
 }
 
