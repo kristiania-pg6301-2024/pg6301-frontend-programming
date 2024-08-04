@@ -5,8 +5,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd server && npm start",
-    "build": "cd client && npm install --include=dev && npm run build",
-    "heroku:push": "git push heroku reference/01:main"
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install --include=dev && npm run build",
+    "build:server": "cd server && npm install --include=dev",
+    "heroku:push": "git push heroku reference/01:main",
+    "heroku:logs": "heroku logs --tail"
   },
   "author": "",
   "license": "ISC",
