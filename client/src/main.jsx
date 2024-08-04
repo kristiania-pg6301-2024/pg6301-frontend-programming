@@ -31,8 +31,15 @@ function AddTaskForm({onAddTask}) {
 function TaskManagerApplication() {
     const [tasks, setTasks] = useState([])
 
-    function handleAddTask(task) {
+    async function handleAddTask(task) {
         setTasks(old => [...old, task]);
+        await fetch("/api/tasks", {
+            "method": "POST",
+            "body": JSON.stringify(task),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
     }
 
     return <>
