@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build",
+    "heroku:push": "git push heroku reference/01:main"
   },
   "author": "",
   "license": "ISC",
