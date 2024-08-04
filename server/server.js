@@ -11,7 +11,9 @@ app.post("/api/tasks", (req, res) => {
     const {title} = req.body;
     tasks.push({title});
     res.sendStatus(201);
-})
+});
+
+app.use(express.static("../client"));
 
 
 app.listen(3000);
