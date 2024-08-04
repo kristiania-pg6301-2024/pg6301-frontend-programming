@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import { createRoot } from "react-dom/client";
+import {createRoot} from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
 
 function AddTaskForm() {
+    const [title, setTitle] = useState("")
+
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("Submit TaskForm");
+        console.log("Submit TaskForm", {title});
     }
 
     return <form onSubmit={handleSubmit}>
@@ -14,10 +16,13 @@ function AddTaskForm() {
             <label>
                 Task:
             </label>
-            <input/>
+            <input
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+            />
         </div>
         <div>
-            <button>Submit</button>
+            <button>Submit {title}</button>
         </div>
     </form>;
 }
