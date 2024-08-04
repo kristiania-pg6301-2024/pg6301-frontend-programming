@@ -21,11 +21,47 @@ const BillDenominationTypes = {
         description: "femtilapper",
         value: 50
     },
-}
+};
+
+const CoinDenominationTypes = {
+    "kr20": {
+        description: "20-kroninger",
+        value: 20,
+    },
+    "kr10": {
+        description: "tikroninger",
+        value: 10
+    },
+    "kr5": {
+        description: "femkroninger",
+        value: 5
+    },
+    "kr1": {
+        description: "kronestykker",
+        value: 1
+    },
+};
 
 function BillCountInput({settlement, setSettlement, denomination}) {
     return <div>
         <div>Antall {BillDenominationTypes[denomination].description}:</div>
+        <input
+            type="number"
+            value={settlement.balance[denomination]?.count || ""}
+            onChange={(e) => setSettlement(old => ({
+                ...old,
+                balance: {
+                    ...old.balance,
+                    [denomination]: { count: e.target.value }
+                }
+            }))}
+        />
+    </div>;
+}
+
+function CoinCountInput({settlement, setSettlement, denomination}) {
+    return <div>
+        <div>Antall {CoinDenominationTypes[denomination].description}:</div>
         <input
             type="number"
             value={settlement.balance[denomination]?.count || ""}
@@ -45,6 +81,11 @@ function sumBalance(balance) {
     for (const denonimation in BillDenominationTypes) {
         if (balance[denonimation]?.count) {
             sum += balance[denonimation].count * BillDenominationTypes[denonimation].value;
+        }
+    }
+    for (const denonimation in CoinDenominationTypes) {
+        if (balance[denonimation]?.count) {
+            sum += balance[denonimation].count * CoinDenominationTypes[denonimation].value;
         }
     }
     return sum;
@@ -74,6 +115,14 @@ export function NewSettlementForm() {
         </div>
         {Object.keys(BillDenominationTypes).map(d =>
             <BillCountInput
+                key={d}
+                settlement={settlement}
+                setSettlement={setSettlement}
+                denomination={d}
+            />
+        )}
+        {Object.keys(CoinDenominationTypes).map(d =>
+            <CoinCountInput
                 key={d}
                 settlement={settlement}
                 setSettlement={setSettlement}
