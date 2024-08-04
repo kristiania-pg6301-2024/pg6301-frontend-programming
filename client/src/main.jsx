@@ -29,14 +29,23 @@ function AddTaskForm({onAddTask}) {
 }
 
 function TaskManagerApplication() {
+    const [tasks, setTasks] = useState([])
+
     function handleAddTask(task) {
-        console.log("handleAddTask", task);
+        setTasks(old => [...old, task]);
     }
+
     return <>
         <h1>PG6301 React Task Manager</h1>
         <h2>Existing tasks</h2>
+        {tasks.map((task) => (<div key={task.title}>
+            <label>
+                <input type="checkbox" />
+                {task.title}
+            </label>
+        </div>))}
         <h2>Create new tasks</h2>
-        <AddTaskForm onAddTask={handleAddTask} />
+        <AddTaskForm onAddTask={handleAddTask}/>
     </>;
 }
 
