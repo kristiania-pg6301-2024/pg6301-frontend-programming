@@ -16,7 +16,7 @@ export function NewSettlementAction() {
         <dialog ref={dialogRef}>
             <h1>Ny kontanttelling</h1>
         </dialog>
-        <button onClick={() => setShow(b => !b)}>
+        <button onClick={() => setShow(true)}>
             Registrer telling? {show ? "hide" : "show"}
         </button>
     </>;
