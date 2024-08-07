@@ -1,9 +1,10 @@
-import React from "react";
-import {NewSettlementForm} from "../settlement/newSettlementForm";
+import {NewSettlementAction} from "../settlement/newSettlementAction";
 
 export function Application() {
+
     return <>
-        <h1>Cash accounting</h1>
-        <NewSettlementForm/>
+        <h1>Kontantregnskap</h1>
+        <NewSettlementAction/>
     </>;
 }
+
