@@ -11,6 +11,9 @@ export function NewSettlementAction() {
             dialogRef.current.close();
         }
     }, [show]);
+    useEffect(() => {
+        dialogRef.current.addEventListener("close", () => setShow(false));
+    }, []);
 
     return <>
         <dialog ref={dialogRef}>
