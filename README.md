@@ -24,7 +24,7 @@ You can choose to ways to create the application:
 3. Download [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/). You can use a Trial license until your
    GitHub student pack is registered. You can then use [the IntelliJ student page](https://www.jetbrains.com/shop/eform/students)
    to get a long term license
-4. Sign in to https://mattermost.kristiania.no/ and find the #pg6301 channel and send a message saying Hello
+4. Sign in to https://mattermost.kristiania.no/ and find the [PG6301 channel](https://mattermost.kristiania.no/it2023/channels/pg6301---webutvikling-og-api-design) and send a message saying Hello
 
 ### Step 2: Alternative 1: Use the Vite project wizard (quick start, but lots of confusing code)
 
@@ -70,6 +70,10 @@ When you have managed to create your first React application, you should send a 
 "Exercise 1 complete! 🎉" at Mattermost! Feel free to include the link to your GitHub repository.
 
 If you want to explore React a bit more right away, check out the [official React tutorials](https://react.dev/learn).
+
+### Step 4: Competition
+
+We need a logo for the course GitHub pages. Post your entry on Mattermost and vote with emojiis on other entries. Despite knowing better from experience, I will let the democratic process decide on the logo.
 
 ### Exercise solution:
 
