@@ -1,5 +1,8 @@
 {
   "scripts": {
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "cd server && npm install",
+    "build:client": "cd client && npm install --include=dev && npm run build"
   }
 }
