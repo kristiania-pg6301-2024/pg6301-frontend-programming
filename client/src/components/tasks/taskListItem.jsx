@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export function TaskListItem({
     task: {id, completed, description},
@@ -15,7 +16,7 @@ export function TaskListItem({
             {description} <a href={"#"} onClick={(e) => {
                 e.preventDefault();
                 onChange(id);
-            }}>[update]</a>
+            }}>[update]</a> - <Link to={`/tasks/${id}`}>[details]</Link>
         </label>
     </div>;
 }
