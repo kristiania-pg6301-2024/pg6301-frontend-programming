@@ -8,6 +8,13 @@ export function TaskApplication() {
         {id: 3, description: "Complete the exercise", completed: false},
     ];
 
-    return <TaskList tasks={tasks}/>
+    function handleAddTask(task) {
+        console.log("handlAddTask", task);
+    }
+
+    return <div>
+        <TaskList tasks={tasks}/>
+        <NewTaskForm onAddTask={handleAddTask} />
+    </div>
 }
 
