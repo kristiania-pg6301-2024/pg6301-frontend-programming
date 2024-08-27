@@ -14,7 +14,12 @@ export function TaskApplication() {
     }
 
     function handleTaskCompleted(id) {
-        console.log("handleTaskCompleted", {id});
+        setTasks(old =>
+            old.map((task) => task.id === id
+                ? {...task, completed: true}
+                : task
+            )
+        );
     }
 
     return <div>

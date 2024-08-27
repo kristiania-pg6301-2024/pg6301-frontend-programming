@@ -5,7 +5,7 @@ export function NewTaskForm({onAddTask}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        onAddTask({ description });
+        onAddTask({ description, completed: false });
         setDescription("");
     }
 
