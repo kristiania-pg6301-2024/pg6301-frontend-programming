@@ -1,7 +1,15 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 
 export function EditTaskDialog({task}) {
-    return <div>
-        <h2>Updating {task?.title}</h2>
-    </div>;
+    const dialogRef = useRef();
+
+    useEffect(() => {
+        if (task) {
+            dialogRef.current.showModal();
+        }
+    }, [task])
+
+    return <dialog ref={dialogRef}>
+        <h2>Updating {task?.description}</h2>
+    </dialog>;
 }
