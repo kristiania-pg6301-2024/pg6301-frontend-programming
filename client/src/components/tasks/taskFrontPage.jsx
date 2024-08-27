@@ -5,6 +5,7 @@ import React from "react";
 
 export function TaskFrontPage({tasks, onChangeTask, onClose, onAddTask, activeTask, onUpdateTask, onTaskCompleted}) {
     return <div>
+        <h1>The task application</h1>
         <TaskList
             tasks={tasks}
             onTaskCompleted={onTaskCompleted}
