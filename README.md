@@ -43,7 +43,7 @@ In the course we will mainly be building two example applications:
 
 ### Lecture 1: A tour of React, Express and Heroku
 
-<details open>
+<details>
 
 [Mentimenter](https://www.menti.com/alkd1oaizxmy)
 
@@ -72,7 +72,7 @@ application with Vite and React Router
 
 ### Lecture 2: React, use state and props
 
-<details>
+<details open>
 
 [Mentimenter](https://www.menti.com/al36tnmnnr2g)
 
@@ -84,11 +84,12 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/02)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/02)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/02/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/02/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
 
-#### Useful video
+#### Reference material
 
 * [Fireship: React in 100 seconds](https://youtu.be/Tn6-PIqc4UM)
+* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 </details>
 <details>
@@ -115,12 +116,11 @@ We will look at routing in Express and user interaction and error handling in Re
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/03)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/solution)
 
 Reference material
 
 * [Fireship.io intro til Express](https://youtu.be/-MTSQjw5DrM)
-* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 </details>
 <details>
@@ -521,13 +521,58 @@ function Application() {
 }
  ```
 
+#### Optional: Enable hot refresh with Vite
+
+`npm install -D @vitejs/plugin-react` and add the following `vite.config.js` in your client project:
+
+```js
+import {defineConfig} from "vite";
+import reactVite from "@vitejs/plugin-react";
+
+export default defineConfig({
+    plugins: [reactVite()]
+});
+```
 </details>
+
+#### React Router
+
+<details>
+
+```jsx
+export function MoviesApplication() {
+  return <BrowserRouter>
+    <Routes>
+      <Route path={"/"} element={<FrontPage />} />
+      <Route path={"/movies/*"} element={<Movies />} />
+    </Routes>
+  </BrowserRouter>;
+}
+
+function Movies() {
+  return <Routes>
+    <Route path={""} element={<ListMovies movies={movies} />} />
+    <Route path={"new"} element={<NewMovie onAddMovie={handleAddMovie} />} />
+  </Routes>
+}
+
+function FrontPage() {
+  return <div>
+    <h1>Front Page</h1>
+    <ul>
+      <li><Link to={"/movies"}>List existing movies</Link></li>
+      <li><Link to={"/movies/new"}>Add new movie</Link></li>
+    </ul>
+  </div>;
+}
+```
+
+</details>
+
 
 ### Converting react to serve from express
 
 <details>
-
-TODO: This was written with Parcel in mind and needs to be updated for Vite.
 
 1. Create a subdirectory on the top level (next to the `client` directory): `mkdir server`
 2. In the server directory, create the `package.json` file and add dependencies with the following commands:
@@ -544,7 +589,7 @@ TODO: This was written with Parcel in mind and needs to be updated for Vite.
 
 #### Create a minimal `server.js`
 
-This file serves code from `../client/dist` with Express, running on port 3000. After you execute `npm run dev`,
+This file start Express on port 3000. After you execute `npm run dev`,
 you can access it at http://localhost:3000
 
 ```js
@@ -570,6 +615,9 @@ moviesApi.get("/api/movies", (req, res) => {
 
 app.use(moviesApi);
 ```
+
+You can now access this API at http://localhost:3000/api/movies
+
 
 #### Setup `client/vite.config.js` to proxy `/api` to express
 
@@ -771,39 +819,6 @@ export function useLoading(loadingFunction, deps = []) {
 
 </details>
 
-#### React Router
-
-<details>
-
-```jsx
-export function MoviesApplication() {
-  return <BrowserRouter>
-    <Routes>
-      <Route path={"/"} element={<FrontPage />} />
-      <Route path={"/movies/*"} element={<Movies />} />
-    </Routes>
-  </BrowserRouter>;
-}
-
-function Movies() {
-  return <Routes>
-    <Route path={""} element={<ListMovies movies={movies} />} />
-    <Route path={"new"} element={<NewMovie onAddMovie={handleAddMovie} />} />
-  </Routes>
-}
-
-function FrontPage() {
-  return <div>
-    <h1>Front Page</h1>
-    <ul>
-      <li><Link to={"/movies"}>List existing movies</Link></li>
-      <li><Link to={"/movies/new"}>Add new movie</Link></li>
-    </ul>
-  </div>;
-}
-```
-
-</details>
 
 #### Express middleware for dealing with BrowserRouter
 
