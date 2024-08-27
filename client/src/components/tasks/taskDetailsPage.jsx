@@ -3,7 +3,10 @@ import {Link, useParams} from "react-router-dom";
 
 export function TaskDetailsPage({tasks}) {
     const {id} = useParams();
+    // noinspection EqualityComparisonWithCoercionJS
     const task = tasks.find(t => t.id == id);
+
+    if (!task) return null;
 
     return <div>
         <h2>Details for task {id}</h2>
