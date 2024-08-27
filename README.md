@@ -157,7 +157,8 @@ Check out the [solution for exercise 2](https://github.com/kristiania-pg6301-202
 
 ## Exercise 3: The TODO API
 
-> The purpose of exercise 3 is to implement a server with ExpressJS for the TODO application so that your actions will be stored if you reopen the web browser
+<details>
+<summary>The purpose of exercise 3 is to implement a server with ExpressJS for the TODO application so that your actions will be stored if you reopen the web browser</summary>
 
 Starting from what you did in exercise 2, we want to implement an ExpressJS server API for our tasks. If you have organized your frontend code like me, you
 will have code that looks something like this:
@@ -225,7 +226,22 @@ These are the high level steps, see the [course notes](https://github.com/kristi
 3. Add a static resource to the ExpressJS application in `server.js`: `app.use(express.static("../client/dist"))`
 4. To make React Routes work, you also need to [add middleware to handle default requests](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/?tab=readme-ov-file#express-middleware-for-dealing-with-browserrouter)
 
+</details>
+
 ### Exercise solution:
 
 Check out the [solution for exercise 3](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/solution)
+
+## Exercise 4: Deploy the application to Heroku
+
+> The purpose of exercise 4 is to get the code we've built to run on the Heroku cloud platform
+
+Starting from the client+server application you created in exercise 3, in exercise 4, you should create a Heroku account and deploy your application there.
+
+See [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming?tab=readme-ov-file#deploy-to-heroku) for details.
+
+### Exercise solution:
+
+There is no exercise solution for this week's exercise
+
 
