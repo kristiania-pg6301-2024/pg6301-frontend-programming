@@ -20,8 +20,15 @@ export function TaskApplication() {
         loadTasks();
     }, []);
 
-    function handleAddTask(task) {
-        setTasks((old) => [...old, {...task, id: old.length + 1}])
+    async function handleAddTask(task) {
+        await fetch("/api/tasks", {
+            method: "POST",
+            body: JSON.stringify(task),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        await loadTasks();
     }
 
     function handleTaskCompleted(id) {
