@@ -31,17 +31,19 @@ export function TaskApplication() {
         await loadTasks();
     }
 
-    async function handleTaskCompleted(id) {
+    async function putTaskUpdate(id, update) {
         await fetch(`/api/tasks/${id}`, {
             method: "PUT",
-            body: JSON.stringify({
-                completed: true
-            }),
+            body: JSON.stringify(update),
             headers: {
                 "Content-Type": "application/json"
             }
         })
         await loadTasks();
+    }
+
+    async function handleTaskCompleted(id) {
+        await putTaskUpdate(id, {completed: true});
     }
 
     function handleChangeTask(id) {
@@ -52,13 +54,8 @@ export function TaskApplication() {
         setEditingTaskId(undefined);
     }
 
-    function handleUpdateTask(id, taskDelta) {
-        setTasks(old =>
-            old.map((task) => task.id === id
-                ? {...task, ...taskDelta}
-                : task
-            )
-        );
+    async function handleUpdateTask(id, taskDelta) {
+        await putTaskUpdate(id, taskDelta);
     }
 
 

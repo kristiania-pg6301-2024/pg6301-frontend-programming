@@ -20,11 +20,10 @@ tasksApi.post("/api/tasks", (req, res) => {
 });
 tasksApi.put("/api/tasks/:id", (req, res) => {
     const {id} = req.params;
-    const {completed} = req.body;
+    const {completed, description} = req.body;
+    // noinspection EqualityComparisonWithCoercionJS
     const index = tasks.findIndex(t => t.id == id);
-    tasks[index] = {
-        ...tasks[index],
-        completed
-    };
+    if (completed) tasks[index].completed = completed;
+    if (description) tasks[index].description = description;
     res.sendStatus(201);
 })
