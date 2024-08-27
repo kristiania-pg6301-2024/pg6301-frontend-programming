@@ -1,5 +1,6 @@
 import React from "react";
 import {TaskList} from "../tasks/taskList";
+import {NewTaskForm} from "../tasks/newTaskForm";
 
 export function TaskApplication() {
     const tasks = [
