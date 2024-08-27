@@ -17,4 +17,14 @@ tasksApi.post("/api/tasks", (req, res) => {
         completed,
     });
     res.sendStatus(201);
+});
+tasksApi.put("/api/tasks/:id", (req, res) => {
+    const {id} = req.params;
+    const {completed} = req.body;
+    const index = tasks.findIndex(t => t.id == id);
+    tasks[index] = {
+        ...tasks[index],
+        completed
+    };
+    res.sendStatus(201);
 })
