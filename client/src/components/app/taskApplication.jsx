@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {TaskList} from "../tasks/taskList";
 import {NewTaskForm} from "../tasks/newTaskForm";
+import {EditTaskDialog} from "../tasks/editTaskDialog";
 
 export function TaskApplication() {
     const [tasks, setTasks] = useState([
