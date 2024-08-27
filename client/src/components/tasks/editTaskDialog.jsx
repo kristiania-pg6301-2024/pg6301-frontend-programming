@@ -1,8 +1,12 @@
 import React, {useEffect, useRef, useState} from "react";
 
-export function EditTaskDialog({task, onUpdateTask}) {
+export function EditTaskDialog({task, onUpdateTask, onClose}) {
     const dialogRef = useRef();
     const [description, setDescription] = useState("");
+
+    useEffect(() => {
+        dialogRef.current.addEventListener("close", onClose);
+    }, [])
 
     useEffect(() => {
         if (task) {

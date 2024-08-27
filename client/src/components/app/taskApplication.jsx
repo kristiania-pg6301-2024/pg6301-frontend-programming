@@ -29,6 +29,10 @@ export function TaskApplication() {
         setEditingTaskId(id);
     }
 
+    function handleCloseDialog() {
+        setEditingTaskId(undefined);
+    }
+
     function handleUpdateTask(id, taskDelta) {
         setTasks(old =>
             old.map((task) => task.id === id
@@ -49,6 +53,7 @@ export function TaskApplication() {
         <EditTaskDialog
             task={tasks.find(t => t.id === editingTaskId)}
             onUpdateTask={handleUpdateTask}
+            onClose={handleCloseDialog}
         />
     </div>
 }
