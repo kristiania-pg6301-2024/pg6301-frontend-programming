@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import {TaskList} from "../tasks/taskList";
-import {NewTaskForm} from "../tasks/newTaskForm";
-import {EditTaskDialog} from "../tasks/editTaskDialog";
+import {TaskFrontPage} from "../tasks/taskFrontPage";
 
 export function TaskApplication() {
     const [tasks, setTasks] = useState([
@@ -11,6 +9,7 @@ export function TaskApplication() {
     ]);
 
     const [editingTaskId, setEditingTaskId] = useState()
+    const activeTask = tasks.find(t => t.id === editingTaskId);
 
     function handleAddTask(task) {
         setTasks((old) => [...old, {...task, id: old.length + 1}])
@@ -43,18 +42,14 @@ export function TaskApplication() {
     }
 
 
-    return <div>
-        <TaskList
-            tasks={tasks}
-            onTaskCompleted={handleTaskCompleted}
-            onChangeTask={handleChangeTask}
-        />
-        <NewTaskForm onAddTask={handleAddTask}/>
-        <EditTaskDialog
-            task={tasks.find(t => t.id === editingTaskId)}
-            onUpdateTask={handleUpdateTask}
-            onClose={handleCloseDialog}
-        />
-    </div>
+    return <TaskFrontPage
+        tasks={tasks}
+        onTaskCompleted={handleTaskCompleted}
+        onChangeTask={handleChangeTask}
+        onAddTask={handleAddTask}
+        activeTask={activeTask}
+        onUpdateTask={handleUpdateTask}
+        onClose={handleCloseDialog}
+    />
 }
 
