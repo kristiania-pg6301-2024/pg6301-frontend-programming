@@ -30,6 +30,10 @@ export function TaskApplication() {
         setEditingTaskId(id);
     }
 
+    function handleUpdateTask(id, taskDelta) {
+        console.log("handleUpdateTask", {id, taskDelta});
+    }
+
 
     return <div>
         <TaskList
@@ -40,6 +44,7 @@ export function TaskApplication() {
         <NewTaskForm onAddTask={handleAddTask}/>
         <EditTaskDialog
             task={tasks.find(t => t.id === editingTaskId)}
+            onUpdateTask={handleUpdateTask}
         />
     </div>
 }
