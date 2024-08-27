@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {TaskFrontPage} from "../tasks/taskFrontPage";
+import {Route, Routes} from "react-router-dom";
+import {TaskDetailsPage} from "../tasks/taskDetailsPage";
 
 export function TaskApplication() {
     const [tasks, setTasks] = useState([
@@ -42,14 +44,28 @@ export function TaskApplication() {
     }
 
 
-    return <TaskFrontPage
-        tasks={tasks}
-        onTaskCompleted={handleTaskCompleted}
-        onChangeTask={handleChangeTask}
-        onAddTask={handleAddTask}
-        activeTask={activeTask}
-        onUpdateTask={handleUpdateTask}
-        onClose={handleCloseDialog}
-    />
+    return <Routes>
+        <Route
+            path={"/"}
+            element={<TaskFrontPage
+                tasks={tasks}
+                onTaskCompleted={handleTaskCompleted}
+                onChangeTask={handleChangeTask}
+                onAddTask={handleAddTask}
+                activeTask={activeTask}
+                onUpdateTask={handleUpdateTask}
+                onClose={handleCloseDialog}
+            />}
+        />
+        <Route
+            path={"/tasks/:id"}
+            element={<TaskDetailsPage
+                tasks={tasks}
+            />}
+        />
+        <Route path={"*"} element={<h2>Not found</h2>}/>
+    </Routes>
+
+
 }
 
