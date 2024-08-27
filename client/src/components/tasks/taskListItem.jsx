@@ -2,7 +2,8 @@ import React from "react";
 
 export function TaskListItem({
     task: {id, completed, description},
-    onCompleted
+    onCompleted,
+    onChange
 }) {
     return <div>
         <label>
@@ -11,7 +12,10 @@ export function TaskListItem({
                 checked={completed}
                 onChange={() => onCompleted(id)}
             />
-            {description}
+            {description} <a href={"#"} onClick={(e) => {
+                e.preventDefault();
+                onChange(id);
+            }}>[update]</a>
         </label>
     </div>;
 }

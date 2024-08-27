@@ -22,10 +22,16 @@ export function TaskApplication() {
         );
     }
 
+    function handleChangeTask(id) {
+        console.log("handleChangeTask", {id})
+    }
+
+
     return <div>
         <TaskList
             tasks={tasks}
             onTaskCompleted={handleTaskCompleted}
+            onChangeTask={handleChangeTask}
         />
         <NewTaskForm onAddTask={handleAddTask}/>
     </div>
