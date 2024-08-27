@@ -6,7 +6,12 @@ In addition, we will be adding details to the tasks and give access to tasks to 
 
 ## Exercise 1: Create a React application where you can register and add to a list of tasks
 
-> The purpose of the first week exercise is to install and verify the tools used to develop and get help for the course
+<details>
+
+<summary>
+The purpose of the first week exercise is to install and verify the tools used to develop and get help for the course
+</summary>
+
 
 Your application should have the following:
 
@@ -75,6 +80,74 @@ If you want to explore React a bit more right away, check out the [official Reac
 
 We need a logo for the course GitHub pages. Post your entry on Mattermost and vote with emojiis on other entries. Despite knowing better from experience, I will let the democratic process decide on the logo.
 
+</details>
+
 ### Exercise solution:
 
 Check out the [reference code from lecture 1](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/01)
+
+## Exercise 2: A TODO application with updateable state
+
+> The purpose of the exercise 2 is to create functionality in a React application
+
+Starting with what you learned in exercise 1, let's transform the simple list of tasks into a more functional application.
+Implement the following features:
+
+* Create task
+* Complete task
+* Change task description
+* Show task details
+
+You should start out as we showed in the lecture, with a static component that you gradually make dynamic. Here is a possible starting point:
+
+```jsx
+function TaskList() {
+   const tasks = [
+      { id: 1, description: "Follow the lecture", completed: true },
+      { id: 2, description: "Read the exercise", completed: false },
+      { id: 3, description: "Complete the exercise", completed: false },
+   ];
+   
+   return <div>
+      <h2>Tasks</h2>
+      {tasks.map(({id, description, completed}) => <label key={id}>
+         <input type="checkbox" checked={completed} />
+         {description}
+      </label>)}
+   </div>;
+}
+```
+
+
+### New task
+
+Register a new task by typing the task description in an input and pressing submit (the list of tasks should be a React `useState` with an array of objects, the current state of the input should be a `useState` with a string)
+
+### Complete task
+
+Mark the task as completed by checking a checkbox next to the task (`<input type=checkbox />`)
+(implement by updating the task state for the checked task - this is a bit tricky)
+
+### Change task description
+
+Let the user update the description of an existing state by clicking a link by the task.
+When updating a task, use a `<dialog>`.
+
+1. `useState` with a `dialogOpen` state that reflects the state of the dialog
+2. `useRef` to refer to the `<dialog>` element and `useEffect` to `showModal()` when `dialogOpen` updates
+3. Submitting the form in the dialog should close the dialog
+
+### Close the dialog correctly
+
+If you press Escape in the dialog for updating task title, you may be unable to click the dialog open again.
+This is because the state of `dialogOpen` has drifted away from the state of the HTML elements. Add a close listener
+to the dialog (using the `useRef` reference) to update `dialogOpen` state when the user closes the dialog.
+
+### Show task details with a router
+
+Add `react-router-dom` as a dependency. Clicking on a task should take you to another route that focuses on the task.
+You can choose whether this page just displays the task description or if you want to add more info.
+
+### Exercise solution:
+
+Check out the [solution for exercise 2](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
