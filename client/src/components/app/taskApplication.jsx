@@ -13,8 +13,15 @@ export function TaskApplication() {
         setTasks((old) => [...old, {...task, id: old.length + 1}])
     }
 
+    function handleTaskCompleted(id) {
+        console.log("handleTaskCompleted", {id});
+    }
+
     return <div>
-        <TaskList tasks={tasks}/>
+        <TaskList
+            tasks={tasks}
+            onTaskCompleted={handleTaskCompleted}
+        />
         <NewTaskForm onAddTask={handleAddTask}/>
     </div>
 }
