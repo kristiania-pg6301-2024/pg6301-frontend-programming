@@ -6,6 +6,7 @@ export function NewTaskForm({onAddTask}) {
     function handleSubmit(e) {
         e.preventDefault();
         onAddTask({ description });
+        setDescription("");
     }
 
     return <form onSubmit={handleSubmit}>
