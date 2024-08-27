@@ -26,12 +26,16 @@ export function TaskApplication() {
     }
 
     function handleChangeTask(id) {
-        console.log("handleChangeTask", {id})
         setEditingTaskId(id);
     }
 
     function handleUpdateTask(id, taskDelta) {
-        console.log("handleUpdateTask", {id, taskDelta});
+        setTasks(old =>
+            old.map((task) => task.id === id
+                ? {...task, ...taskDelta}
+                : task
+            )
+        );
     }
 
 
