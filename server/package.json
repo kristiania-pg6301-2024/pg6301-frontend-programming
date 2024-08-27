@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "type": "module"
+}
