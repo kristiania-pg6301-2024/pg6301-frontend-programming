@@ -7,7 +7,9 @@ export function TaskApplication() {
         {id: 1, description: "Follow the lecture", completed: true},
         {id: 2, description: "Read the exercise", completed: false},
         {id: 3, description: "Complete the exercise", completed: false},
-    ])
+    ]);
+
+    const [editingTaskId, setEditingTaskId] = useState()
 
     function handleAddTask(task) {
         setTasks((old) => [...old, {...task, id: old.length + 1}])
@@ -24,6 +26,7 @@ export function TaskApplication() {
 
     function handleChangeTask(id) {
         console.log("handleChangeTask", {id})
+        setEditingTaskId(id);
     }
 
 
@@ -34,6 +37,9 @@ export function TaskApplication() {
             onChangeTask={handleChangeTask}
         />
         <NewTaskForm onAddTask={handleAddTask}/>
+        <EditTaskDialog
+            task={tasks.find(t => t.id === editingTaskId)}
+        />
     </div>
 }
 
