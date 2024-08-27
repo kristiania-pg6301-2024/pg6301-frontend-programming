@@ -1,17 +1,24 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {TaskFrontPage} from "../tasks/taskFrontPage";
 import {Route, Routes} from "react-router-dom";
 import {TaskDetailsPage} from "../tasks/taskDetailsPage";
 
 export function TaskApplication() {
-    const [tasks, setTasks] = useState([
-        {id: 1, description: "Follow the lecture", completed: true},
-        {id: 2, description: "Read the exercise", completed: false},
-        {id: 3, description: "Complete the exercise", completed: false},
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     const [editingTaskId, setEditingTaskId] = useState()
     const activeTask = tasks.find(t => t.id === editingTaskId);
+
+    async function loadTasks() {
+        const res = await fetch("/api/tasks");
+        if (res.ok) {
+            setTasks(await res.json());
+        }
+    }
+
+    useEffect(() => {
+        loadTasks();
+    }, []);
 
     function handleAddTask(task) {
         setTasks((old) => [...old, {...task, id: old.length + 1}])
