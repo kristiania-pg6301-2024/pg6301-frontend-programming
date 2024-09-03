@@ -8,6 +8,12 @@ const billTypes = {
     ["50kr"]: { key: "50kr", value: 50, label: "50-lapper" },
 }
 
+const coinTypes = [
+    {key: "20kr", label: "20-kroning", value: 20, weightGrams: 9.9 },
+    {key: "1kr", label: "Kronestykke", value: 1, weightGrams: 4.35 },
+]
+
+
 function BillInput({denomination, balance, setBalance}) {
     return <div>
         {billTypes[denomination].label}:{" "}
@@ -62,6 +68,27 @@ export function Application() {
                 setBalance={setBalance}
                 balance={balance}
             />
+        ))}
+        {coinTypes.map(c => (
+            <div key={c.key}>
+                {c.label}:{" "}
+                Count: <input
+                    type="number"
+                    value={balance[c.key]}
+                    onChange={e => setBalance(old => ({
+                        ...old,
+                        [c.key]: e.target.value
+                    }))}
+                />
+                Weight: <input
+                    type="number"
+                    value={balance[c.key]}
+                    onChange={e => setBalance(old => ({
+                        ...old,
+                        [c.key]: e.target.value
+                    }))}
+                />
+            </div>
         ))}
         <div>
             Sum: {sum} kr
