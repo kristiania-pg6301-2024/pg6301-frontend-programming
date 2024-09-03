@@ -1,8 +1,16 @@
 import React, {useMemo, useState} from "react";
 
-function BillInput({denomination, label, balance, setBalance}) {
+const billTypes = {
+    ["1000kr"]: { key: "1000kr", value: 1000, label: "1000-lapper" },
+    ["500kr"]: { key: "500kr", value: 500, label: "500-lapper" },
+    ["200kr"]: { key: "200kr", value: 200, label: "200-lapper" },
+    ["100kr"]: { key: "100kr", value: 100, label: "100-lapper" },
+    ["50kr"]: { key: "50kr", value: 50, label: "50-lapper" },
+}
+
+function BillInput({denomination, balance, setBalance}) {
     return <div>
-        {label}:{" "}
+        {billTypes[denomination].label}:{" "}
         <input
             type="number"
             value={balance[denomination]}
@@ -19,18 +27,10 @@ export function Application() {
 
     const [balance, setBalance] = useState({});
 
-    const values = {
-        ["1000kr"]: 1000,
-        ["500kr"]: 500,
-        ["200kr"]: 200,
-        ["100kr"]: 100,
-        ["50kr"]: 50,
-    }
-
     const sum = useMemo(() => {
         let result = 0;
         for (const denomination in balance) {
-            result += values[denomination] * balance[denomination];
+            result += billTypes[denomination].value * balance[denomination];
         }
         return result;
     }, [balance])
@@ -52,39 +52,17 @@ export function Application() {
         <div>
             Department:
             <select value={selectedDepartment} onChange={e => setSelectedDepartment(e.target.value)}>
-                {departmentOptions.map(d => <option>{d}</option>)}
+                {departmentOptions.map(d => <option key={d}>{d}</option>)}
             </select>
         </div>
-        <BillInput
-            denomination={"1000kr"}
-            label={"1000-lapper"}
-            balance={balance}
-            setBalance={setBalance}
-        />
-        <BillInput
-            denomination={"500kr"}
-            label={"500-lapper"}
-            balance={balance}
-            setBalance={setBalance}
-        />
-        <BillInput
-            denomination={"200kr"}
-            label={"200-lapper"}
-            balance={balance}
-            setBalance={setBalance}
-        />
-        <BillInput
-            denomination={"100kr"}
-            label={"100-lapper"}
-            balance={balance}
-            setBalance={setBalance}
-        />
-        <BillInput
-            denomination={"50kr"}
-            label={"50-lapper"}
-            balance={balance}
-            setBalance={setBalance}
-        />
+        {["1000kr", "500kr", "200kr", "100kr", "50kr"].map(d => (
+            <BillInput
+                key={d}
+                denomination={d}
+                setBalance={setBalance}
+                balance={balance}
+            />
+        ))}
         <div>
             Sum: {sum} kr
         </div>
