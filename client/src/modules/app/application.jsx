@@ -1,11 +1,6 @@
 import React, {useMemo, useState} from "react";
 
-function BillInput(props) {
-    const denomination = props.denomination;
-    const label = props.label;
-    const balance = props.balance;
-    const setBalance = props.setBalance;
-
+function BillInput({denomination, label, balance, setBalance}) {
     return <div>
         {label}:{" "}
         <input
@@ -22,11 +17,7 @@ function BillInput(props) {
 export function Application() {
     const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
 
-    const [balance, setBalance] = useState({
-        ["1000kr"]: "0",
-        ["500kr"]: "0",
-        ["200kr"]: "0",
-    });
+    const [balance, setBalance] = useState({});
 
     const values = {
         ["1000kr"]: 1000,
@@ -64,28 +55,18 @@ export function Application() {
                 {departmentOptions.map(d => <option>{d}</option>)}
             </select>
         </div>
-        <div>
-            Antall 1000-lapper:{" "}
-            <input
-                type="number"
-                value={balance["1000kr"]}
-                onChange={e => setBalance(old => ({
-                    ...old,
-                    ["1000kr"]: e.target.value
-                }))}
-            />
-        </div>
-        <div>
-            Antall 500-lapper:{" "}
-            <input
-                type="number"
-                value={balance["500kr"]}
-                onChange={e => setBalance(old => ({
-                    ...old,
-                    ["500kr"]: e.target.value
-                }))}
-            />
-        </div>
+        <BillInput
+            denomination={"1000kr"}
+            label={"1000-lapper"}
+            balance={balance}
+            setBalance={setBalance}
+        />
+        <BillInput
+            denomination={"500kr"}
+            label={"500-lapper"}
+            balance={balance}
+            setBalance={setBalance}
+        />
         <BillInput
             denomination={"200kr"}
             label={"200-lapper"}
