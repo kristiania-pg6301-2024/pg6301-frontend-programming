@@ -1259,3 +1259,45 @@ app.get("/profile", (req, res) => {
 ```
 
 </details>
+
+## Tools
+
+
+### IntellJ shortcuts
+
+<details>
+These are some of the most versatile keyboard shortcuts in IntelliJ. There are many more, but learning these 12 will really speed up your code
+
+| Shortcut (Windows)   | Shortcut (Mac)      | Command                                    |
+|----------------------|---------------------|--------------------------------------------|
+| alt-enter            | opt-enter           | Show content action (quick fix)            |
+| ctrl-alt-shift-t     | ctrl-t              | Refactor this (show refactor menu)         |
+| alt-insert           | cmd-n               | New... (add some content)                  |
+| ctrl-w               | opt-up              | Expand selection                           |
+| shift-alt-f10        | ctrl-alt-r          | Run....                                    |
+| shift-alt-f9         | ctrl-alt-d          | Debug....                                  |
+| shift-f10            | ctrl-d              | Rerun last....                             |
+| ctrl-b               | cmd-b               | Navigate to symbol                         |
+| alt-j                | ctrl-g              | Add next match to selection (multi-cursor) |
+| shift-ctrl-backspace | shift-cmd-backspace | Goto last edit location                    |
+| shift, shift         | shift, shift        | Search anywhere                            |
+
+Make yourself familiar with `Refactor this` (ctrl-alt-shift-t / ctrl-t) and use it to learn the shortcut keys for your favorite refactorings like Extract method, Rename and Inline.
+</details>
+
+
+### Git commands
+
+<details>
+
+| Command      | Description                              | IntelliJ shortcut                         |
+|--------------|------------------------------------------|-------------------------------------------|
+| `git init`   | Creates a new local git repo in `.git/`  | VCS > Import into version control         |
+| `git add`    | Stage files to include in next commit    | (not needed)                              |
+| `git commit` | Store your local changes in git history  | ctrl-k / cmd-k                            |
+| `git push`   | Upload changes to remote repo (github)   | ctrl-sh-k / cmd-sh-k                      |
+| `git clone`  | Create a local copy from remote (github) | File > New > Project from version control |
+| `git pull`   | Update local copy with others' changes   | ctrl-t / cmd-t                            |
+| `git log`    | View change history                      | View > Tool Windows > Version control     |
+
+</details>
