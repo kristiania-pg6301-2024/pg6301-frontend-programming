@@ -1,27 +1,42 @@
 import React, {useMemo, useState} from "react";
 
 const billTypes = [
-    { key: "1000kr", value: 1000, label: "1000-lapper" },
-    { key: "500kr", value: 500, label: "500-lapper" },
-    { key: "200kr", value: 200, label: "200-lapper" },
-    { key: "100kr", value: 100, label: "100-lapper" },
-    { key: "50kr", value: 50, label: "50-lapper" },
+    {key: "1000kr", value: 1000, label: "1000-lapper"},
+    {key: "500kr", value: 500, label: "500-lapper"},
+    {key: "200kr", value: 200, label: "200-lapper"},
+    {key: "100kr", value: 100, label: "100-lapper"},
+    {key: "50kr", value: 50, label: "50-lapper"},
 ]
 
 const coinTypes = [
-    { key: "20kr", value: 20, label: "20-kroning", weightGrams: 9.9 },
-    { key: "10kr", value: 10, label: "10-kroning", weightGrams: 6.8 },
-    { key: "5kr", value: 5, label: "5-kroning", weightGrams: 7.85 },
-    { key: "1kr", value: 1, label: "kronestykker", weightGrams: 4.35 },
+    {key: "20kr", value: 20, label: "20-kroning", weightGrams: 9.9},
+    {key: "10kr", value: 10, label: "10-kroning", weightGrams: 6.8},
+    {key: "5kr", value: 5, label: "5-kroning", weightGrams: 7.85},
+    {key: "1kr", value: 1, label: "kronestykker", weightGrams: 4.35},
 ];
 
+
+function CoinInput({onChange, coinType: { label, key, weightGrams }, balance}) {
+    return <p>
+        {label}<br/>
+        Count of mynter: <input
+            type="number"
+            value={balance[key]}
+            onChange={onChange}
+        /><br/>
+        Weight: <input
+            type="number"
+            value={balance[key] * weightGrams}
+            disabled={balance[key]}
+            width={10}
+        />
+    </p>;
+}
 
 export function Application() {
     const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
 
-    const [balance, setBalance] = useState({
-        "5kr": 10
-    });
+    const [balance, setBalance] = useState({});
 
     const sum = useMemo(() => {
         let result = 0;
@@ -69,17 +84,14 @@ export function Application() {
                 }))}
             />
         </div>)}
-        {coinTypes.map(c => <div key={c.key}>
-            {c.label}
-            <input
-                type="number"
-                value={balance[c.key]}
-                onChange={e => setBalance(old => ({
-                    ...old,
-                    [c.key]: e.target.value
-                }))}
-            />
-        </div>)}
+        {coinTypes.map(c => <CoinInput
+            key={c.key}
+            coinType={c}
+            balance={balance}
+            onChange={e => setBalance(old => ({
+                ...old,
+                [c.key]: e.target.value
+            }))}/>)}
         <div>
             Sum: {sum} kr
         </div>
