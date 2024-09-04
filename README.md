@@ -70,7 +70,7 @@ application with Vite and React Router
 * [Exercise answer](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/01/solution)
 </details>
 
-### Lecture 3: React, use state and props
+### Lecture 2: React, use state and props
 
 <details>
 
@@ -103,7 +103,7 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 </details>
 
 
-### Lecture 4: useEffect, useRef and React Router
+### Lecture 3: useEffect, useRef and React Router
 
 <details open>
 
@@ -113,7 +113,7 @@ and start to look at React Router.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
 * [Reference implementation (with lecture 2)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/02)
-* [Exercise text - continued](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/02/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
+* [Exercise text - continued](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
 
 #### Reference material
 
