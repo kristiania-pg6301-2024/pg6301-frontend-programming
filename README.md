@@ -133,6 +133,8 @@ Mark the task as completed by checking a checkbox next to the task (`<input type
 
 ## Exercise 3: `useEffect`, `useRef` and React Router
 
+<details>
+
 ### Change task description
 
 Let the user update the description of an existing state by clicking a link by the task.
@@ -153,8 +155,86 @@ to the dialog (using the `useRef` reference) to update `dialogOpen` state when t
 Add `react-router-dom` as a dependency. Clicking on a task should take you to another route that focuses on the task.
 You can choose whether this page just displays the task description or if you want to add more info.
 
+</details>
 
 ### Exercise solution:
 
 Check out the [solution for exercise 2](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
+
+## Exercise 4: The TODO API
+
+<details open>
+<summary>The purpose of exercise 4 is to implement a server with ExpressJS for the TODO application so that your actions will be stored if you reopen the web browser</summary>
+
+Starting from what you did in exercise 2 and 3, we want to implement an ExpressJS server API for our tasks. If you have organized your frontend code like me, you
+will have code that looks something like this:
+
+```jsx
+export function TaskApplication() {
+    const [tasks, setTasks] = useState([]);
+
+    const [editingTaskId, setEditingTaskId] = useState()
+
+    function handleAddTask(task) {
+        // ...
+    }
+
+    function handleTaskCompleted(id) {
+        // ...
+    }
+
+    function handleChangeTask(id) {
+        setEditingTaskId(id);
+    }
+
+    function handleCloseDialog() {
+        setEditingTaskId(undefined);
+    }
+
+    function handleUpdateTask(id, taskDelta) {
+       // ...
+    }
+
+
+    return <div>
+        <TaskList
+            tasks={tasks}
+            onTaskCompleted={handleTaskCompleted}
+            onChangeTask={handleChangeTask}
+        />
+        <NewTaskForm onAddTask={handleAddTask}/>
+        <EditTaskDialog
+            task={tasks.find(t => t.id === editingTaskId)}
+            onUpdateTask={handleUpdateTask}
+            onClose={handleCloseDialog}
+        />
+    </div>
+}
+```
+
+In this exercise, you should replace the loading the initial tasks, handleAddTask, handleTaskCompleted and handleUpdateTask
+as `fetch` calls to the ExpressJS server.
+
+In your project, create a `client` and a `server` subdirectory with separate `package.json` files.
+
+See [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/?tab=readme-ov-file#converting-react-to-serve-from-express) for details.
+
+
+### Task 3: Get the server ready to run on Heroku
+
+When you actually run the server on a cloud hosting provider like Heroku, Vite will not be running. Instead, you will run
+execute `vite build` when you make a change to the application and ExpressJS will serve your React code as static files.
+
+These are the high level steps, see the [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/?tab=readme-ov-file#deploy-to-heroku) for details.
+
+1. Create a top level `package.json` file with a `build` script that builds the client project by executing `vite build`
+2. Add a top level `start` script
+3. Add a static resource to the ExpressJS application in `server.js`: `app.use(express.static("../client/dist"))`
+4. To make React Routes work, you also need to [add middleware to handle default requests](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/?tab=readme-ov-file#express-middleware-for-dealing-with-browserrouter)
+
+</details>
+
+### Exercise solution:
+
+Check out the [solution for exercise 4](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/04/solution)
 
