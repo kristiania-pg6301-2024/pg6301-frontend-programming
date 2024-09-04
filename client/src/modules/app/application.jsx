@@ -1,4 +1,5 @@
 import React, {useMemo, useState} from "react";
+import {CoinInput} from "./coinInput";
 
 const billTypes = [
     {key: "1000kr", value: 1000, label: "1000-lapper"},
@@ -15,23 +16,6 @@ const coinTypes = [
     {key: "1kr", value: 1, label: "kronestykker", weightGrams: 4.35},
 ];
 
-
-function CoinInput({onChange, coinType: { label, key, weightGrams }, balance}) {
-    return <p>
-        {label}<br/>
-        Count of mynter: <input
-            type="number"
-            value={balance[key]}
-            onChange={onChange}
-        /><br/>
-        Weight: <input
-            type="number"
-            value={balance[key] * weightGrams}
-            disabled={balance[key]}
-            width={10}
-        />
-    </p>;
-}
 
 export function Application() {
     const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
@@ -88,10 +72,11 @@ export function Application() {
             key={c.key}
             coinType={c}
             balance={balance}
-            onChange={e => setBalance(old => ({
-                ...old,
-                [c.key]: e.target.value
-            }))}/>)}
+            onChangeCount={newCount => setBalance(old => ({
+                ...balance,
+                [c.key]: newCount
+            }))}
+            />)}
         <div>
             Sum: {sum} kr
         </div>
