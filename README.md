@@ -70,9 +70,9 @@ application with Vite and React Router
 * [Exercise answer](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/01/solution)
 </details>
 
-### Lecture 2: React, use state and props
+### Lecture 3: React, use state and props
 
-<details open>
+<details>
 
 [Mentimenter](https://www.menti.com/al36tnmnnr2g)
 
@@ -103,9 +103,30 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 </details>
 
 
-### Lecture 3: Implementing a React backend on Express
+### Lecture 4: useEffect, useRef and React Router
+
+<details open>
+
+We will continue on the React topics from the last lecture of creating components.
+We will use the `useEffect` and `useRef` hooks to set up interaction between our app and the DOM-objects in the browser
+and start to look at React Router.
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
+* [Reference implementation (with lecture 2)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/02)
+* [Exercise text - continued](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/02/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/02/solution)
+
+#### Reference material
+
+* [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
+
+</details>
+
+
+### Lecture 4: Implementing a React backend on Express
 
 <details>
+
+[Mentimenter](https://www.menti.com/alax91fi8cus)
 
 We will create an Express server which serves a React application that uses an API implemented in Express to implement
 functionality.
@@ -133,11 +154,9 @@ Reference material
 
 </details>
 
-### Lecture 4: Publishing your application on Heroku
+### Lecture 5: Publishing your application on Heroku
 
 <details>
-
-[Mentimenter](https://www.menti.com/alax91fi8cus)
 
 In this lecture, we will upload a simple web application to a cloud service and look at automatic deploys.
 See [the steps to deploy to Heroku](#deploy-to-heroku)
@@ -170,7 +189,7 @@ Reference material
 
 </details>
 
-### Lecture 5: Quality code, Prettier, Jest, Husky and GitHub Actions
+### Lecture 6: Quality code, Prettier, Jest, Husky and GitHub Actions
 
 <details>
 
@@ -229,7 +248,7 @@ Installing Jest can be tricky and is [described in the course notes](#testing)
 
 </details>
 
-### Lecture 6: Jest, Typescript and test driven development
+### Lecture 7: Jest, Typescript and test driven development
 
 <details>
 
@@ -267,7 +286,7 @@ continue.
 
 </details>
 
-### Lecture 7: Storing data MongoDB (with Typescript)
+### Lecture 8: Storing data MongoDB (with Typescript)
 
 <details>
 
@@ -303,7 +322,7 @@ Reference material
 
 </details>
 
-### Lecture 8: Async/await, Promises and interaction between client and server
+### Lecture 9: Async/await, Promises and interaction between client and server
 
 <details>
 
@@ -337,7 +356,7 @@ TODO: Should we include suspense?
 
 </details>
 
-### Lecture 9: Who's your user? OpenID Connect
+### Lecture 10: Who's your user? OpenID Connect
 
 <details>
 
@@ -369,7 +388,7 @@ services that also implement OpenID Connect, such as ID-porten and Active Direct
 
 </details>
 
-### Lecture 10: Web Sockets
+### Lecture 11: Web Sockets
 
 <details>
 
@@ -407,7 +426,7 @@ Reference material
 
 </details>
 
-### Lecture 11: TODO
+#### Extra lecture from 2023 on OpenID Connect
 
 <details>
 <summary>Material from previous years</summary>
