@@ -9,7 +9,9 @@ In addition, we will be adding details to the tasks and give access to tasks to 
 <details>
 
 <summary>
-The purpose of the first week exercise is to install and verify the tools used to develop and get help for the course
+
+> The purpose of the first week exercise is to install and verify the tools used to develop and get help for the course
+
 </summary>
 
 
@@ -89,7 +91,11 @@ Check out the [reference code from lecture 1](https://github.com/kristiania-pg63
 ## Exercise 2: A TODO application with updateable state
 
 <details>
-<summary>The purpose of the exercise 2 is to create functionality in a React application</summary>
+<summary>
+
+>The purpose of the exercise 2 is to create functionality in a React application
+
+</summary>
 
 Starting with what you learned in exercise 1, let's transform the simple list of tasks into a more functional application.
 Implement the following features:
@@ -163,8 +169,12 @@ Check out the [solution for exercise 2](https://github.com/kristiania-pg6301-202
 
 ## Exercise 4: The TODO API
 
-<details open>
-<summary>The purpose of exercise 4 is to implement a server with ExpressJS for the TODO application so that your actions will be stored if you reopen the web browser</summary>
+<details>
+<summary>
+
+> The purpose of exercise 4 is to implement a server with ExpressJS for the TODO application so that your actions will be stored if you reopen the web browser
+
+</summary>
 
 Starting from what you did in exercise 2 and 3, we want to implement an ExpressJS server API for our tasks. If you have organized your frontend code like me, you
 will have code that looks something like this:
@@ -237,4 +247,23 @@ These are the high level steps, see the [course notes](https://github.com/kristi
 ### Exercise solution:
 
 Check out the [solution for exercise 4](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/04/solution)
+
+
+## Exercise 5: Deploy the application to Heroku
+
+<details open>
+<summary>
+
+> The purpose of exercise 5 is to get the code we've built to run on the Heroku cloud platform
+
+</summary>
+
+Starting from the client+server application you created in exercise 3, in exercise 4, you should create a Heroku account and deploy your application there.
+
+See [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming?tab=readme-ov-file#deploy-to-heroku) for details.
+
+### Exercise solution:
+
+There is no exercise solution for this week's exercise
+</details>
 
