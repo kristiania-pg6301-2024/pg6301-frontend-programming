@@ -105,7 +105,7 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 
 ### Lecture 3: useEffect, useRef and React Router
 
-<details open>
+<details>
 
 We will continue on the React topics from the last lecture of creating components.
 We will use the `useEffect` and `useRef` hooks to set up interaction between our app and the DOM-objects in the browser
@@ -124,7 +124,7 @@ and start to look at React Router.
 
 ### Lecture 4: Implementing a React backend on Express
 
-<details>
+<details open>
 
 [Mentimenter](https://www.menti.com/alax91fi8cus)
 
@@ -135,7 +135,7 @@ previous lecture to be served from Express.
 
 We will look at routing in Express and user interaction and error handling in React.
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/03)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/03)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/solution)
 
@@ -250,6 +250,8 @@ Installing Jest can be tricky and is [described in the course notes](#testing)
 
 ### Lecture 7: Jest, Typescript and test driven development
 
+> The React test examples will be updated with the current generation testing tools
+
 <details>
 
 We continue on the code from lecture 5, making sure we have some tests and that Typescript is running before we
@@ -357,6 +359,8 @@ TODO: Should we include suspense?
 </details>
 
 ### Lecture 10: Who's your user? OpenID Connect
+
+> This example will be updated with the current functionality of EntraID
 
 <details>
 
