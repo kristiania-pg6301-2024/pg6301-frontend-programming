@@ -6,10 +6,10 @@ export const billTypes = [
     {key: "50kr", value: 50, label: "50-lapper"},
 ]
 export const coinTypes = [
-    {key: "20kr", value: 20, label: "20-kroning", weightGrams: 9.9},
-    {key: "10kr", value: 10, label: "10-kroning", weightGrams: 6.8},
-    {key: "5kr", value: 5, label: "5-kroning", weightGrams: 7.85},
-    {key: "1kr", value: 1, label: "kronestykker", weightGrams: 4.35},
+    {key: "20kr", value: 20, label: "20-kroning", gramsPerCoin: 9.9},
+    {key: "10kr", value: 10, label: "10-kroning", gramsPerCoin: 6.8},
+    {key: "5kr", value: 5, label: "5-kroning", gramsPerCoin: 7.85},
+    {key: "1kr", value: 1, label: "kronestykker", gramsPerCoin: 4.35},
 ];
 
 export function sumBalance(balance) {
