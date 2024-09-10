@@ -1,18 +1,20 @@
 import express from "express";
 
 const app = express();
+app.use(express.json());
 
+const settlements = [
+    {id: 0, selectedDepartment: "Furniture", balance: {"20kr": 200, "10kr": 50}}
+];
 app.get("/api/settlements", (req, res) => {
-    res.json([
-        {
-            id: 0,
-            selectedDepartment: "Furniture",
-            balance: {
-                "20kr": 200,
-                "10kr": 50
-            }
-        }
-    ])
+    res.json(settlements)
+})
+app.post("/api/settlements", (req, res) => {
+    const { selectedDepartment, balance } = req.body;
+    settlements.push({
+        id: settlements.length, selectedDepartment, balance
+    });
+    res.sendStatus(201);
 })
 
 app.listen(3000);

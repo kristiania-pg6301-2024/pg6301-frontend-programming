@@ -7,9 +7,17 @@ import {Dialog} from "../components/dialog.jsx";
 export function Application() {
     const [settlements, setSettlements] = useState([]);
 
-    function handleNewSettlement(s) {
-        setSettlements(old => [...old, {...s, id: old.length}]);
+    async function handleNewSettlement(s) {
+        //setSettlements(old => [...old, {...s, id: old.length}]);
         setShowsSettlementDialog(false);
+        await fetch("/api/settlements", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(s)
+        })
+        await loadSettlements();
     }
 
     async function loadSettlements() {
