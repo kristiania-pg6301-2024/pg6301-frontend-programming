@@ -1,6 +1,6 @@
-import React, {useMemo, useState} from "react";
-import {CoinInput} from "../app/coinInput";
+import React, {useState} from "react";
 import {billTypes, coinTypes, sumBalance} from "./money";
+import {CoinInput} from "./coinInput.jsx";
 
 export function SubmitSettlementForm({onNewSettlement}) {
     const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
@@ -49,7 +49,7 @@ export function SubmitSettlementForm({onNewSettlement}) {
             coinType={c}
             balance={balance}
             onChangeCount={newCount => setBalance(old => ({
-                ...balance,
+                ...old,
                 [c.key]: newCount
             }))}
         />)}
