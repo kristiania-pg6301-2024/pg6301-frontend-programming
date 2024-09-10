@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FrontPage} from "../settlement/frontPage.jsx";
 import {Route, Routes} from "react-router-dom";
+import {SettlementDetail} from "../settlement/settlementDetail.jsx";
 
 
 export function Application() {
@@ -30,6 +31,7 @@ export function Application() {
 
     return <Routes>
         <Route path={"/"} element={<FrontPage settlements={settlements} onNewSettlement={handleNewSettlement}/>}/>
+        <Route path={"/settlements/:id"} element={<SettlementDetail settlements={settlements}/>}/>
         <Route path={"*"} element={<h1>Not found</h1>}/>
     </Routes>;
 }
