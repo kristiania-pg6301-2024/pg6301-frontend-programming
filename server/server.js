@@ -11,9 +11,8 @@ app.get("/api/settlements", (req, res) => {
 })
 app.post("/api/settlements", (req, res) => {
     const { selectedDepartment, balance } = req.body;
-    settlements.push({
-        id: settlements.length, selectedDepartment, balance
-    });
+    const id = settlements.length;
+    settlements.push({id, selectedDepartment, balance});
     res.sendStatus(201);
 })
 
