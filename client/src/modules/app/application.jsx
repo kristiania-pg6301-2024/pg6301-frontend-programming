@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {FrontPage} from "../settlement/frontPage.jsx";
+import {Route, Routes} from "react-router-dom";
 
 
 export function Application() {
@@ -27,6 +28,9 @@ export function Application() {
         loadSettlements();
     }, [])
 
-    return <FrontPage settlements={settlements} onNewSettlement={handleNewSettlement} />
+    return <Routes>
+        <Route path={"/"} element={<FrontPage settlements={settlements} onNewSettlement={handleNewSettlement}/>}/>
+        <Route path={"*"} element={<h1>Not found</h1>}/>
+    </Routes>;
 }
 
