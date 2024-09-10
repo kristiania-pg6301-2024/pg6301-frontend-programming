@@ -12,10 +12,11 @@ export function Application() {
         setShowsSettlementDialog(false);
     }
 
-    function loadSettlements() {
-        setSettlements([
-            {id: 0, selectedDepartment: "Furniture", balance: {"10kr": 200}}
-        ])
+    async function loadSettlements() {
+        const res = await fetch("/api/settlements");
+        if (res.ok) {
+            setSettlements(await res.json());
+        }
     }
 
     useEffect(() => {
