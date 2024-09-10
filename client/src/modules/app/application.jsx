@@ -8,12 +8,13 @@ export function Application() {
     const [settlements, setSettlements] = useState([]);
 
     function handleNewSettlement(s) {
-        setSettlements(old => [...old, s]);
+        setSettlements(old => [...old, {...s, id: old.length}]);
         setShowsSettlementDialog(false);
     }
+
     function loadSettlements() {
         setSettlements([
-            { selectedDepartment: "Furniture", balance:  { "10kr": 200 } }
+            {id: 0, selectedDepartment: "Furniture", balance: {"10kr": 200}}
         ])
     }
 
@@ -25,7 +26,7 @@ export function Application() {
 
     return <>
         <h1>Settlements</h1>
-        {settlements.map(s => <div>
+        {settlements.map(s => <div key={s.id}>
             {s.selectedDepartment}: {sumBalance(s.balance)}
         </div>)}
 

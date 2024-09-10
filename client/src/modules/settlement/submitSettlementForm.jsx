@@ -37,7 +37,7 @@ export function SubmitSettlementForm({onNewSettlement}) {
             {c.label}
             <input
                 type="number"
-                value={balance[c.key]}
+                value={balance[c.key] || ""}
                 onChange={e => setBalance(old => ({
                     ...old,
                     [c.key]: e.target.value
