@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {SubmitSettlementForm} from "../settlement/submitSettlementForm";
 import {sumBalance} from "../settlement/money";
 import {Dialog} from "../components/dialog.jsx";
+import {Link} from "react-router-dom";
 
 
 export function Application() {
@@ -36,7 +37,7 @@ export function Application() {
     return <>
         <h1>Settlements</h1>
         {settlements.map(s => <div key={s.id}>
-            {s.selectedDepartment}: {sumBalance(s.balance)}
+            <Link to={`/settlements/${s.id}`}>{s.selectedDepartment}</Link>: {sumBalance(s.balance)}
         </div>)}
 
         <Dialog visible={showsSettlementDialog} onClose={() => setShowsSettlementDialog(false)}>
