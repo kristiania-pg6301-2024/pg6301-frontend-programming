@@ -16,9 +16,19 @@ export function Application() {
     }, [])
 
 
+    function handleNewSettlement(s) {
+        fetch("/api/settlements", {
+            method: "POST",
+            body: JSON.stringify(s),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(() => loadSettlement());
+    }
+
     return <FrontPage
         settlements={settlements}
-        onNewSettlement={s => setSettlements(old => [...old, s])}
+        onNewSettlement={handleNewSettlement}
     />;
 }
 
