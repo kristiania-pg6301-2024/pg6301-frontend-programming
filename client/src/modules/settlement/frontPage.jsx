@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {sumBalance} from "./money";
 import {Dialog} from "../components/dialog";
 import {SubmitSettlementForm} from "./submitSettlementForm";
+import {Link} from "react-router-dom";
 
 export function FrontPage({settlements, onNewSettlement}) {
     const [showsSettlementDialog, setShowsSettlementDialog] = useState(false)
@@ -14,7 +15,7 @@ export function FrontPage({settlements, onNewSettlement}) {
     return <>
         <h1>Settlements</h1>
         {settlements.map(s => <div>
-            {s.selectedDepartment}: {sumBalance(s.balance)}
+            <Link to={`/settlements/${s.id}`}>{s.selectedDepartment}</Link>: {sumBalance(s.balance)}
         </div>)}
 
         <Dialog visible={showsSettlementDialog} onClose={() => setShowsSettlementDialog(false)}>
