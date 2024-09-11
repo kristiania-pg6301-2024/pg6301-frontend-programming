@@ -1,13 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FrontPage} from "../settlement/frontPage";
 
 
 export function Application() {
-    const [settlements, setSettlements] = useState([
-        { selectedDepartment: "Furniture", balance: { "10kr": 2000 }}
+    const [settlements, setSettlements] = useState([]);
 
-        ]
-    );
+    function loadSettlement() {
+        fetch("/api/settlements")
+            .then(res => res.json())
+            .then(settlements => setSettlements(settlements));
+    }
+
+    useEffect(() => {
+        loadSettlement();
+    }, [])
+
 
     return <FrontPage
         settlements={settlements}
