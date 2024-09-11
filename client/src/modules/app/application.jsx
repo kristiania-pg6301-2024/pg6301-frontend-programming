@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import {SubmitSettlementForm} from "../settlement/submitSettlementForm";
 import {sumBalance} from "../settlement/money";
+import {Dialog} from "../components/dialog";
 
 
 export function Application() {
@@ -9,21 +10,7 @@ export function Application() {
 
         ]
     );
-
     const [showsSettlementDialog, setShowsSettlementDialog] = useState(false)
-
-    const dialogRef = useRef()
-
-    useEffect(() => {
-        if (showsSettlementDialog) {
-            dialogRef.current.showModal();
-        } else {
-            dialogRef.current.close();
-        }
-    }, [showsSettlementDialog])
-    useEffect(() => {
-        dialogRef.current.addEventListener("close", () => setShowsSettlementDialog(false))
-    }, [dialogRef])
 
     return <>
         <h1>Settlements</h1>
@@ -31,13 +18,13 @@ export function Application() {
             {s.selectedDepartment}: {sumBalance(s.balance)}
         </div>)}
 
-        <dialog ref={dialogRef}>
+        <Dialog visible={showsSettlementDialog} onClose={() => setShowsSettlementDialog(false)}>
             <SubmitSettlementForm onNewSettlement={s => {
                 setSettlements(old => [...old, s]);
                 setShowsSettlementDialog(false);
             }} />
             <button onClick={() => setShowsSettlementDialog(false)}>Dismiss</button>
-        </dialog>
+        </Dialog>
 
         <button onClick={() => setShowsSettlementDialog(true)}>Create new settlement</button>
         </>
