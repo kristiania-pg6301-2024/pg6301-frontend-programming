@@ -14,6 +14,10 @@ export function Application() {
     }
 
     useEffect(() => {
+        console.log("hei", settlements);
+    }, [settlements])
+
+    useEffect(() => {
         loadSettlement();
     }, [])
 

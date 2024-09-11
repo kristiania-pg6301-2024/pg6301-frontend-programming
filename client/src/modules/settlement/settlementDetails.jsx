@@ -4,8 +4,13 @@ import React from "react";
 export function SettlementDetails({settlements}) {
     const {id} = useParams();
     const settlement = settlements.find(s => s.id == id);
+
+    if (!settlement) return <h1>Not found</h1>;
+
+    const {selectedDepartment, balance} = settlement;
+
     return <>
-        <h1>Du ser nå på settlement {id}: {settlement?.selectedDepartment}</h1>
-        <pre>{JSON.stringify(settlement.balance, null, 2)}</pre>
+        <h1>Du ser nå på settlement {id}: {selectedDepartment}</h1>
+        <pre>{JSON.stringify(balance, null, 2)}</pre>
     </>;
 }
