@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import {SubmitSettlementForm} from "../settlement/submitSettlementForm";
-import {sumBalance} from "../settlement/money";
-import {Dialog} from "../components/dialog";
+import {FrontPage} from "../settlement/frontPage";
 
 
 export function Application() {
@@ -10,23 +8,10 @@ export function Application() {
 
         ]
     );
-    const [showsSettlementDialog, setShowsSettlementDialog] = useState(false)
 
-    return <>
-        <h1>Settlements</h1>
-        {settlements.map(s => <div>
-            {s.selectedDepartment}: {sumBalance(s.balance)}
-        </div>)}
-
-        <Dialog visible={showsSettlementDialog} onClose={() => setShowsSettlementDialog(false)}>
-            <SubmitSettlementForm onNewSettlement={s => {
-                setSettlements(old => [...old, s]);
-                setShowsSettlementDialog(false);
-            }} />
-            <button onClick={() => setShowsSettlementDialog(false)}>Dismiss</button>
-        </Dialog>
-
-        <button onClick={() => setShowsSettlementDialog(true)}>Create new settlement</button>
-        </>
+    return <FrontPage
+        settlements={settlements}
+        onNewSettlement={s => setSettlements(old => [...old, s])}
+    />;
 }
 

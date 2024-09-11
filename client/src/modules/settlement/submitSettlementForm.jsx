@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from "react";
-import {CoinInput} from "../app/coinInput";
 import {billTypes, coinTypes, sumBalance} from "./money";
+import {CoinInput} from "./coinInput";
 
 export function SubmitSettlementForm({onNewSettlement}) {
     const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
