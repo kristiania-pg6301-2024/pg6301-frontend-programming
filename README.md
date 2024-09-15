@@ -127,7 +127,7 @@ and start to look at React Router.
 
 ### Lecture 4: Implementing a React backend on Express
 
-<details open>
+<details>
 
 [Mentimenter](https://www.menti.com/alax91fi8cus)
 
@@ -140,7 +140,7 @@ We will look at routing in Express and user interaction and error handling in Re
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/03)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/03/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/03/solution)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/04/start/README.md) - [Solution](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/exercise/04/solution)
 
 Reference material
 
@@ -159,16 +159,14 @@ Reference material
 
 ### Lecture 5: Publishing your application on Heroku
 
-<details>
+<details open>
 
 In this lecture, we will upload a simple web application to a cloud service and look at automatic deploys.
 See [the steps to deploy to Heroku](#deploy-to-heroku)
 
-If we have time, we will take a look at the details of `<BrowserRouter>`.
-
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/04)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/04/start/README.md)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
 
 Reference material
 
@@ -597,7 +595,7 @@ function FrontPage() {
 </details>
 
 
-### Converting react to serve from express
+### Implement server side APIs with Express
 
 <details>
 
@@ -691,6 +689,115 @@ function ListMovies() {
 
 </details>
 
+#### The useLoading hook
+
+TODO: Replace with Suspense?
+
+<details>
+
+```javascript
+export function useLoading(loadingFunction, deps = []) {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+
+  async function load() {
+    setLoading(true);
+    setData(undefined);
+    setError(undefined);
+    try {
+      setData(await loadingFunction());
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(load, deps);
+  return { loading, data, error };
+}
+```
+
+</details>
+
+
+#### Posting data to server
+
+<details>
+
+Expose an API from Express (in `server/`):
+
+```js
+const MOVIES = [];
+export const moviesApi = new express.Router();
+moviesApi.post("/api/movies", (req, res) => {
+  const { title } = req.body;
+  MOVIES.push({ title, id: MOVIES.length });
+  res.sendStatus(204);
+});
+
+app.use(express.json());
+app.use(moviesApi);
+```
+
+Post JSON from React:
+
+```jsx
+function AddMovieForm() {
+  const [title, setTitle] = useState("");
+
+  async function saveMovie(e) {
+    e.preventDefault();
+    await fetch("/api/movies", {
+      method: "POST",
+      body: JSON.stringify({ title }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={saveMovie}>
+      <h1>Add Movie</h1>
+      <div>
+        Title:
+        <br />
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+  );
+}
+```
+
+</details>
+
+
+#### Express middleware for dealing with BrowserRouter
+
+<details>
+
+When you use `<BrowserRouter>` in React, the server must be prepared for unknown URLs. When the user
+reloads the browser, the browser will request URLs that are intended to be resolved on the client.
+The following defaults unknown requests to return `index.html`.
+
+```javascript
+app.use((req, res, next) => {
+  if (req.method === "GET") {
+    // TODO: We probably should return 404 instead of index.html for api-calls as well
+    res.sendFile(path.resolve("../client/dist/index.html"));
+  } else {
+    next();
+  }
+});
+```
+
+</details>
+
 ### Making the top level project work smoother
 
 <details>
@@ -755,116 +862,6 @@ Common problems:
 * The application crashes
     * View the log under More > View logs
     * The log is often truncated. To see the whole log when the application runs, try More > Restart all dynos
-
-</details>
-
-### Crucial tasks
-
-#### Posting data to server
-
-<details>
-
-Expose an API from Express (in `server/`):
-
-```js
-const MOVIES = [];
-export const moviesApi = new express.Router();
-moviesApi.post("/api/movies", (req, res) => {
-  const { title } = req.body;
-  MOVIES.push({ title, id: MOVIES.length });
-  res.sendStatus(204);
-});
-
-app.use(express.json());
-app.use(moviesApi);
-```
-
-Post JSON from React:
-
-```jsx
-function AddMovieForm() {
-  const [title, setTitle] = useState("");
-
-  async function saveMovie(e) {
-    e.preventDefault();
-    await fetch("/api/movies", {
-      method: "POST",
-      body: JSON.stringify({ title }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
-  return (
-    <form onSubmit={saveMovie}>
-      <h1>Add Movie</h1>
-      <div>
-        Title:
-        <br />
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      </div>
-      <div>
-        <button>Submit</button>
-      </div>
-    </form>
-  );
-}
-```
-
-</details>
-
-#### The useLoading hook
-
-TODO: Replace with Suspense?
-
-<details>
-
-```javascript
-export function useLoading(loadingFunction, deps = []) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-
-  async function load() {
-    setLoading(true);
-    setData(undefined);
-    setError(undefined);
-    try {
-      setData(await loadingFunction());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(load, deps);
-  return { loading, data, error };
-}
-```
-
-</details>
-
-
-#### Express middleware for dealing with BrowserRouter
-
-<details>
-
-When you use `<BrowserRouter>` in React, the server must be prepared for unknown URLs. When the user
-reloads the browser, the browser will request URLs that are intended to be resolved on the client.
-The following defaults unknown requests to return `index.html`.
-
-```javascript
-app.use((req, res, next) => {
-  if (req.method === "GET") {
-    // TODO: We probably should return 404 instead of index.html for api-calls as well
-    res.sendFile(path.resolve("../client/dist/index.html"));
-  } else {
-    next();
-  }
-});
-```
 
 </details>
 
