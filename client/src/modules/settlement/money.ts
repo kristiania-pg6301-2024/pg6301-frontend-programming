@@ -12,7 +12,7 @@ export const coinTypes = [
   { key: "1kr", value: 1, label: "kronestykker", gramsPerCoin: 4.35 },
 ];
 
-type Balance = Record<string, number>;
+export type Balance = Record<string, number>;
 
 export function sumBalance(balance: Balance): number {
   let result = 0;
