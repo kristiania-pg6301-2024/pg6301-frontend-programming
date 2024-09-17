@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FrontPage } from "../settlement/frontPage";
 import { Route, Routes } from "react-router-dom";
 import { SettlementDetails } from "../settlement/settlementDetails";
+import { SettlementReport } from "../settlement/submitSettlementForm";
 
 export function Application() {
   const [settlements, setSettlements] = useState([]);
@@ -20,7 +21,7 @@ export function Application() {
     loadSettlement();
   }, []);
 
-  function handleNewSettlement(s) {
+  function handleNewSettlement(s: SettlementReport) {
     fetch("/api/settlements", {
       method: "POST",
       body: JSON.stringify(s),
