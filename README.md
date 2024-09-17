@@ -41,7 +41,6 @@ In the course we will mainly be building two example applications:
   accounting software isn't good at. So we're using this chance to build a application
   with a real need.
 
-
 ## Lectures
 
 ### Lecture 1: A tour of React, Express and Heroku
@@ -71,6 +70,7 @@ application with Vite and React Router
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/reference/01)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/01/start/README.md)
 * [Exercise answer](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/01/solution)
+
 </details>
 
 ### Lecture 2: React, use state and props
@@ -103,8 +103,8 @@ See [Creating the frontend project](#creating-the-frontend-project) for a summar
 * [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/reference/02)
 * [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/02/start/README.md)
 * [Exercise solution](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/exercise/02/solution)
-</details>
 
+</details>
 
 ### Lecture 3: useEffect, useRef and React Router
 
@@ -123,7 +123,6 @@ and start to look at React Router.
 * [Fireship: every React hook](https://youtu.be/TNhaISOUy6Q)
 
 </details>
-
 
 ### Lecture 4: Implementing a React backend on Express
 
@@ -195,42 +194,64 @@ Reference material
 <details>
 
 In this lecture, we will look at ways to make sure our code is good, from formatting, to linting, to testing.
-We will look at the tools prettier, jest and Typescript. We will also be using GitHub to run our quality
+We will look at the tools husky, prettier and Typescript. We will also be using GitHub to run our quality
 checks automatically.
 
-TODO: This description must be updated with Vitest.
-
+* Install [Husky](https://typicode.github.io/husky/) to ensure that you don't forget to fix your code before commiting
+    * `npm install -D husky`
+    * `npx husky init`
 * Creating a `npm test` task to check code
-    * `npm tet` in the root should run `test:prettier`, `test:client` and `test:server`
+    * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
 * `test:prettier`:
     * `npm install --save-dev prettier`
-    * `npm pkg set scripts.test:prettier="prettier check .""`
-* `test:client` and `test:server` should run `npm run test:jest`, `npm run check:typescript` and `npm run check:eslint` in
-  the `client` and `server` directories, respectively
+    * `npm pkg set scripts.prettier:check="prettier check .""`
+* `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
     * `npm pkg set scripts.test:client="cd client && npm test""`
     * `npm pkg set scripts.test:server="cd server && npm test""`
-* `npm test` for client:
-    * `npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer`
-    * [Add a babel section to package.json to configure](https://jestjs.io/docs/tutorial-react) @babel/preset-env and
-      @babel/preset-react
-    * The easiest way to get some decent tests
-      is [Jest snapshot testing](https://jestjs.io/docs/tutorial-react#snapshot-testing)
-* `npm test` for server
-    * `npm install --save-dev jest babel-jest @babel/preset-env supertest`
-    * Add a babel section to package-json to configure `@babel/preset-env`
-    * The easiest way to test express is with [Supertest](https://github.com/ladjs/supertest#readme)
-* `npm test:typescript`
-    * `npm install typescript`
-    * `npx tsc --init`
-    * `npm pkg set scripts.check:typescript="tsc --noEmit"`
-    * `npm install --save-dev ts-jest`
-    * `npx ts-jest config:init`
+* `client` directory should add typescript for `npm test`:
+  * `cd client`
+  * `npm install typescript`
+  * `npx tsc --init --jsx react`
+  * `npm pkg set scripts.test="tsc --noEmit"`
+  * You must convert at least one file to Typescript or tsc will fail
+* `server` directory should add typescript for `npm test`:
+  * `cd server`
+  * `npm install typescript`
+  * `npx tsc --init`
+  * `npm pkg set scripts.test="tsc --noEmit"`
+  * You must convert at least one file to Typescript or tsc will fail
+* Add github workflow
 
-Installing Jest can be tricky and is [described in the course notes](#testing)
+<details>
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/05)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
+`.github/workflows/test.yaml`:
+
+```yml
+name: "npm test"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+      - run: npm ci
+      - run: npm test
+```
+</details>
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/06/start/README.md)
 
 </details>
 <details>
@@ -249,13 +270,13 @@ Installing Jest can be tricky and is [described in the course notes](#testing)
 
 </details>
 
-### Lecture 7: Jest, Typescript and test driven development
+### Lecture 7: Vitest and test driven development
 
-> The React test examples will be updated with the current generation testing tools
+> The React test examples will be updated with vitest and @testing-library/react
 
 <details>
 
-We continue on the code from lecture 5, making sure we have some tests and that Typescript is running before we
+We continue on the code from lecture 6, making sure we have some tests and that Typescript is running before we
 continue.
 
 * Using supertest to test post as well as get calls
@@ -274,6 +295,7 @@ continue.
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/06/start/README.md)
+
 </details>
 <details>
 <summary>Material from previous years</summary>
@@ -558,6 +580,7 @@ export default defineConfig({
     plugins: [reactVite()]
 });
 ```
+
 </details>
 
 #### React Router
@@ -637,6 +660,7 @@ export default defineConfig({
   }
 });
 ```
+
 </details>
 
 #### Create an API in `server.js`
@@ -721,7 +745,6 @@ export function useLoading(loadingFunction, deps = []) {
 
 </details>
 
-
 #### Posting data to server
 
 <details>
@@ -776,7 +799,6 @@ function AddMovieForm() {
 
 </details>
 
-
 #### Express middleware for dealing with BrowserRouter
 
 <details>
@@ -823,7 +845,8 @@ Express server. They require paying for deployments, but
 with [GitHub Student Developer Pack](https://education.github.com/pack)
 you [get credits to use Heroku for free](https://www.heroku.com/github-students)
 
-For more information on deploying with Heroku Git (instead of GitHub), see [Deploying with Git | Heroku Dev](https://devcenter.heroku.com/articles/git).
+For more information on deploying with Heroku Git (instead of GitHub),
+see [Deploying with Git | Heroku Dev](https://devcenter.heroku.com/articles/git).
 
 1. In the root project make sure `npm install` is run at `postinstall`
     * `npm pkg set scripts.postinstall="npm run install:client && npm run install:server"`
@@ -854,14 +877,23 @@ For more information on deploying with Heroku Git (instead of GitHub), see [Depl
     1. `heroku login`
     2. `heroku git:remote -a <app name>`
     3. `git push heroku`
-    4. `heroku logs --tail` (optional): See the logs from Heroku in your console 
+    4. `heroku logs --tail` (optional): See the logs from Heroku in your console
 9. You can see the deployment log under Activity in the Heroku Dashboard for your app and the runtime log under More > View logs
 
-Common problems:
+**Common problems:**
 
+* "Buildpack not found"
+    * Make sure that you have a top-level `package.json`-file
+* `express` not found
+    * Make sure that the top level `package.json` has a script for `postinstall` which calls `npm install` in
+      the `client` and `server` directories
+* `sh: 1: vite: not found`
+    * When running on Heroku, the environment variable `NODE_ENV=production` is set.
+      This makes `devDependencies` excluded on `npm install`. Make sure that the client install command runs
+      as `npm install --include=dev`
 * The application crashes
-    * View the log under More > View logs
-    * The log is often truncated. To see the whole log when the application runs, try More > Restart all dynos
+    * View the log from the command line with `heroku logs --tail`
+    * Make sure that you have a top level `start` script which calls `cd server && npm start`
 
 </details>
 
@@ -1267,7 +1299,6 @@ app.get("/profile", (req, res) => {
 
 ## Tools
 
-
 ### IntellJ shortcuts
 
 <details>
@@ -1287,9 +1318,9 @@ These are some of the most versatile keyboard shortcuts in IntelliJ. There are m
 | shift-ctrl-backspace | shift-cmd-backspace | Goto last edit location                    |
 | shift, shift         | shift, shift        | Search anywhere                            |
 
-Make yourself familiar with `Refactor this` (ctrl-alt-shift-t / ctrl-t) and use it to learn the shortcut keys for your favorite refactorings like Extract method, Rename and Inline.
+Make yourself familiar with `Refactor this` (ctrl-alt-shift-t / ctrl-t) and use it to learn the shortcut keys for your
+favorite refactorings like Extract method, Rename and Inline.
 </details>
-
 
 ### Git commands
 
