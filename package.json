@@ -15,7 +15,8 @@
     "start": "cd server && npm start",
     "build": "cd client && npm run build",
     "prepare": "husky",
-    "test": "prettier --check . && npm run test:client",
-    "test:client": "cd client && npm test"
+    "test": "prettier --check . && npm run test:client && npm run test:server",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test"
   }
 }

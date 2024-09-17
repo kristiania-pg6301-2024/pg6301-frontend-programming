@@ -1,13 +1,16 @@
 {
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@types/express": "^4.17.21",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.6.2"
   },
   "dependencies": {
     "express": "^4.20.0"
   },
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon server.ts",
+    "start": "node server.ts",
+    "test": "tsc --noEmit"
   },
   "type": "module"
 }

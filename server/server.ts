@@ -1,5 +1,5 @@
 import express from "express";
-import { settlementApi } from "./settlementApi.js";
+import { settlementApi } from "./settlementApi";
 import path from "node:path";
 const app = express();
 

@@ -9,7 +9,7 @@ const settlements = [
   },
 ];
 
-settlementApi.get("", (req, res) => {
+settlementApi.get("", (_, res) => {
   res.json(settlements);
 });
 settlementApi.post("", (req, res) => {
