@@ -1,7 +1,8 @@
 import express from "express";
+import { SettlementReport } from "../shared/settlement/money";
 
 export const settlementApi = express.Router();
-const settlements = [
+const settlements: SettlementReport[] = [
   {
     id: 0,
     selectedDepartment: "Books",
