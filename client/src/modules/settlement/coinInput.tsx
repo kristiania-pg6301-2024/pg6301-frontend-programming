@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Balance } from "./money";
+import { Balance, CoinType } from "./money";
 
 interface Props {
   onChangeCount(count: number): void;
-  coinType: any;
+  coinType: CoinType;
   balance: Balance;
 }
 
@@ -37,7 +37,7 @@ export function CoinInput({
       Weight:{" "}
       <input
         type="number"
-        value={weight || balance[key] * gramsPerCoin || ""}
+        value={weight || (balance[key] || 0) * gramsPerCoin || ""}
         disabled={!!count}
         onChange={(e) => setWeight(e.target.value)}
         width={10}
