@@ -10,6 +10,7 @@
     "install:client": "cd client && npm install",
     "install:server": "cd server && npm install --include=dev",
     "heroku": "heroku",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build"
   }
 }
