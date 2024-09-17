@@ -12,7 +12,9 @@ export const coinTypes = [
   { key: "1kr", value: 1, label: "kronestykker", gramsPerCoin: 4.35 },
 ];
 
-export function sumBalance(balance: any) {
+type Balance = Record<string, number>;
+
+export function sumBalance(balance: Balance): number {
   let result = 0;
   for (const denomination of billTypes) {
     if (denomination.key in balance) {
