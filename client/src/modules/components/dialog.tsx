@@ -1,7 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { MutableRefObject, ReactNode, useEffect, useRef } from "react";
 
-export function Dialog({ visible, onClose, children }) {
-  const dialogRef = useRef();
+interface Props {
+  visible: boolean;
+  onClose(): void;
+  children: ReactNode;
+}
+
+export function Dialog({ visible, onClose, children }: Props) {
+  const dialogRef = useRef() as MutableRefObject<HTMLDialogElement>;
 
   useEffect(() => {
     if (visible) {
