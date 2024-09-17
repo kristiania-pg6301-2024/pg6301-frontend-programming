@@ -251,7 +251,7 @@ Check out the [solution for exercise 4](https://github.com/kristiania-pg6301-202
 
 ## Exercise 5: Deploy the application to Heroku
 
-<details open>
+<details>
 <summary>
 
 > The purpose of exercise 5 is to get the code we've built to run on the Heroku cloud platform
@@ -268,3 +268,22 @@ See [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-pro
 There is no exercise solution for this week's exercise
 </details>
 
+## Exercise 6: Setup verification scripts to improve the code
+
+<details open>
+
+> In exercise 6, you should add `npm test` to verify your code and run it when pushing to GitHub and Heroku
+
+Following the [lecture notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming#lecture-6-quality-code-prettier-jest-husky-and-github-actions),
+set up the following tools to verify the quality of your code:
+
+* Husky
+* Prettier
+* Typescript
+* GitHub Actions
+
+Add `npm test` to the `npm build` action so that Heroku is stopped from deploying a problematic version.
+
+Make sure that you create a repository on GitHub and push to it to verify the GitHub Actions.
+
+</details>
