@@ -259,6 +259,7 @@ Check out the [solution for exercise 4](https://github.com/kristiania-pg6301-202
 </summary>
 
 Starting from the client+server application you created in exercise 3, in exercise 4, you should create a Heroku account and deploy your application there.
+You should complete exercise 1, 2 and 4 before you start exercise 5, but you don't need to complete exercise 3.
 
 See [course notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming?tab=readme-ov-file#deploy-to-heroku) for details.
 
