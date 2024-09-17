@@ -1,22 +1,25 @@
-import React, { useMemo, useState } from "react";
-import { billTypes, coinTypes, sumBalance } from "./money";
+import React, { useState } from "react";
+import { Balance, billTypes, coinTypes, sumBalance } from "./money";
 import { CoinInput } from "./coinInput";
 
-export function SubmitSettlementForm({ onNewSettlement }) {
-  const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
+interface SettlementReport {
+  selectedDepartment: string;
+  balance: Balance;
+}
 
-  const [balance, setBalance] = useState({});
+export function SubmitSettlementForm({
+  onNewSettlement,
+}: {
+  onNewSettlement(report: SettlementReport): void;
+}) {
+  const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
+  const [balance, setBalance] = useState<Balance>({});
 
   const departmentOptions = ["Cafe", "Furniture", "Books", "Clothes"];
 
-  const settlementReport = {
-    selectedDepartment,
-    balance,
-  };
-
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onNewSettlement(settlementReport);
+    onNewSettlement({ selectedDepartment, balance });
   }
 
   return (
@@ -43,7 +46,7 @@ export function SubmitSettlementForm({ onNewSettlement }) {
             onChange={(e) =>
               setBalance((old) => ({
                 ...old,
-                [c.key]: e.target.value,
+                [c.key]: parseInt(e.target.value),
               }))
             }
           />
@@ -55,10 +58,7 @@ export function SubmitSettlementForm({ onNewSettlement }) {
           coinType={c}
           balance={balance}
           onChangeCount={(newCount) =>
-            setBalance((old) => ({
-              ...balance,
-              [c.key]: newCount,
-            }))
+            setBalance((old) => ({ ...old, [c.key]: newCount }))
           }
         />
       ))}
@@ -67,7 +67,12 @@ export function SubmitSettlementForm({ onNewSettlement }) {
         <button>Submit</button>
       </div>
       <div>
-        <pre>{JSON.stringify(settlementReport)}</pre>
+        <pre>
+          {JSON.stringify({
+            selectedDepartment,
+            balance,
+          })}
+        </pre>
       </div>
     </form>
   );
