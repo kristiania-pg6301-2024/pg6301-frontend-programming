@@ -1,9 +1,14 @@
 import { useParams } from "react-router-dom";
 import React from "react";
+import { SettlementReport } from "./submitSettlementForm";
 
-export function SettlementDetails({ settlements }) {
+export function SettlementDetails({
+  settlements,
+}: {
+  settlements: SettlementReport[];
+}) {
   const { id } = useParams();
-  const settlement = settlements.find((s) => s.id == id);
+  const settlement = settlements.find((s) => s.id === parseInt(id || "-1"));
 
   if (!settlement) return <h1>Not found</h1>;
 
