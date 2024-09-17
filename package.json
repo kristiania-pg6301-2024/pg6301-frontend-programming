@@ -1,7 +1,6 @@
 {
   "devDependencies": {
-    "concurrently": "^9.0.1",
-    "heroku": "^9.2.1"
+    "concurrently": "^9.0.1"
   },
   "scripts": {
     "dev": "concurrently npm:dev:client npm:dev:server",
@@ -10,6 +9,7 @@
     "postinstall": "npm run install:client && npm run install:server",
     "install:client": "cd client && npm install",
     "install:server": "cd server && npm install --include=dev",
-    "heroku": "heroku"
+    "heroku": "heroku",
+    "start": "cd server && npm start"
   }
 }
