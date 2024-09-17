@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 
+interface Props {
+  onChangeCount(count: number): void;
+  coinType: any;
+  balance: Record<string, string>;
+}
+
 export function CoinInput({
   onChangeCount,
   coinType: { label, key, gramsPerCoin },
   balance,
-}) {
-  const [weight, setWeight] = useState();
+}: Props) {
+  const [weight, setWeight] = useState("");
   const [count, setCount] = useState("");
 
-  useEffect(() => onChangeCount(count || 0), [count]);
+  useEffect(() => onChangeCount(parseInt(count || "0")), [count]);
   useEffect(
-    () => onChangeCount(Math.round(weight / gramsPerCoin) || 0),
+    () =>
+      onChangeCount(Math.round(parseInt(weight || "0") / gramsPerCoin) || 0),
     [weight],
   );
 
