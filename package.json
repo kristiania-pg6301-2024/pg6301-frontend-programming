@@ -13,7 +13,7 @@
     "install:server": "cd server && npm install",
     "heroku": "heroku",
     "start": "cd server && npm start",
-    "build": "cd client && npm run build",
+    "build": "npm test && cd client && npm run build",
     "prepare": "husky",
     "test": "npm run prettier:check && npm run test:client && npm run test:server",
     "prettier:check": "prettier --check .",
