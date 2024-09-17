@@ -12,6 +12,12 @@ export const coinTypes = [
   { key: "1kr", value: 1, label: "kronestykker", gramsPerCoin: 4.35 },
 ];
 
+export interface SettlementReport {
+  id: number;
+  selectedDepartment: string;
+  balance: Balance;
+}
+
 export type Balance = Record<string, number>;
 
 export function sumBalance(balance: Balance): number {

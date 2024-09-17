@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { sumBalance } from "./money";
+import { SettlementReport, sumBalance } from "./money";
 import { Dialog } from "../components/dialog";
-import { SettlementReport, SubmitSettlementForm } from "./submitSettlementForm";
+import { SubmitSettlementForm } from "./submitSettlementForm";
 import { Link } from "react-router-dom";
 
 interface Props {

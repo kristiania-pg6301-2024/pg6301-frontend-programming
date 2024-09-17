@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import React from "react";
-import { SettlementReport } from "./submitSettlementForm";
+
+import { SettlementReport } from "./money";
 
 export function SettlementDetails({
   settlements,

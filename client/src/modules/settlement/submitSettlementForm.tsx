@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Balance, billTypes, coinTypes, sumBalance } from "./money";
+import {
+  Balance,
+  billTypes,
+  coinTypes,
+  SettlementReport,
+  sumBalance,
+} from "./money";
 import { CoinInput } from "./coinInput";
-
-export interface SettlementReport {
-  id: number;
-  selectedDepartment: string;
-  balance: Balance;
-}
 
 export function SubmitSettlementForm({
   onNewSettlement,
