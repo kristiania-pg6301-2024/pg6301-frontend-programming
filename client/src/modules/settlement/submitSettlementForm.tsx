@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Balance, billTypes, coinTypes, sumBalance } from "./money";
 import { CoinInput } from "./coinInput";
 
-interface SettlementReport {
+export interface SettlementReport {
+  id: number;
   selectedDepartment: string;
   balance: Balance;
 }
@@ -10,7 +11,7 @@ interface SettlementReport {
 export function SubmitSettlementForm({
   onNewSettlement,
 }: {
-  onNewSettlement(report: SettlementReport): void;
+  onNewSettlement(report: Omit<SettlementReport, "id">): void;
 }) {
   const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
   const [balance, setBalance] = useState<Balance>({});

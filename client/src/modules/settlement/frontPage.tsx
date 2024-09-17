@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { sumBalance } from "./money";
 import { Dialog } from "../components/dialog";
-import { SubmitSettlementForm } from "./submitSettlementForm";
+import { SettlementReport, SubmitSettlementForm } from "./submitSettlementForm";
 import { Link } from "react-router-dom";
 
-export function FrontPage({ settlements, onNewSettlement }) {
+interface Props {
+  settlements: SettlementReport[];
+  onNewSettlement(settlement: SettlementReport): void;
+}
+
+export function FrontPage({ settlements, onNewSettlement }: Props) {
   const [showsSettlementDialog, setShowsSettlementDialog] = useState(false);
 
-  function handleNewSettlement(s) {
+  function handleNewSettlement(s: SettlementReport) {
     onNewSettlement(s);
     setShowsSettlementDialog(false);
   }
