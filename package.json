@@ -6,6 +6,7 @@
   },
   "scripts": {
     "test": "prettier --check . && vitest --run",
+    "test:dev": "vitest",
     "prepare": "husky"
   }
 }
