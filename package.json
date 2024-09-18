@@ -8,7 +8,8 @@
     "install:server": "cd server && npm install",
     "build": "cd client && npm run build",
     "start": "cd server && npm start",
-    "test": "npm run prettier:check",
+    "test": "npm run prettier:check && npm run test:client",
+    "test:client": "cd client && npm test",
     "prettier:check": "prettier --check .",
     "prepare": "husky"
   },
