@@ -14,7 +14,7 @@ export function FrontPage({settlements, onNewSettlement}) {
 
     return <>
         <h1>Settlements</h1>
-        {settlements.map(s => <div>
+        {settlements.map(s => <div key={s.id}>
             <Link to={`/settlements/${s.id}`}>{s.selectedDepartment}</Link>: {sumBalance(s.balance)}
         </div>)}
 
