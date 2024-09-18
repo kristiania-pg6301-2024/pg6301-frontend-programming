@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React from "react";
+import {sumBalance} from "./money";
 
 export function SettlementDetails({ settlements }) {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export function SettlementDetails({ settlements }) {
         Du ser nå på settlement {id}: {selectedDepartment}
       </h1>
       <pre>{JSON.stringify(balance, null, 2)}</pre>
+        <div>Total is: {sumBalance(balance)}</div>
     </>
   );
 }
