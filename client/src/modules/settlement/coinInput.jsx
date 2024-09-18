@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 export function CoinInput({
   onChangeCount,
-  coinType: { label, key, gramsPerCoin },
+  coinType: { label, key, weightGrams },
   balance,
 }) {
   const [weight, setWeight] = useState();
@@ -10,7 +10,7 @@ export function CoinInput({
 
   useEffect(() => onChangeCount(count || 0), [count]);
   useEffect(
-    () => onChangeCount(Math.round(weight / gramsPerCoin) || 0),
+    () => onChangeCount(Math.round(weight / weightGrams) || 0),
     [weight],
   );
 
@@ -29,7 +29,7 @@ export function CoinInput({
       Weight:{" "}
       <input
         type="number"
-        value={weight || parseInt(balance[key]) * gramsPerCoin || ""}
+        value={weight || parseInt(balance[key]) * weightGrams || ""}
         disabled={!!count}
         onChange={(e) => setWeight(e.target.value)}
         width={10}
