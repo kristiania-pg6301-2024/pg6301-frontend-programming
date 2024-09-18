@@ -7,9 +7,11 @@
     "install:client": "cd client && npm install --include=dev",
     "install:server": "cd server && npm install",
     "build": "cd client && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "prettier:check": "prettier --check ."
   },
   "devDependencies": {
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "prettier": "^3.3.3"
   }
 }
