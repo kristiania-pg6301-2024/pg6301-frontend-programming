@@ -1,7 +1,9 @@
 {
   "scripts": {
     "start": "cd server && npm start",
-    "postinstall": "cd server && npm install",
+    "postinstall": "npm run install:client && npm run install:server",
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && npm install",
     "build": "cd client && npm run build"
   }
 }
