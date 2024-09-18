@@ -6,8 +6,9 @@
     "vitest": "^2.1.1"
   },
   "scripts": {
-    "test": "prettier --check . && vitest --run && tsc --noEmit",
+    "test": "prettier --check . && vitest --run && tsc --noEmit && npm run test:client",
     "test:dev": "vitest",
+    "test:client": "cd client && npm test",
     "prepare": "husky"
   }
 }
