@@ -1,22 +1,23 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { billTypes, coinTypes, sumBalance } from "./money";
 import { CoinInput } from "./coinInput";
 
-export function SubmitSettlementForm({ onNewSettlement }) {
-  const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
+interface Props {
+  onNewSettlement(settlement: {
+    balance: Record<string, number>;
+    selectedDepartment: string;
+  }): void;
+}
 
-  const [balance, setBalance] = useState({});
+export function SubmitSettlementForm({ onNewSettlement }: Props) {
+  const [selectedDepartment, setSelectedDepartment] = useState("Furniture");
+  const [balance, setBalance] = useState<Record<string, number>>({});
 
   const departmentOptions = ["Cafe", "Furniture", "Books", "Clothes"];
 
-  const settlementReport = {
-    selectedDepartment,
-    balance,
-  };
-
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onNewSettlement(settlementReport);
+    onNewSettlement({ selectedDepartment, balance });
   }
 
   return (
@@ -43,7 +44,7 @@ export function SubmitSettlementForm({ onNewSettlement }) {
             onChange={(e) =>
               setBalance((old) => ({
                 ...old,
-                [c.key]: e.target.value,
+                [c.key]: parseInt(e.target.value),
               }))
             }
           />
@@ -67,7 +68,12 @@ export function SubmitSettlementForm({ onNewSettlement }) {
         <button>Submit</button>
       </div>
       <div>
-        <pre>{JSON.stringify(settlementReport)}</pre>
+        <pre>
+          {JSON.stringify({
+            selectedDepartment,
+            balance,
+          })}
+        </pre>
       </div>
     </form>
   );
