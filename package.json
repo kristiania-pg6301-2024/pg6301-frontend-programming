@@ -1,14 +1,12 @@
 {
   "devDependencies": {
     "husky": "^9.1.6",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2",
-    "vitest": "^2.1.1"
+    "prettier": "^3.3.3"
   },
   "scripts": {
-    "test": "prettier --check . && vitest --run && tsc --noEmit && npm run test:client",
-    "test:dev": "vitest",
+    "test": "prettier --check . && npm run test:client && npm run test:shared",
     "test:client": "cd client && npm test",
+    "test:shared": "cd shared && npm test",
     "prepare": "husky"
   }
 }

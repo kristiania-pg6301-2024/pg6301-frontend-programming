@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "tsc --noEmit && vitest --run"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}

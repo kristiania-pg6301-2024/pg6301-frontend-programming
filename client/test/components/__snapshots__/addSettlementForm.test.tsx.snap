@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`settlement form 1`] = `
+<body>
+  <div>
+    <form>
+      <h1>
+        Add settlement
+      </h1>
+      <button>
+        Submit
+      </button>
+    </form>
+  </div>
+</body>
+`;
