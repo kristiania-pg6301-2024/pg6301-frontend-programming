@@ -270,7 +270,7 @@ There is no exercise solution for this week's exercise
 
 ## Exercise 6: Setup verification scripts to improve the code
 
-<details open>
+<details>
 
 > In exercise 6, you should add `npm test` to verify your code and run it when pushing to GitHub and Heroku
 
@@ -285,5 +285,19 @@ set up the following tools to verify the quality of your code:
 Add `npm test` to the `npm build` action so that Heroku is stopped from deploying a problematic version.
 
 Make sure that you create a repository on GitHub and push to it to verify the GitHub Actions.
+
+</details>
+
+## Exercise 7: Save data with MongoDB
+
+<details>
+
+> In exercise 7, you should store data to MongoDB
+
+Following the [lecture notes](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming?tab=readme-ov-file#mongodb),
+convert the Express APIs for `GET /api/tasks` and `POST /api/tasks` to use MongoDB to store
+and retrieve tasks from the database.
+
+You need to sign up for [MongoDB](https://www.mongodb.com/cloud/atlas/register) for free to create a database.
 
 </details>
