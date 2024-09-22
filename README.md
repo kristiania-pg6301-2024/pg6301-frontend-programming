@@ -158,7 +158,7 @@ Reference material
 
 ### Lecture 5: Publishing your application on Heroku
 
-<details open>
+<details>
 
 In this lecture, we will upload a simple web application to a cloud service and look at automatic deploys.
 See [the steps to deploy to Heroku](#deploy-to-heroku)
@@ -171,6 +171,35 @@ Reference material
 
 * [Heroku's documentation on using Node.js](https://www.heroku.com/nodejs)
 * [Heroku free credits for students](https://www.heroku.com/github-students)
+
+In this lecture, we also look at ways to make sure our code is good, from formatting, to linting, to testing.
+We will look at the tools husky, prettier and Typescript. We will also be using GitHub to run our quality
+checks automatically.
+
+* Install [Husky](https://typicode.github.io/husky/) to ensure that you don't forget to fix your code before commiting
+   * `npm install -D husky`
+   * `npx husky init`
+* Creating a `npm test` task to check code
+   * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
+* `test:prettier`:
+   * `npm install --save-dev prettier`
+   * `npm pkg set scripts.prettier:check="prettier check .""`
+* `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
+   * `npm pkg set scripts.test:client="cd client && npm test""`
+   * `npm pkg set scripts.test:server="cd server && npm test""`
+* `client` directory should add typescript for `npm test`:
+   * `cd client`
+   * `npm install typescript`
+   * `npx tsc --init --jsx react`
+   * `npm pkg set scripts.test="tsc --noEmit"`
+   * You must convert at least one file to Typescript or tsc will fail
+* `server` directory should add typescript for `npm test`:
+   * `cd server`
+   * `npm install typescript`
+   * `npx tsc --init`
+   * `npm pkg set scripts.test="tsc --noEmit"`
+   * You must convert at least one file to Typescript or tsc will fail
+
 
 </details>
 <details>
@@ -189,37 +218,81 @@ Reference material
 
 </details>
 
-### Lecture 6: Quality code, Prettier, Jest, Husky and GitHub Actions
+### Lecture 6: Async/await, Promises and interaction between client and server
+
+<details open>
+
+In this lecture, we will start from a blank application to review what we have covered so far. This will also give us
+some chance to deal with some information we have glossed over about the communication between the client and the server. 
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
+
+This week's exercise will be to get started with the assignment (see Canvas).
+
+#### Reference material
+
+* [Fireship.io video on Async/await and promises](https://www.youtube.com/watch?v=vn3tm0quoqE)
+* [The JavaScript Event Loop (Jake Archibald)](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/08)
+* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/08)
+* **Useful exercise**: [Move logic from client to server](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/08/start)
+
+#### Material from 2022
+
+* [Commit log from live coding 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/06)
+* [Reference implementation 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/06)
+* [Exercise answer 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/06)
+
+</details>
+
+
+### Lecture 7: Storing data MongoDB (with Typescript)
 
 <details>
 
-In this lecture, we will look at ways to make sure our code is good, from formatting, to linting, to testing.
-We will look at the tools husky, prettier and Typescript. We will also be using GitHub to run our quality
-checks automatically.
+[Reading and writing data to MongoDB](#mongodb)
 
-* Install [Husky](https://typicode.github.io/husky/) to ensure that you don't forget to fix your code before commiting
-    * `npm install -D husky`
-    * `npx husky init`
-* Creating a `npm test` task to check code
-    * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
-* `test:prettier`:
-    * `npm install --save-dev prettier`
-    * `npm pkg set scripts.prettier:check="prettier check .""`
-* `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
-    * `npm pkg set scripts.test:client="cd client && npm test""`
-    * `npm pkg set scripts.test:server="cd server && npm test""`
-* `client` directory should add typescript for `npm test`:
-  * `cd client`
-  * `npm install typescript`
-  * `npx tsc --init --jsx react`
-  * `npm pkg set scripts.test="tsc --noEmit"`
-  * You must convert at least one file to Typescript or tsc will fail
-* `server` directory should add typescript for `npm test`:
-  * `cd server`
-  * `npm install typescript`
-  * `npx tsc --init`
-  * `npm pkg set scripts.test="tsc --noEmit"`
-  * You must convert at least one file to Typescript or tsc will fail
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/07)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/07)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/07/start/README.md)
+
+Reference material
+
+* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc) - very useful and brief
+* [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
+* [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
+* [MongoDB documentation: How to query collections](https://www.mongodb.com/docs/manual/reference/operator/query/)
+* [MongoDB documentation: How to insert a document](https://www.mongodb.com/docs/drivers/node/current/usage-examples/insertOne/)
+
+</details>
+<details>
+<summary>Material from previous years</summary>
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/07)
+* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/07)
+* [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/07/start/README.md)
+* For the exercise solution,
+  use [the lecture reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/07)
+
+#### Material from 2022
+
+* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/07)
+* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/07)
+* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/07)
+
+</details>
+
+
+### Lecture 8: Quality code, Prettier, Jest, Husky and GitHub Actions
+
+<details>
+
 * Add github workflow
 
 <details>
@@ -270,7 +343,7 @@ jobs:
 
 </details>
 
-### Lecture 7: Vitest and test driven development
+### Lecture 9: Vitest and test driven development
 
 > The React test examples will be updated with vitest and @testing-library/react
 
@@ -311,75 +384,6 @@ continue.
 
 </details>
 
-### Lecture 8: Storing data MongoDB (with Typescript)
-
-<details>
-
-[Reading and writing data to MongoDB](#mongodb)
-
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/07)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/07)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/07/start/README.md)
-
-Reference material
-
-* [MongoDB Skills](https://www.youtube.com/watch?v=0vPt7GI-2kc) - very useful and brief
-* [MongoDB in 100 seconds (Fireship.io)](https://www.youtube.com/watch?v=-bt_y4Loofg)
-* [MongoDB University: JavaScript](https://university.mongodb.com/courses/M220JS/about)
-* [MongoDB documentation: How to query collections](https://www.mongodb.com/docs/manual/reference/operator/query/)
-* [MongoDB documentation: How to insert a document](https://www.mongodb.com/docs/drivers/node/current/usage-examples/insertOne/)
-
-</details>
-<details>
-<summary>Material from previous years</summary>
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/07)
-* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/07)
-* [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/07/start/README.md)
-* For the exercise solution,
-  use [the lecture reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/07)
-
-#### Material from 2022
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/07)
-* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/07)
-* [Exercise answer](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/07)
-
-</details>
-
-### Lecture 9: Async/await, Promises and interaction between client and server
-
-<details>
-
-Loading spinner and error handling, as well as using React context to centralize interaction between client and server.
-We will also revisit BrowserRouter and why fix how it was broken with Express.
-
-TODO: Should we include suspense?
-
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/08/start/README.md)
-
-</details>
-<details>
-<summary>Material from previous years</summary>
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/08)
-* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/08)
-* **Useful exercise**: [Move logic from client to server](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/tree/exercise/08/start)
-
-#### Material from 2022
-
-* [Commit log from live coding 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/06)
-* [Reference implementation 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/06)
-* [Exercise answer 2022](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/06)
-
-#### Useful links:
-
-* [Fireship.io video on Async/await and promises](https://www.youtube.com/watch?v=vn3tm0quoqE)
-* [The JavaScript Event Loop (Jake Archibald)](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
-
-</details>
 
 ### Lecture 10: Who's your user? OpenID Connect
 
