@@ -30,9 +30,9 @@ function simulatedNetworkCall(millis: number, fail: boolean) {
   });
 }
 
-async function fetchSettlements(fail: boolean) {
-  await simulatedNetworkCall(2000, fail);
-  return sampleSettlements;
+async function fetchSettlements(fail: boolean): Promise<Settlement[]> {
+  const res = await fetch("/api/settlements?fail=" + fail);
+  return (await res.json()) as Settlement[];
 }
 
 export function Application() {
