@@ -32,16 +32,18 @@ function simulatedNetworkCall(millis: number, fail: boolean) {
 
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
+  const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 
   async function loadSettlements(fail: boolean = false) {
     setSettlements([]);
     setLoading(true);
+    setError(undefined);
     try {
       await simulatedNetworkCall(2000, fail);
       setSettlements(sampleSettlements);
     } catch (error) {
-      console.log("an error occurred", error);
+      setError(error as Error);
     } finally {
       setLoading(false);
     }
@@ -57,6 +59,7 @@ export function Application() {
       {settlements.map((s) => (
         <div key={s.id}>{s.department}</div>
       ))}
+      {error && <div>{error.toString()}</div>}
       {loading ? (
         <ProgressIndicator />
       ) : (
