@@ -7,18 +7,11 @@ interface Settlement {
   balance: Record<string, number>;
 }
 
-function simulatedNetworkCall(millis: number, fail: boolean) {
-  return new Promise<void>((resolve, reject) => {
-    if (fail) {
-      setTimeout(() => reject(new Error("Network failure")), millis);
-    } else {
-      setTimeout(() => resolve(), millis);
-    }
-  });
-}
-
 async function fetchSettlements(fail: boolean): Promise<Settlement[]> {
   const res = await fetch("/api/settlements?fail=" + fail);
+  if (!res.ok) {
+    throw new Error("Failed " + res.status + ": " + res.statusText);
+  }
   return (await res.json()) as Settlement[];
 }
 
