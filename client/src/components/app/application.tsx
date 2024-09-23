@@ -23,7 +23,7 @@ export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
 
   function loadSettlements() {
-    setSettlements(sampleSettlements);
+    setTimeout(() => setSettlements(sampleSettlements), 2000);
   }
 
   useEffect(() => {
