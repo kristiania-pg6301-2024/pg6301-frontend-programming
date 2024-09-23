@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ProgressIndicator } from "../progressIndicator";
 
 interface Settlement {
   id: number;
@@ -31,14 +32,18 @@ function simulatedNetworkCall(millis: number, fail: boolean) {
 
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
+  const [loading, setLoading] = useState(true);
 
   async function loadSettlements(fail: boolean = false) {
     setSettlements([]);
+    setLoading(true);
     try {
       await simulatedNetworkCall(2000, fail);
       setSettlements(sampleSettlements);
     } catch (error) {
       console.log("an error occurred", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -52,14 +57,20 @@ export function Application() {
       {settlements.map((s) => (
         <div key={s.id}>{s.department}</div>
       ))}
-      <div>
-        <button onClick={() => loadSettlements()}>Refresh</button>
-      </div>
-      <div>
-        <button onClick={() => loadSettlements(true)}>
-          Refresh with error
-        </button>
-      </div>
+      {loading ? (
+        <ProgressIndicator />
+      ) : (
+        <>
+          <div>
+            <button onClick={() => loadSettlements()}>Refresh</button>
+          </div>
+          <div>
+            <button onClick={() => loadSettlements(true)}>
+              Refresh with error
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }
