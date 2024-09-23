@@ -7,19 +7,6 @@ interface Settlement {
   balance: Record<string, number>;
 }
 
-const sampleSettlements: Settlement[] = [
-  {
-    id: 1,
-    department: "furniture",
-    balance: { "1000kr": 10, "200kr": 15 },
-  },
-  {
-    id: 2,
-    department: "cafeteria",
-    balance: { "200kr": 100, "100kr": 15 },
-  },
-];
-
 function simulatedNetworkCall(millis: number, fail: boolean) {
   return new Promise<void>((resolve, reject) => {
     if (fail) {
