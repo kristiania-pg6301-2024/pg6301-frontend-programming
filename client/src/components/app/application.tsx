@@ -32,11 +32,14 @@ function simulatedNetworkCall(millis: number, fail: boolean) {
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
 
-  function loadSettlements(fail: boolean = false) {
+  async function loadSettlements(fail: boolean = false) {
     setSettlements([]);
-    simulatedNetworkCall(2000, fail)
-      .then(() => setSettlements(sampleSettlements))
-      .catch((error) => console.log("an error occurred", error));
+    try {
+      await simulatedNetworkCall(2000, fail);
+      setSettlements(sampleSettlements);
+    } catch (error) {
+      console.log("an error occurred", error);
+    }
   }
 
   useEffect(() => {
