@@ -19,17 +19,24 @@ const sampleSettlements: Settlement[] = [
   },
 ];
 
-function simulatedNetworkCall(millis: number) {
+function simulatedNetworkCall(millis: number, fail: boolean) {
   return new Promise<void>((resolve, reject) => {
-    setTimeout(() => resolve(), millis);
+    if (fail) {
+      setTimeout(() => reject(new Error("Network failure")), millis);
+    } else {
+      setTimeout(() => resolve(), millis);
+    }
   });
 }
 
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
 
-  function loadSettlements() {
-    simulatedNetworkCall(2000).then(() => setSettlements(sampleSettlements));
+  function loadSettlements(fail: boolean = false) {
+    setSettlements([]);
+    simulatedNetworkCall(2000, fail)
+      .then(() => setSettlements(sampleSettlements))
+      .catch((error) => console.log("an error occurred", error));
   }
 
   useEffect(() => {
@@ -42,6 +49,14 @@ export function Application() {
       {settlements.map((s) => (
         <div key={s.id}>{s.department}</div>
       ))}
+      <div>
+        <button onClick={() => loadSettlements()}>Refresh</button>
+      </div>
+      <div>
+        <button onClick={() => loadSettlements(true)}>
+          Refresh with error
+        </button>
+      </div>
     </>
   );
 }
