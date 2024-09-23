@@ -28,7 +28,7 @@ export function Application() {
     <>
       <h1>Settlements</h1>
       {settlements.map((s) => (
-        <div>A settlement</div>
+        <div key={s.id}>{s.department}</div>
       ))}
     </>
   );
