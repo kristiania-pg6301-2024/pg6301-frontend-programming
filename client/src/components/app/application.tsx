@@ -30,6 +30,11 @@ function simulatedNetworkCall(millis: number, fail: boolean) {
   });
 }
 
+async function fetchSettlements(fail: boolean) {
+  await simulatedNetworkCall(2000, fail);
+  return sampleSettlements;
+}
+
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
   const [error, setError] = useState<Error>();
@@ -40,8 +45,7 @@ export function Application() {
     setLoading(true);
     setError(undefined);
     try {
-      await simulatedNetworkCall(2000, fail);
-      setSettlements(sampleSettlements);
+      setSettlements(await fetchSettlements(fail));
     } catch (error) {
       setError(error as Error);
     } finally {
