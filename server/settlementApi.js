@@ -12,7 +12,19 @@ export const sampleSettlements = [
     balance: { "200kr": 100, "100kr": 15 },
   },
 ];
+
+function timeout(millis) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), millis);
+  });
+}
+
 export const settlementsRouter = express.Router();
-settlementsRouter.get("", (req, res) => {
-  res.json(sampleSettlements);
+settlementsRouter.get("", async (req, res) => {
+  await timeout(1000);
+  if ("true" === req.query.fail) {
+    res.sendStatus(400);
+  } else {
+    res.json(sampleSettlements);
+  }
 });
