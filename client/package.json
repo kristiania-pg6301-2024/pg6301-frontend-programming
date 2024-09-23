@@ -1,0 +1,9 @@
+{
+  "name": "client",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.4.7"
+  }
+}
