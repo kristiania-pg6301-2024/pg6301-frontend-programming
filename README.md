@@ -163,8 +163,9 @@ Reference material
 In this lecture, we will upload a simple web application to a cloud service and look at automatic deploys.
 See [the steps to deploy to Heroku](#deploy-to-heroku)
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/04)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/04)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/05)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05)
+* [Reference implementation (quality code)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05b)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
 
 Reference material
@@ -218,17 +219,35 @@ checks automatically.
 
 </details>
 
-### Lecture 6: Async/await, Promises and interaction between client and server
+### Lecture 6: Communication between client and server
 
 <details open>
 
 In this lecture, we will start from a blank application to review what we have covered so far. This will also give us
 some chance to deal with some information we have glossed over about the communication between the client and the server. 
 
+We will cover:
+
+* How to deal with long-running operations using promises and `async`/`await`
+* Error handling
+* `fetch` requests
+* Express middleware
+
+We will set up a new project, taking advantage of what we've learned so far
+
+1. Adding `husky` to make sure we don't commit bad code
+2. Using `concurrently` to run both the client and server at once
+3. Creating the client and server projects
+4. Displaying a list on the client
+5. Moving the information to the server
+6. Handling the state when the application is loading and if an error occurs
+7. Looking at GET, POST and PUT requests
+
+
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
 
-This week's exercise will be to get started with the assignment (see Canvas).
+This lecture's exercise will be to get started with the assignment (see Canvas).
 
 #### Reference material
 
