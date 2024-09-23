@@ -19,11 +19,17 @@ const sampleSettlements: Settlement[] = [
   },
 ];
 
+function simulatedNetworkCall(millis: number) {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => resolve(), millis);
+  });
+}
+
 export function Application() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
 
   function loadSettlements() {
-    setTimeout(() => setSettlements(sampleSettlements), 2000);
+    simulatedNetworkCall(2000).then(() => setSettlements(sampleSettlements));
   }
 
   useEffect(() => {
