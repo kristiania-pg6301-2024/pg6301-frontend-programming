@@ -36,6 +36,7 @@ export function Application() {
   async function loadSettlements(simulateError: boolean = false) {
     setLoading(true);
     setSettlements([]);
+    setError(undefined);
     try {
       const settlements = await fetchSettlements(simulateError);
       setSettlements(settlements);
