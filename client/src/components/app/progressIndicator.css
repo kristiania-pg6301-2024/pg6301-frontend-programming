@@ -1,0 +1,6 @@
+.progressIndicator:before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  background-color: red;
+}
