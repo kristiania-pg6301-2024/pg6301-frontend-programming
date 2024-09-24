@@ -184,7 +184,7 @@ checks automatically.
    * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
 * `test:prettier`:
    * `npm install --save-dev prettier`
-   * `npm pkg set scripts.prettier:check="prettier check ."`
+   * `npm pkg set scripts.prettier:check="prettier --check ."`
 * `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
    * `npm pkg set scripts.test:client="cd client && npm test"`
    * `npm pkg set scripts.test:server="cd server && npm test"`
