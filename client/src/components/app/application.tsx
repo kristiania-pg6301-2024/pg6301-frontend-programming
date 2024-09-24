@@ -26,6 +26,9 @@ function timeout(millis: number, simulateError: boolean): Promise<void> {
 
 async function fetchSettlements(simulateError: boolean): Promise<Settlement[]> {
   const res = await fetch("/api/settlements?simulateError=" + simulateError);
+  if (!res.ok) {
+    throw new Error(`Server returned error ${res.status} ${res.statusText}`);
+  }
   return await res.json();
 }
 
