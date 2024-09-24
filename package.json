@@ -10,6 +10,7 @@
     "dev:server": "cd server && npm run dev",
     "prepare": "husky",
     "test": "prettier --check . && npm run test:client",
-    "test:client": "cd client && npm test"
+    "test:client": "cd client && npm test",
+    "postinstall": "cd client && npm install --include=dev && cd ../server && npm install"
   }
 }
