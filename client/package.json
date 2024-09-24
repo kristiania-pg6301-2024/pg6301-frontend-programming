@@ -1,8 +1,12 @@
 {
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "test": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.2",
     "vite": "^5.4.7"
   },
   "dependencies": {
