@@ -24,8 +24,9 @@ function timeout(millis: number, simulateError: boolean): Promise<void> {
   });
 }
 
-function fetchSettlements(simulateError: boolean): Promise<Settlement[]> {
-  return timeout(1000, simulateError).then(() => sampleSettlements);
+async function fetchSettlements(simulateError: boolean): Promise<Settlement[]> {
+  const res = await fetch("/api/settlements?simulateError=" + simulateError);
+  return await res.json();
 }
 
 export function Application() {
