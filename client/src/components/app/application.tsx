@@ -28,9 +28,8 @@ export function Application() {
 
   async function loadSettlements() {
     setSettlements([]);
-    fetchSettlements().then((settlements) => {
-      setSettlements(settlements);
-    });
+    const settlements = await fetchSettlements();
+    setSettlements(settlements);
   }
 
   useEffect(() => {
