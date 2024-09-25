@@ -221,7 +221,7 @@ checks automatically.
 
 ### Lecture 6: Communication between client and server
 
-<details open>
+<details>
 
 In this lecture, we will start from a blank application to review what we have covered so far. This will also give us
 some chance to deal with some information we have glossed over about the communication between the client and the server. 
@@ -273,7 +273,10 @@ This lecture's exercise will be to get started with the assignment (see Canvas).
 
 ### Lecture 7: Storing data MongoDB (with Typescript)
 
-<details>
+<details open>
+
+In this lecture, we learn how to store and retrieve data in [MongoDB](https://www.mongodb.com/).
+We will also review deployment to Heroku.
 
 [Reading and writing data to MongoDB](#mongodb)
 
