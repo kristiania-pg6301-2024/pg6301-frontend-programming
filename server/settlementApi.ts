@@ -2,13 +2,19 @@ import express from "express";
 
 export const settlementApi = express.Router();
 
-const sampleSettlements = [
+interface Settlement {
+  id: number;
+  department: string;
+  balance: Record<string, number>;
+}
+
+const sampleSettlements: Settlement[] = [
   { id: 0, department: "furniture", balance: { "1000kr": 3, "200kr": 80 } },
   { id: 1, department: "cafeteria", balance: { "100kr": 50, "50kr": 60 } },
 ];
 
-function timeout(millis, simulateError = false) {
-  return new Promise((resolve, reject) => {
+function timeout(millis: number, simulateError = false) {
+  return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       if (simulateError) {
         reject(new Error("Something went wrong"));
