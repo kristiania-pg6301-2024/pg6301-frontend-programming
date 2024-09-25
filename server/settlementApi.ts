@@ -33,3 +33,13 @@ settlementApi.get("/api/settlements", async (req, res) => {
     res.json(sampleSettlements);
   }
 });
+
+settlementApi.post("/api/settlements", async (req, res) => {
+  const newSettlement = {
+    id: sampleSettlements.length,
+    department: req.body.department,
+    balance: req.body.balance,
+  };
+  sampleSettlements.push(newSettlement);
+  res.sendStatus(201);
+});
