@@ -283,6 +283,7 @@ We will also review deployment to Heroku.
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/07)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/07)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/07/start/README.md)
+  * Last years exercise text contains more details: [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/07/start/README.md)
 
 Reference material
 
