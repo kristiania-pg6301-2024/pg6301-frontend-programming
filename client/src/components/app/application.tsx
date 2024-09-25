@@ -6,24 +6,6 @@ interface Settlement {
   department: string;
   balance: Record<string, number>;
 }
-
-const sampleSettlements: Settlement[] = [
-  { id: 0, department: "furniture", balance: { "1000kr": 3, "200kr": 80 } },
-  { id: 1, department: "cafeteria", balance: { "100kr": 50, "50kr": 60 } },
-];
-
-function timeout(millis: number, simulateError: boolean): Promise<void> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (simulateError) {
-        reject(new Error("Something went wrong"));
-      } else {
-        resolve();
-      }
-    }, millis);
-  });
-}
-
 async function fetchSettlements(simulateError: boolean): Promise<Settlement[]> {
   const res = await fetch("/api/settlements?simulateError=" + simulateError);
   if (!res.ok) {
