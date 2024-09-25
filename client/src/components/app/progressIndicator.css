@@ -1,6 +1,19 @@
 .progressIndicator:before {
+  /* create a round element */
   content: "";
-  width: 1em;
-  height: 1em;
-  background-color: red;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  /* customize look */
+  height: 1.2em;
+  border: 4px solid lightgray;
+  border-top-color: darkslategray;
+  /* animate it */
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
