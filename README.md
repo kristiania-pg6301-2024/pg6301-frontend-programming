@@ -167,6 +167,8 @@ See [the steps to deploy to Heroku](#deploy-to-heroku)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05)
 * [Reference implementation (quality code)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05b)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
+* [Deploying with Heroku](#deploy-to-heroku)
+* [Setting up quality checks](#quality-checks)
 
 Reference material
 
@@ -176,31 +178,6 @@ Reference material
 In this lecture, we also look at ways to make sure our code is good, from formatting, to linting, to testing.
 We will look at the tools husky, prettier and Typescript. We will also be using GitHub to run our quality
 checks automatically.
-
-* Install [Husky](https://typicode.github.io/husky/) to ensure that you don't forget to fix your code before commiting
-   * `npm install -D husky`
-   * `npx husky init`
-* Creating a `npm test` task to check code
-   * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
-* `test:prettier`:
-   * `npm install --save-dev prettier`
-   * `npm pkg set scripts.prettier:check="prettier --check ."`
-* `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
-   * `npm pkg set scripts.test:client="cd client && npm test"`
-   * `npm pkg set scripts.test:server="cd server && npm test"`
-* `client` directory should add typescript for `npm test`:
-   * `cd client`
-   * `npm install typescript`
-   * `npx tsc --init --jsx react`
-   * `npm pkg set scripts.test="tsc --noEmit"`
-   * You must convert at least one file to Typescript or tsc will fail
-* `server` directory should add typescript for `npm test`:
-   * `cd server`
-   * `npm install typescript`
-   * `npx tsc --init`
-   * `npm pkg set scripts.test="tsc --noEmit"`
-   * You must convert at least one file to Typescript or tsc will fail
-
 
 </details>
 <details>
@@ -273,7 +250,7 @@ This lecture's exercise will be to get started with the assignment (see Canvas).
 
 ### Lecture 7: Storing data MongoDB (with Typescript)
 
-<details open>
+<details>
 
 In this lecture, we learn how to store and retrieve data in [MongoDB](https://www.mongodb.com/).
 We will also review deployment to Heroku.
@@ -312,42 +289,16 @@ Reference material
 </details>
 
 
-### Lecture 8: Quality code, Prettier, Jest, Husky and GitHub Actions
+### Lecture 8: Software engineering with test-driven development, pair programming and continuous integration
 
-<details>
+<details open>
 
-* Add github workflow
+Quality code, Prettier, Jest, Husky and GitHub Actions
 
-<details>
-
-`.github/workflows/test.yaml`:
-
-```yml
-name: "npm test"
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: npm
-      - run: npm ci
-      - run: npm test
-```
-</details>
-
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/06/start/README.md)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
+* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/08/start/README.md)
+* [Reference: GitHub Actions](#deploy-to-heroku)
 
 </details>
 <details>
@@ -961,37 +912,47 @@ new MongoClient(process.env.MONGODB_URL)
 
 </details>
 
-### Testing
-
-TODO: This should be updated using @testing-library/react and vitest
-
-#### Installing
-
-Installing Jest is described on [the Jest homepage](https://jestjs.io/docs/tutorial-react)
+### Quality checks with Husky, Prettier and Typescript
 
 <details>
 
-1. `npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer`
-2. Add the following to `client/package.json` to support JSX-files
-   ```
-   "babel": {
-     "presets": [
-       "@babel/preset-env",
-       [
-         "@babel/preset-react",
-         {
-           "runtime": "automatic"
-         }
-       ]
-     ]
-   }
-   ```
-3. `npm pkg set scripts.test=jest` (also, consider `npm pkg set scripts.test:watch="jest --watchAll"`)
-4. `npm test`
+* Install [Husky](https://typicode.github.io/husky/) to ensure that you don't forget to fix your code before commiting
+    * `npm install -D husky`
+    * `npx husky init`
+* Creating a `npm test` task to check code
+    * `npm test` in the root should run `npm run prettier:check && npm run test:client && npm run test:server`
+* `test:prettier`:
+    * `npm install --save-dev prettier`
+    * `npm pkg set scripts.prettier:check="prettier --check ."`
+* `test:client` and `test:server` should run `npm test` in the `client` and `server` directories, respectively
+    * `npm pkg set scripts.test:client="cd client && npm test"`
+    * `npm pkg set scripts.test:server="cd server && npm test"`
+* `client` directory should add typescript for `npm test`:
+    * `cd client`
+    * `npm install typescript`
+    * `npx tsc --init --jsx react`
+    * `npm pkg set scripts.test="tsc --noEmit"`
+    * You must convert at least one file to Typescript or tsc will fail
+* `server` directory should add typescript for `npm test`:
+    * `cd server`
+    * `npm install typescript`
+    * `npx tsc --init`
+    * `npm pkg set scripts.test="tsc --noEmit"`
+    * You must convert at least one file to Typescript or tsc will fail
 
-Out of the box, Jest will fail on `import "./....css"` in your JSX files.
-[By installing a moduleNameMapper](https://stackoverflow.com/a/50075709/27658),
-you can fix this problem.
+</details>
+
+### Testing
+
+#### Installing
+
+Installing Vitest is described on [the Vitest homepage](https://vitest.dev/)
+
+<details>
+
+1. `npm install --save-dev vitest`
+2. `npm pkg set scripts.test=vitest`
+3. `npm test`
 
 </details>
 
@@ -999,17 +960,15 @@ you can fix this problem.
 
 <details>
 
-```javascript
-import renderer, { act } from "react-test-renderer";
+```typescript
+import { describe, expect, it } from "vitest";
 
-describe("quiz application", () => {
-  it("knows the answer to the question... (failing)", () => {
-    expect(6 * 9).toEqual(42);
-  });
+function isLeapYear(number: number) {
+}
 
-  it("renders React", () => {
-    const component = renderer.create(<h1>Hello world</h1>);
-    expect(component).toMatchSnapshot();
+describe("leap years", () => {
+  it("returns false for default years", () => {
+     expect(isLeapYear(2025)).toBe(false);
   });
 });
 ```
@@ -1017,6 +976,8 @@ describe("quiz application", () => {
 </details>
 
 #### Snapshot testing - check that a view is rendered correctly
+
+> TODO: This will be rewritten to use Vitest and @testing-library/react
 
 <details>
 
@@ -1041,6 +1002,8 @@ it("matches snapshot", async () => {
 
 #### Simulate events
 
+> TODO: This will be rewritten to use Vitest and @testing-library/react
+
 <details>
 
 ```javascript
@@ -1057,6 +1020,8 @@ it("matches snapshot", async () => {
 </details>
 
 #### Using supertest to check server side behavior
+
+> TODO: This will be rewritten to use Vitest and @testing-library/react
 
 <details>
 
@@ -1118,6 +1083,36 @@ describe("...", () => {
 ```
 
 </details>
+
+### GitHub Actions
+
+<details>
+
+<summary>`.github/workflows/test.yaml`:</summary>
+
+```yml
+name: "npm test"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+      - run: npm ci
+      - run: npm test
+```
+</details>
+
 
 ## WebSockets
 
