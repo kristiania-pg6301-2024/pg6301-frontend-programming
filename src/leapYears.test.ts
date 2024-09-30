@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 function isLeapYear(number: number) {
-
+  return false;
 }
 
 describe("leap years", () => {
