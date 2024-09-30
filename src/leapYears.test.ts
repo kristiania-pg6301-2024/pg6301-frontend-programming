@@ -15,4 +15,7 @@ describe("leap years", () => {
   it("returns false for years divisible by 100", () => {
     expect(isLeapYear(2100)).toBe(false);
   });
+  it("returns true for years divisible by 400", () => {
+    expect(isLeapYear(2000)).toBe(true);
+  });
 });
