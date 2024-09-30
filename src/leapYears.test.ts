@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-function isLeapYear(number: number) {
+function isLeapYear(year: number) {
   return false;
 }
 
