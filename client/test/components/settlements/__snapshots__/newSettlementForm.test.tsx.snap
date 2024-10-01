@@ -102,6 +102,7 @@ exports[`NewSettlementForm > displays form 1`] = `
             <input
               class="count"
               type="number"
+              value=""
             />
             <input
               class="grams"
@@ -119,6 +120,7 @@ exports[`NewSettlementForm > displays form 1`] = `
             <input
               class="count"
               type="number"
+              value=""
             />
             <input
               class="grams"
@@ -136,6 +138,7 @@ exports[`NewSettlementForm > displays form 1`] = `
             <input
               class="count"
               type="number"
+              value=""
             />
             <input
               class="grams"
@@ -153,6 +156,7 @@ exports[`NewSettlementForm > displays form 1`] = `
             <input
               class="count"
               type="number"
+              value=""
             />
             <input
               class="grams"

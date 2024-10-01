@@ -63,6 +63,14 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
               <input
                 type={"number"}
                 className={"count"}
+                disabled={balance[key] && "grams" in balance[key]}
+                value={
+                  !balance[key]
+                    ? ""
+                    : "count" in balance[key]
+                      ? balance[key].count
+                      : Math.round(balance[key].grams / gramsPerCoin)
+                }
                 onChange={(e) =>
                   setBalance((old) => ({
                     ...old,
@@ -75,9 +83,17 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
                 className={"grams"}
                 disabled={balance[key] && "count" in balance[key]}
                 value={
-                  balance[key] && "count" in balance[key]
-                    ? balance[key].count * gramsPerCoin
-                    : ""
+                  !balance[key]
+                    ? ""
+                    : "grams" in balance[key]
+                      ? balance[key].grams
+                      : balance[key].count * gramsPerCoin
+                }
+                onChange={(e) =>
+                  setBalance((old) => ({
+                    ...old,
+                    [key]: { grams: parseInt(e.target.value) },
+                  }))
                 }
               />
             </label>

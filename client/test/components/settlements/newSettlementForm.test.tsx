@@ -47,14 +47,28 @@ describe("NewSettlementForm", () => {
   });
   it("shows weight when entering coin count", async () => {
     const app = render(<NewSettlementForm onNewSettlement={vitest.fn()} />);
-    fireChange(
-      app.baseElement.querySelector(".coins .denomination5kr .count")!,
-      "10",
-    );
     const gramsInput = app.baseElement.querySelector(
       ".coins .denomination5kr .grams",
+    )! as HTMLInputElement;
+    const countInput = app.baseElement.querySelector(
+      ".coins .denomination5kr .count",
     ) as HTMLInputElement;
+    fireChange(countInput, "10");
+    expect(countInput.value).toBe("10");
     expect(gramsInput.value).toBe("78.5");
     expect(gramsInput.disabled).toBe(true);
+  });
+  it("shows count when entering coin weight", async () => {
+    const app = render(<NewSettlementForm onNewSettlement={vitest.fn()} />);
+    const gramsInput = app.baseElement.querySelector(
+      ".coins .denomination1kr .grams",
+    )! as HTMLInputElement;
+    const countInput = app.baseElement.querySelector(
+      ".coins .denomination1kr .count",
+    ) as HTMLInputElement;
+    fireChange(gramsInput, "44");
+    expect(gramsInput.value).toBe("44");
+    expect(countInput.value).toBe("10");
+    expect(countInput.disabled).toBe(true);
   });
 });
