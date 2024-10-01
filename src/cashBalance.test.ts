@@ -28,9 +28,9 @@ describe("cash balance", () => {
   it("sums coins by weight", () => {
     expect(
       sumBalance({
-        "20kr": { weight: 9.9 * 2 },
-        "10kr": { weight: 6.8 * 3 },
-        "1kr": { weight: 4.35 * 50 },
+        "20kr": { grams: 9.9 * 2 },
+        "10kr": { grams: 6.8 * 3 },
+        "1kr": { grams: 4.35 * 50 },
       }),
     ).toBe(2 * 20 + 3 * 10 + 50);
   });

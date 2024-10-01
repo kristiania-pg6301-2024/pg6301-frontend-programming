@@ -16,7 +16,7 @@ const coinTypes = [
 type CoinDenomination = (typeof coinTypes)[number]["key"];
 
 type CashBalance = Partial<Record<BillDenomination, number>> &
-  Partial<Record<CoinDenomination, { count: number } | { weight: number }>>;
+  Partial<Record<CoinDenomination, { count: number } | { grams: number }>>;
 
 export function sumBalance(balance: CashBalance) {
   let sum = 0;
@@ -28,7 +28,7 @@ export function sumBalance(balance: CashBalance) {
     if (coin && "count" in coin) {
       sum += coin.count * coinType.value;
     } else if (coin) {
-      sum += (coin.weight / coinType.gramsPerCoin) * coinType.value;
+      sum += (coin.grams / coinType.gramsPerCoin) * coinType.value;
     }
   }
   return sum;
