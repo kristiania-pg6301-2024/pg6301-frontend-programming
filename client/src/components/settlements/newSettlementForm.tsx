@@ -56,7 +56,9 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
           <input id={`newSettlementBalance_${key}`} type={"number"} />
         </div>
       ))}
-      <button type={"submit"}>Submit</button>
+      <button type={"submit"} disabled={!department}>
+        Submit
+      </button>
     </form>
   );
 }

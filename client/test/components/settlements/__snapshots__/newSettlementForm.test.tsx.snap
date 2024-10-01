@@ -139,6 +139,7 @@ exports[`NewSettlementForm > displays form 1`] = `
         />
       </div>
       <button
+        disabled=""
         type="submit"
       >
         Submit
