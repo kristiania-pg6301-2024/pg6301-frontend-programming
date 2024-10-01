@@ -13,6 +13,11 @@ describe("NewSettlementForm", () => {
   it("displays form", () => {
     const app = render(<NewSettlementForm onNewSettlement={vitest.fn()} />);
     expect(app.baseElement).toMatchSnapshot();
+    expect(
+      [...app.baseElement.querySelectorAll(".coins label")].map(
+        (c) => c.textContent,
+      ),
+    ).toEqual(["20kr:", "10kr:", "5kr:", "1kr:"]);
   });
   it("creates new settlement", async () => {
     const onNewSettlement = vitest.fn();
