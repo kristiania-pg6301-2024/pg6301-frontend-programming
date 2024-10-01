@@ -1,4 +1,4 @@
-const billTypes = [
+export const billTypes = [
   { key: "50kr", value: 50 },
   { key: "100kr", value: 100 },
   { key: "200kr", value: 200 },
@@ -7,7 +7,7 @@ const billTypes = [
 ] as const;
 type BillDenomination = (typeof billTypes)[number]["key"];
 
-const coinTypes = [
+export const coinTypes = [
   { key: "20kr", value: 20, gramsPerCoin: 9.9 },
   { key: "10kr", value: 10, gramsPerCoin: 6.8 },
   { key: "5kr", value: 5, gramsPerCoin: 7.85 },

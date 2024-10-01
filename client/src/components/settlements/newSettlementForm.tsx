@@ -1,4 +1,5 @@
 import React from "react";
+import { billTypes, coinTypes } from "../../../../src/cashBalance";
 
 const departments = ["Furniture", "Books"];
 
@@ -18,6 +19,21 @@ export function NewSettlementForm() {
           </select>
         </label>
       </div>
+
+      {billTypes.map(({ key }) => (
+        <div key={key}>
+          <label>
+            {key}: <input type={"number"} />
+          </label>
+        </div>
+      ))}
+      {coinTypes.map(({ key }) => (
+        <div key={key}>
+          <label>
+            {key}: <input type={"number"} />
+          </label>
+        </div>
+      ))}
     </>
   );
 }
