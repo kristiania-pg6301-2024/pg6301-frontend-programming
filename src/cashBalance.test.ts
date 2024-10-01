@@ -34,4 +34,12 @@ describe("cash balance", () => {
       }),
     ).toBe(2 * 20 + 3 * 10 + 50);
   });
+  it("rounds coins by weight", () => {
+    expect(
+      sumBalance({
+        "20kr": { grams: 9.9 * 10 + 4 }, // round down
+        "1kr": { grams: 4.35 * 10 + 3 }, // round up
+      }),
+    ).toBe(20 * 10 + 11);
+  });
 });

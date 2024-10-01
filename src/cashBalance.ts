@@ -28,7 +28,7 @@ export function sumBalance(balance: CashBalance) {
     if (coin && "count" in coin) {
       sum += coin.count * coinType.value;
     } else if (coin) {
-      sum += (coin.grams / coinType.gramsPerCoin) * coinType.value;
+      sum += Math.round(coin.grams / coinType.gramsPerCoin) * coinType.value;
     }
   }
   return sum;
