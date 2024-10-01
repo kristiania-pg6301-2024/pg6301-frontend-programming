@@ -61,8 +61,8 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
           <CoinInput
             key={c.key}
             type={c}
-            balance={balance}
-            setBalance={setBalance}
+            value={balance[c.key]}
+            setValue={(v) => setBalance((old) => ({ ...old, [c.key]: v }))}
           />
         ))}
       </div>

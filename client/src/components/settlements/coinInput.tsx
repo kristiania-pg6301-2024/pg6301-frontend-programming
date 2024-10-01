@@ -1,20 +1,17 @@
-import { CashBalance, CoinType } from "../../../../src/cashBalance";
+import { CoinAmount, CoinType } from "../../../../src/cashBalance";
 import React, { Dispatch, SetStateAction } from "react";
 
 interface Props {
   type: CoinType;
-  balance: CashBalance;
-  setBalance: Dispatch<SetStateAction<CashBalance>>;
+  value?: CoinAmount;
+  setValue: Dispatch<SetStateAction<CoinAmount>>;
 }
 
 export function CoinInput({
   type: { key, gramsPerCoin },
-  balance,
-  setBalance,
+  value,
+  setValue,
 }: Props) {
-  function setBalanceForCoin(value: { count: number } | { grams: number }) {
-    setBalance((old) => ({ ...old, [key]: value }));
-  }
   return (
     <div key={key} className={`denomination${key}`}>
       <label>
@@ -22,32 +19,28 @@ export function CoinInput({
         <input
           type={"number"}
           className={"count"}
-          disabled={balance[key] && "grams" in balance[key]}
+          disabled={value && "grams" in value}
           value={
-            !balance[key]
+            !value
               ? ""
-              : "count" in balance[key]
-                ? balance[key].count
-                : Math.round(balance[key].grams / gramsPerCoin)
+              : "count" in value
+                ? value.count
+                : Math.round(value.grams / gramsPerCoin)
           }
-          onChange={(e) =>
-            setBalanceForCoin({ count: parseInt(e.target.value) })
-          }
+          onChange={(e) => setValue({ count: parseInt(e.target.value) })}
         />
         <input
           type={"number"}
           className={"grams"}
-          disabled={balance[key] && "count" in balance[key]}
+          disabled={value && "count" in value}
           value={
-            !balance[key]
+            !value
               ? ""
-              : "grams" in balance[key]
-                ? balance[key].grams
-                : balance[key].count * gramsPerCoin
+              : "grams" in value
+                ? value.grams
+                : value.count * gramsPerCoin
           }
-          onChange={(e) =>
-            setBalanceForCoin({ grams: parseFloat(e.target.value) })
-          }
+          onChange={(e) => setValue({ grams: parseFloat(e.target.value) })}
         />
       </label>
     </div>
