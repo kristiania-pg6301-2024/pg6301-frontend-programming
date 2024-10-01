@@ -1,10 +1,10 @@
-import { CoinAmount, CoinType } from "../../../../src/cashBalance";
-import React, { Dispatch, SetStateAction } from "react";
+import { CoinAmount, CoinType } from "./domain";
+import React from "react";
 
 interface Props {
   type: CoinType;
   value?: CoinAmount;
-  setValue: Dispatch<SetStateAction<CoinAmount>>;
+  setValue(value: CoinAmount): void;
 }
 
 export function CoinInput({

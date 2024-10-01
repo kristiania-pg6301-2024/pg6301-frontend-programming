@@ -5,7 +5,8 @@ export const billTypes = [
   { key: "500kr", value: 500 },
   { key: "1000kr", value: 1000 },
 ] as const;
-type BillDenomination = (typeof billTypes)[number]["key"];
+export type BillType = (typeof billTypes)[number];
+type BillDenomination = BillType["key"];
 
 export const coinTypes = [
   { key: "20kr", value: 20, gramsPerCoin: 9.9 },

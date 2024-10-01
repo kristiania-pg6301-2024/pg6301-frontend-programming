@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { billTypes, CashBalance, coinTypes } from "../../../../src/cashBalance";
+import { billTypes, CashBalance, coinTypes } from "./domain";
 import { CoinInput } from "./coinInput";
+import { BillInput } from "./billInput";
 
 const departments = ["Furniture", "Books"];
 
@@ -43,18 +44,13 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
         </select>
       </div>
 
-      {billTypes.map(({ key }) => (
-        <div key={key}>
-          <label htmlFor={`newSettlementBalance_${key}`}>{key}:</label>
-          <input
-            id={`newSettlementBalance_${key}`}
-            type={"number"}
-            value={balance[key] || "0"}
-            onChange={(e) =>
-              setBalance((old) => ({ ...old, [key]: parseInt(e.target.value) }))
-            }
-          />
-        </div>
+      {billTypes.map((c) => (
+        <BillInput
+          key={c.key}
+          type={c}
+          value={balance[c.key]}
+          setValue={(v) => setBalance((old) => ({ ...old, [c.key]: v }))}
+        />
       ))}
       <div className={"coins"}>
         {coinTypes.map((c) => (
