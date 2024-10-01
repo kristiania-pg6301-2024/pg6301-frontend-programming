@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { billTypes, CashBalance, coinTypes } from "../../../../src/cashBalance";
+import { CoinInput } from "./coinInput";
 
 const departments = ["Furniture", "Books"];
 
@@ -56,48 +57,13 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
         </div>
       ))}
       <div className={"coins"}>
-        {coinTypes.map(({ key, gramsPerCoin }) => (
-          <div key={key} className={`denomination${key}`}>
-            <label>
-              {key}:
-              <input
-                type={"number"}
-                className={"count"}
-                disabled={balance[key] && "grams" in balance[key]}
-                value={
-                  !balance[key]
-                    ? ""
-                    : "count" in balance[key]
-                      ? balance[key].count
-                      : Math.round(balance[key].grams / gramsPerCoin)
-                }
-                onChange={(e) =>
-                  setBalance((old) => ({
-                    ...old,
-                    [key]: { count: parseInt(e.target.value) },
-                  }))
-                }
-              />
-              <input
-                type={"number"}
-                className={"grams"}
-                disabled={balance[key] && "count" in balance[key]}
-                value={
-                  !balance[key]
-                    ? ""
-                    : "grams" in balance[key]
-                      ? balance[key].grams
-                      : balance[key].count * gramsPerCoin
-                }
-                onChange={(e) =>
-                  setBalance((old) => ({
-                    ...old,
-                    [key]: { grams: parseFloat(e.target.value) },
-                  }))
-                }
-              />
-            </label>
-          </div>
+        {coinTypes.map((c) => (
+          <CoinInput
+            key={c.key}
+            type={c}
+            balance={balance}
+            setBalance={setBalance}
+          />
         ))}
       </div>
       <button type={"submit"} disabled={!department || !hasBalance()}>

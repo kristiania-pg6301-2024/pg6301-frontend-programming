@@ -13,7 +13,8 @@ export const coinTypes = [
   { key: "5kr", value: 5, gramsPerCoin: 7.85 },
   { key: "1kr", value: 1, gramsPerCoin: 4.35 },
 ] as const;
-type CoinDenomination = (typeof coinTypes)[number]["key"];
+export type CoinType = (typeof coinTypes)[number];
+type CoinDenomination = CoinType["key"];
 
 export type CashBalance = Partial<Record<BillDenomination, number>> &
   Partial<Record<CoinDenomination, { count: number } | { grams: number }>>;
