@@ -20,15 +20,15 @@ type CashBalance = Partial<Record<BillDenomination, number>> &
 
 export function sumBalance(balance: CashBalance) {
   let sum = 0;
-  for (const billType of billTypes) {
-    sum += (balance[billType.key] || 0) * billType.value;
+  for (const { key, value } of billTypes) {
+    sum += (balance[key] || 0) * value;
   }
-  for (const coinType of coinTypes) {
-    let coin = balance[coinType.key];
+  for (const { gramsPerCoin, key, value } of coinTypes) {
+    let coin = balance[key];
     if (coin && "count" in coin) {
-      sum += coin.count * coinType.value;
+      sum += coin.count * value;
     } else if (coin) {
-      sum += Math.round(coin.grams / coinType.gramsPerCoin) * coinType.value;
+      sum += Math.round(coin.grams / gramsPerCoin) * value;
     }
   }
   return sum;
