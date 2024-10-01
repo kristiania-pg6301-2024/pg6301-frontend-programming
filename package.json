@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "vitest",
-    "pre-commit": "vitest --watch=false && prettier --check . && tsc --noEmit",
+    "pre-commit": "vitest --watch=false && prettier --check . && tsc --noEmit && npm run pre-commit:client",
+    "pre-commit:client": "cd client && npm run pre-commit",
     "prepare": "husky"
   }
 }

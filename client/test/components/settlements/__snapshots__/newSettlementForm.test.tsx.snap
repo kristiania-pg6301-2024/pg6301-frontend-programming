@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NewSettlementForm > displays form 1`] = `
+<body>
+  <div>
+    <h1>
+      New Settlement
+    </h1>
+    <div>
+      <label>
+        Department:
+         
+        <select>
+          <option />
+          <option>
+            Furniture
+          </option>
+          <option>
+            Books
+          </option>
+        </select>
+      </label>
+    </div>
+  </div>
+</body>
+`;
