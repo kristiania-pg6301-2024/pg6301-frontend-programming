@@ -3,14 +3,19 @@
 exports[`NewSettlementForm > displays form 1`] = `
 <body>
   <div>
-    <h1>
-      New Settlement
-    </h1>
-    <div>
-      <label>
-        Department:
-         
-        <select>
+    <form>
+      <h1>
+        New Settlement
+      </h1>
+      <div>
+        <label
+          for="newSettlementDepartment"
+        >
+          Department: 
+        </label>
+        <select
+          id="newSettlementDepartment"
+        >
           <option />
           <option>
             Furniture
@@ -19,89 +24,121 @@ exports[`NewSettlementForm > displays form 1`] = `
             Books
           </option>
         </select>
-      </label>
-    </div>
-    <div>
-      <label>
-        50kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_50kr"
+        >
+          50kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_50kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        100kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_100kr"
+        >
+          100kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_100kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        200kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_200kr"
+        >
+          200kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_200kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        500kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_500kr"
+        >
+          500kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_500kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        1000kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_1000kr"
+        >
+          1000kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_1000kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        20kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_20kr"
+        >
+          20kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_20kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        10kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_10kr"
+        >
+          10kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_10kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        5kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_5kr"
+        >
+          5kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_5kr"
           type="number"
         />
-      </label>
-    </div>
-    <div>
-      <label>
-        1kr
-        : 
+      </div>
+      <div>
+        <label
+          for="newSettlementBalance_1kr"
+        >
+          1kr
+          :
+        </label>
         <input
+          id="newSettlementBalance_1kr"
           type="number"
         />
-      </label>
-    </div>
+      </div>
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
   </div>
 </body>
 `;

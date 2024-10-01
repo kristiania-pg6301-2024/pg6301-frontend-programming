@@ -1,7 +1,14 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
-import { NewSettlementForm } from "./components/settlements/newSettlementForm";
+import {
+  NewSettlementForm,
+  Settlement,
+} from "./components/settlements/newSettlementForm";
 
 const root = createRoot(document.getElementById("root")!);
 
-root.render(<NewSettlementForm />);
+function handleNewSettlement(settlement: Settlement) {
+  console.log({ settlement });
+}
+
+root.render(<NewSettlementForm onNewSettlement={handleNewSettlement} />);
