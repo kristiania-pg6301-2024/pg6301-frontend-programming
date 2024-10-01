@@ -71,4 +71,23 @@ describe("NewSettlementForm", () => {
     expect(countInput.value).toBe("10");
     expect(countInput.disabled).toBe(true);
   });
+  it("submits coins by count and weight", async () => {
+    const onNewSettlement = vitest.fn();
+    const app = render(<NewSettlementForm onNewSettlement={onNewSettlement} />);
+    const department = "Furniture";
+    fireChange(await app.findByLabelText("Department:"), department);
+    fireChange(
+      app.baseElement.querySelector(".coins .denomination1kr .grams")!,
+      "44.2",
+    );
+    fireChange(
+      app.baseElement.querySelector(".coins .denomination5kr .count")!,
+      "15",
+    );
+    fireEvent.click(await app.findByText("Submit"));
+    expect(onNewSettlement).toBeCalledWith({
+      department,
+      balance: { "1kr": { grams: 44.2 }, "5kr": { count: 15 } },
+    });
+  });
 });

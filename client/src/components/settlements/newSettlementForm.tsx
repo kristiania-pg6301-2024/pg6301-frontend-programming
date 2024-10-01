@@ -92,7 +92,7 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
                 onChange={(e) =>
                   setBalance((old) => ({
                     ...old,
-                    [key]: { grams: parseInt(e.target.value) },
+                    [key]: { grams: parseFloat(e.target.value) },
                   }))
                 }
               />
