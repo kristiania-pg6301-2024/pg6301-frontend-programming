@@ -45,4 +45,16 @@ describe("NewSettlementForm", () => {
     fireEvent.click(submitButton);
     expect(onNewSettlement).not.toBeCalled();
   });
+  it("shows weight when entering coin count", async () => {
+    const app = render(<NewSettlementForm onNewSettlement={vitest.fn()} />);
+    fireChange(
+      app.baseElement.querySelector(".coins .denomination5kr .count")!,
+      "10",
+    );
+    const gramsInput = app.baseElement.querySelector(
+      ".coins .denomination5kr .grams",
+    ) as HTMLInputElement;
+    expect(gramsInput.value).toBe("78.5");
+    expect(gramsInput.disabled).toBe(true);
+  });
 });

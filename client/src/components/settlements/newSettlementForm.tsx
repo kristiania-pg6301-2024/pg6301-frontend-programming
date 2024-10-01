@@ -55,12 +55,35 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
           />
         </div>
       ))}
-      {coinTypes.map(({ key }) => (
-        <div key={key}>
-          <label htmlFor={`newSettlementBalance_${key}`}>{key}:</label>
-          <input id={`newSettlementBalance_${key}`} type={"number"} />
-        </div>
-      ))}
+      <div className={"coins"}>
+        {coinTypes.map(({ key, gramsPerCoin }) => (
+          <div key={key} className={`denomination${key}`}>
+            <label>
+              {key}:
+              <input
+                type={"number"}
+                className={"count"}
+                onChange={(e) =>
+                  setBalance((old) => ({
+                    ...old,
+                    [key]: { count: parseInt(e.target.value) },
+                  }))
+                }
+              />
+              <input
+                type={"number"}
+                className={"grams"}
+                disabled={balance[key] && "count" in balance[key]}
+                value={
+                  balance[key] && "count" in balance[key]
+                    ? balance[key].count * gramsPerCoin
+                    : ""
+                }
+              />
+            </label>
+          </div>
+        ))}
+      </div>
       <button type={"submit"} disabled={!department || !hasBalance()}>
         Submit
       </button>
