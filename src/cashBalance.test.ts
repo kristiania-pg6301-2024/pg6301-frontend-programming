@@ -16,4 +16,13 @@ describe("cash balance", () => {
       }),
     ).toBe(1000 + 2 * 500 + 3 * 200 + 5 * 100 + 7 * 50);
   });
+  it("sums coins by count", () => {
+    expect(
+      sumBalance({
+        "20kr": { count: 1 },
+        "10kr": { count: 2 },
+        "5kr": { count: 3 },
+      }),
+    ).toBe(20 + 2 * 10 + 3 * 5);
+  });
 });
