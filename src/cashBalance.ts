@@ -1,5 +1,7 @@
 const billTypes = [
   { key: "50kr", value: 50 },
+  { key: "100kr", value: 100 },
+  { key: "200kr", value: 200 },
   { key: "500kr", value: 500 },
   { key: "1000kr", value: 1000 },
 ] as const;
