@@ -1,3 +1,8 @@
-export function sumBalance(param: { "50kr"?: number; "1000kr"?: number }) {
-  return 1000 * (param["1000kr"] || 0) + 50 * (param["50kr"] || 0);
+interface CashBalance {
+  "50kr"?: number;
+  "1000kr"?: number;
+}
+
+export function sumBalance(balance: CashBalance) {
+  return 1000 * (balance["1000kr"] || 0) + 50 * (balance["50kr"] || 0);
 }
