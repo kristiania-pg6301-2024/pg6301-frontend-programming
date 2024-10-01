@@ -26,12 +26,22 @@ describe("NewSettlementForm", () => {
       balance: { "100kr": 4 },
     });
   });
-  it("prevents submitting form without department", async () => {
+  it("prevents submission without department", async () => {
     const onNewSettlement = vitest.fn();
     const app = render(<NewSettlementForm onNewSettlement={onNewSettlement} />);
     fireChange(await app.findByLabelText("Department:"), "");
+    fireChange(await app.findByLabelText("100kr:"), "4");
     const submitButton = await app.findByText("Submit");
-    expect(submitButton.getAttribute("disabled")).toBeDefined();
+    expect(submitButton.getAttribute("disabled")).toBe("");
+    fireEvent.click(submitButton);
+    expect(onNewSettlement).not.toBeCalled();
+  });
+  it("prevents submission without balance", async () => {
+    const onNewSettlement = vitest.fn();
+    const app = render(<NewSettlementForm onNewSettlement={onNewSettlement} />);
+    fireChange(await app.findByLabelText("Department:"), "Furniture");
+    const submitButton = await app.findByText("Submit");
+    expect(submitButton.getAttribute("disabled")).toBe("");
     fireEvent.click(submitButton);
     expect(onNewSettlement).not.toBeCalled();
   });

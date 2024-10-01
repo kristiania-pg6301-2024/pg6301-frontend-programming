@@ -19,6 +19,11 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
     e.preventDefault();
     onNewSettlement({ department, balance });
   }
+
+  function hasBalance() {
+    return Object.values(balance).some((b) => !!b);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>New Settlement</h1>
@@ -56,7 +61,7 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
           <input id={`newSettlementBalance_${key}`} type={"number"} />
         </div>
       ))}
-      <button type={"submit"} disabled={!department}>
+      <button type={"submit"} disabled={!department || !hasBalance()}>
         Submit
       </button>
     </form>
