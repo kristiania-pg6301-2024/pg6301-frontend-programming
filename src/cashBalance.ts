@@ -1,14 +1,9 @@
-type BillDenomination = "50kr" | "1000kr";
-
-interface BillType {
-  key: BillDenomination;
-  value: number;
-}
-
-const billTypes: BillType[] = [
+const billTypes = [
   { key: "50kr", value: 50 },
+  { key: "500kr", value: 500 },
   { key: "1000kr", value: 1000 },
-];
+] as const;
+type BillDenomination = (typeof billTypes)[number]["key"];
 
 type CashBalance = Partial<Record<BillDenomination, number>>;
 
