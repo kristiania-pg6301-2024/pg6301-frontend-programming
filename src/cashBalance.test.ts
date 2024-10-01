@@ -25,4 +25,13 @@ describe("cash balance", () => {
       }),
     ).toBe(20 + 2 * 10 + 3 * 5);
   });
+  it("sums coins by weight", () => {
+    expect(
+      sumBalance({
+        "20kr": { weight: 9.9 * 2 },
+        "10kr": { weight: 6.8 * 3 },
+        "1kr": { weight: 4.35 * 50 },
+      }),
+    ).toBe(2 * 20 + 3 * 10 + 50);
+  });
 });
