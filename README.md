@@ -132,7 +132,7 @@ and start to look at React Router.
 
 We will create an Express server which serves a React application that uses an API implemented in Express to implement
 functionality.
-See [Convert to serve from Express](#converting-react-to-serve-from-express) on the steps to take the code from the
+See [Convert to serve from Express](#implement-server-side-apis-with-express) on the steps to take the code from the
 previous lecture to be served from Express.
 
 We will look at routing in Express and user interaction and error handling in React.
@@ -168,7 +168,7 @@ See [the steps to deploy to Heroku](#deploy-to-heroku)
 * [Reference implementation (quality code)](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/05b)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/05/start/README.md)
 * [Deploying with Heroku](#deploy-to-heroku)
-* [Setting up quality checks](#quality-checks)
+* [Setting up quality checks](#quality-checks-with-husky-prettier-and-typescript)
 
 Reference material
 
@@ -298,6 +298,7 @@ Quality code, Prettier, Jest, Husky and GitHub Actions
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
 * [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/08/start/README.md)
+* [Reference: Vitest](#testing)
 * [Reference: GitHub Actions](#deploy-to-heroku)
 
 </details>
@@ -317,7 +318,7 @@ Quality code, Prettier, Jest, Husky and GitHub Actions
 
 </details>
 
-### Lecture 9: Vitest and test driven development
+### Lecture 9: Testing 
 
 > The React test examples will be updated with vitest and @testing-library/react
 
@@ -944,6 +945,8 @@ new MongoClient(process.env.MONGODB_URL)
 
 ### Testing
 
+This course uses the [Vitest](https://vitest.dev) testing library.
+
 #### Installing
 
 Installing Vitest is described on [the Vitest homepage](https://vitest.dev/)
@@ -977,23 +980,50 @@ describe("leap years", () => {
 
 #### Snapshot testing - check that a view is rendered correctly
 
-> TODO: This will be rewritten to use Vitest and @testing-library/react
+For testing react code, I recommend [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 
 <details>
 
+To test with react, install devDependencies `@testing-library/react` and `jsdom`
+
+1. `npm install --save-dev vitest @testing-library/react jsdom`
+2. Add the following to your `vite.config.js`:
+    ```js
+    import { defineConfig } from "vite";
+    
+    export default defineConfig({
+      test: {
+        environment: "jsdom",
+      },
+    });
+    ```
+
+* Use `render` from `@testing-library/react` to instantiate components
+* Use `expect(RenderResult.baseElement).toMatchSnapshot()` for a test that checks that nothing has changed
+* Use `RenderResult.baseElement.{querySelector,querySelectorAll}` to find DOM elements to inspect in the test
+* You can also use [`RenderResult.findBy{Text,LabelText}`](https://testing-library.com/docs/queries/about) to find elements - this retries for up to one second 
+* Use `fireEvent` from `@testing-library/react` to create change, submit and other events
+* Use [`vitest.fn()`](https://vitest.dev/guide/mocking) to create a [Mock](https://vitest.dev/guide/mocking) function that can be used to verify that an event was triggered
+
 ```javascript
+import { afterEach, describe, expect, it, vitest } from "vitest";
+import { cleanup, render } from "@testing-library/react";
+import React from "react";
+
+// Without this, each test will extend the web page from the previous instead of starting over
+afterEach(cleanup);
+
 it("matches snapshot", async () => {
-  let component;
-  await act(async () => {
-    component = renderer.create(
-      <MemoryRouter initialEntries={["/"]}>
-        <MoviesRoutes fetchMovies={() => movies}/>,
-      </MemoryRouter>,
-    );
-  });
-  expect(component).toMatchSnapshot();
+  const app = render(
+    <MemoryRouter initialEntries={["/"]}>
+      <MoviesRoutes fetchMovies={() => movies}/>,
+    </MemoryRouter>,
+  );
+  expect(app.baseElement).toMatchSnapshot();
   expect(
-    component.root.findAllByType("h3").map((c) => c.children.join(" ")),
+    [...app.baseElement.querySelectorAll("h3")].map(
+      (c) => c.textContent
+    ),
   ).toEqual(["Barbie", "Oppenheimer"]);
 });
 ```
@@ -1002,17 +1032,22 @@ it("matches snapshot", async () => {
 
 #### Simulate events
 
-> TODO: This will be rewritten to use Vitest and @testing-library/react
-
 <details>
 
 ```javascript
-  it("handles event", () => {
-  const handleClick = jest.fn();
-  const component = renderer.create(
+import { afterEach, describe, expect, it, vitest } from "vitest";
+import { cleanup, fireEvent, render } from "@testing-library/react";
+import React from "react";
+
+// Without this, each test will extend the web page from the previous instead of starting over
+afterEach(cleanup);
+
+it("handles event", async () => {
+  const handleClick = vitest.fn();
+  const app = render(
     <button onClick={() => handleClick(123)}>Click me</button>,
   );
-  component.root.findAllByType("button")[0].props.onClick();
+  fireEvent.click(await app.findByText("Click me"));
   expect(handleClick).toBeCalledWith(123);
 });
 ```
@@ -1021,21 +1056,14 @@ it("matches snapshot", async () => {
 
 #### Using supertest to check server side behavior
 
-> TODO: This will be rewritten to use Vitest and @testing-library/react
+For testing Express components, I recommend [Supertest](https://github.com/ladjs/supertest)
 
 <details>
 
 ***Setup***:
 
-1. `npm install --save-dev jest babel-jest @babel/preset-env supertest`
-2. Add the following to `server/package.json`
-   ```
-   "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-   }
-   ```
+1. `cd client`
+2. `npm install --save-dev vitest supertest`
 
 To test a bookApi defined in `server/booksApi.js` like this:
 
@@ -1046,21 +1074,24 @@ export const booksApi = new express.Router();
 booksApi.get(":id", (req, res) => {
   // ...
 });
+booksApi.put(":id", (req, res) => {
+    // ...
+});
 ```
 
-you can use a test in `server/__tests__/booksApi.test.js` like this:
+you can use a test in `server/tests/booksApi.test.js` like this:
 
 ```javascript
-import request from "supertest";
+import { beforeAll, describe, expect, it } from "vitest";
 import express from "express";
-import bodyParser from "body-parser";
+import request from "supertest";
 import { booksApi } from "../booksApi";
 
 const app = express();
 app.use(bodyParser.json());
 app.use(booksApi);
 
-describe("...", () => {
+describe("books api", () => {
 
   it("can update existing books", async () => {
     const book = (await request(app).get("/2")).body;
@@ -1359,3 +1390,19 @@ favorite refactorings like Extract method, Rename and Inline.
 | `git log`    | View change history                      | View > Tool Windows > Version control     |
 
 </details>
+
+## Software and libraries used in this course:
+
+* [React](https://react.dev)
+* [NodeJs](https://nodejs.org)
+* [Vite](https://vitejs.dev/)
+* [ExpressJS](https://expressjs.com/)
+* [IntelliJ](https://www.jetbrains.com/idea/)
+* [Heroku](https://devcenter.heroku.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Husky](https://typicode.github.io/husky/)
+* [Prettier](https://prettier.io/)
+* [Vitest](https://vitest.dev/)
+* [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+* [Supertest](https://github.com/ladjs/supertest)
+* Entra ID (?)
