@@ -3,6 +3,7 @@ import { Settlement } from "../src/cashBalance";
 
 const settlements: Settlement[] = [
   {
+    id: "0",
     department: "Original",
     balance: {},
   },
@@ -15,8 +16,10 @@ export function settlementsApi() {
   });
   router.post("", (req, res) => {
     const { department, balance } = req.body;
-    settlements.push({ department, balance });
-    res.sendStatus(201);
+    const id = (settlements.length + 1).toString();
+    const settlement = { id, department, balance };
+    settlements.push(settlement);
+    res.json(settlement);
   });
   return router;
 }

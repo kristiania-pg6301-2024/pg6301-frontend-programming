@@ -1,11 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import express from "express";
 import request from "supertest";
 import { settlementsApi } from "../settlementsApi";
 
 const app = express();
-app.use(express.json());
-app.use(settlementsApi());
+beforeAll(() => {
+  app.use(express.json());
+  app.use(settlementsApi());
+});
 
 describe("settlements api", () => {
   it("adds a settlement", async () => {
@@ -15,10 +17,15 @@ describe("settlements api", () => {
         "100kr": Math.floor(Math.random() * 20000),
       },
     };
-    await request(app).post("/").send(settlement).expect(201);
+    const saved = await request(app)
+      .post("/")
+      .send(settlement)
+      .expect(200)
+      .then((resp) => resp.body);
+    expect(saved).toMatchObject(settlement);
     await request(app)
       .get("/")
       .expect(200)
-      .then((response) => expect(response.body).toContainEqual(settlement));
+      .then((response) => expect(response.body).toContainEqual(saved));
   });
 });
