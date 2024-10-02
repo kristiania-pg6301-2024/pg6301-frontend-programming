@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev server.ts",
-    "test": "vitest"
+    "test": "vitest --watch=false"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

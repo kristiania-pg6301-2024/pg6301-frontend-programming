@@ -11,9 +11,10 @@
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
-    "test": "vitest",
-    "pre-commit": "vitest --watch=false && prettier --check . && tsc --noEmit && npm run pre-commit:client",
-    "pre-commit:client": "cd client && npm run pre-commit",
+    "test": "tsc --noEmit && npm run test:shared && npm run test:client && npm run test:server && prettier --check .",
+    "test:shared": "vitest --watch=false",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test",
     "prepare": "husky"
   },
   "dependencies": {

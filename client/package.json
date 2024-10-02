@@ -14,6 +14,6 @@
   },
   "scripts": {
     "dev": "vite",
-    "pre-commit": "vitest --watch=false"
+    "test": "vitest --watch=false"
   }
 }
