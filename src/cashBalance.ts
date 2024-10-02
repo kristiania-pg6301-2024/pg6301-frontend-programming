@@ -36,3 +36,8 @@ export function sumBalance(balance: CashBalance) {
   }
   return sum;
 }
+
+export interface Settlement {
+  department: string;
+  balance: CashBalance;
+}

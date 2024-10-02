@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/supertest": "^6.0.2",
     "husky": "^9.1.6",
     "prettier": "^3.3.3",
     "typescript": "^5.6.2",
@@ -10,5 +11,8 @@
     "pre-commit": "vitest --watch=false && prettier --check . && tsc --noEmit && npm run pre-commit:client",
     "pre-commit:client": "cd client && npm run pre-commit",
     "prepare": "husky"
+  },
+  "dependencies": {
+    "supertest": "^7.0.0"
   }
 }

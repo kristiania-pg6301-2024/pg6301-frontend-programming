@@ -1,9 +1,7 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
-import {
-  NewSettlementForm,
-  Settlement,
-} from "./components/settlements/newSettlementForm";
+import { NewSettlementForm } from "./components/settlements/newSettlementForm";
+import { Settlement } from "../../src/cashBalance";
 
 const root = createRoot(document.getElementById("root")!);
 

@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { billTypes, CashBalance, coinTypes } from "./domain";
+import { billTypes, CashBalance, coinTypes, Settlement } from "./domain";
 import { CoinInput } from "./coinInput";
 import { BillInput } from "./billInput";
 
 const departments = ["Furniture", "Books"];
-
-export interface Settlement {
-  department: string;
-  balance: CashBalance;
-}
 
 interface Props {
   onNewSettlement(settlement: Settlement): void;
