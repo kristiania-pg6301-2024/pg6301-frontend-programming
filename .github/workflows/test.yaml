@@ -16,5 +16,6 @@ jobs:
         with:
           node-version: 20.x
           cache: npm
+      - run: docker compose up
       - run: npm ci
       - run: npm test
