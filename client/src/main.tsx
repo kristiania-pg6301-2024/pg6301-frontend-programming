@@ -1,12 +1,11 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
-import { NewSettlementForm } from "./components/settlements/newSettlementForm";
-import { Settlement } from "../../src/cashBalance";
+import { Application } from "./components/app/application";
+import { BrowserRouter } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root")!);
-
-function handleNewSettlement(settlement: Settlement) {
-  console.log({ settlement });
-}
-
-root.render(<NewSettlementForm onNewSettlement={handleNewSettlement} />);
+root.render(
+  <BrowserRouter>
+    <Application />
+  </BrowserRouter>,
+);
