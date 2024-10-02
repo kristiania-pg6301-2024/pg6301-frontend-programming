@@ -15,7 +15,10 @@
     "test:shared": "vitest --watch=false",
     "test:client": "cd client && npm test",
     "test:server": "cd server && npm test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "npm run install:client && npm run install:server",
+    "install:client": "cd client && npm install --include=dev",
+    "install:server": "cd server && npm install --include=dev"
   },
   "dependencies": {
     "supertest": "^7.0.0"
