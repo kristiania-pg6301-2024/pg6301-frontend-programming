@@ -4,6 +4,8 @@ import { LoginRedirect } from "../auth/loginRedirect";
 import { ProgressIndicator } from "../progressIndicator";
 import { User, UserProfile } from "../auth/userProfile";
 
+import "./application.css";
+
 export function Application() {
   const [user, setUser] = useState<User>();
 
