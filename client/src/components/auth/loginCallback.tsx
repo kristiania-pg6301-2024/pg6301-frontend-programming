@@ -3,10 +3,20 @@ import { ProgressIndicator } from "../progressIndicator";
 import { client_id, tokenEndpoint } from "./config";
 import { OauthError, OauthErrorView } from "./oauthErrorView";
 
+interface TokenResponse {
+  token_type: string;
+  scope: string;
+  expires_in: number;
+  access_token: string;
+  id_token: string;
+}
+
 function FetchToken({ code }: { code: string }) {
   const [error, setError] = useState<OauthError>();
   async function fetchToken() {
-    const parameters = { code, client_id, grant_type: "authorization_code" };
+    const code_verifier = sessionStorage.getItem("code_verifier")!;
+    const grant_type = "authorization_code";
+    const parameters = { code, client_id, grant_type, code_verifier };
     const res = await fetch(tokenEndpoint, {
       method: "POST",
       body: new URLSearchParams(parameters),
@@ -14,7 +24,15 @@ function FetchToken({ code }: { code: string }) {
     if (!res.ok) {
       setError(await res.json());
     } else {
-      console.log(await res.json());
+      const tokenResponse = (await res.json()) as TokenResponse;
+      console.log(tokenResponse);
+      const { access_token } = tokenResponse;
+      await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ access_token }),
+      });
+      window.location.pathname = "/";
     }
   }
 
