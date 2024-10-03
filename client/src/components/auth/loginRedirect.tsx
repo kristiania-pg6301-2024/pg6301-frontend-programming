@@ -10,7 +10,7 @@ export function LoginRedirect() {
     const query = {
       client_id,
       scope: "profile email openid",
-      response_type: "token",
+      response_type: "code",
     };
     setAuthorizationUri(
       `${authorizationEndpoint}?${new URLSearchParams(query)}`,
