@@ -10,7 +10,7 @@ export function Application() {
   const [user, setUser] = useState<User>();
 
   function loadUser() {
-    setTimeout(() => setUser({ error: "Unauthenticated" }), 2000);
+    setTimeout(() => setUser({ error: "Unauthenticated" }), 500);
   }
 
   useEffect(() => {
