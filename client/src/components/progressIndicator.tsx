@@ -1,3 +1,7 @@
+import React from "react";
+
+import "./progressIndicator.css";
+
 export function ProgressIndicator() {
-  return null;
+  return <div className="progressIndicator"></div>;
 }

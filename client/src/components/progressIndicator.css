@@ -1,0 +1,16 @@
+.progressIndicator {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: progressIndicator linear infinite;
+
+  animation-duration: 2s;
+  height: 20px;
+  border: 4px solid lightgray;
+  border-top-color: gray;
+}
+
+@keyframes progressIndicator {
+  to {
+    rotate: 360deg;
+  }
+}
