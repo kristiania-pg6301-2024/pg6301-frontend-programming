@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ProgressIndicator } from "../progressIndicator";
+import { authorizationEndpoint, client_id } from "./config";
 
 // From https://stackoverflow.com/a/75809704/27658
 function randomString() {
@@ -30,11 +31,8 @@ export function LoginRedirect() {
   const [authorizationUri, setAuthorizationUri] = useState<string>();
 
   async function createAuthorizationUri() {
-    const authorizationEndpoint =
-      "https://login.microsoftonline.com/fb35ccd7-e4c1-47fc-9f1d-4aed73c1df20/oauth2/v2.0/authorize";
     const code_verifier = randomString();
     sessionStorage.setItem("code_verifier", code_verifier);
-    const client_id = "25fc066e-1a1c-4bbe-a56c-30e47dc4ac28";
     const query = {
       client_id,
       scope: "profile email openid",
