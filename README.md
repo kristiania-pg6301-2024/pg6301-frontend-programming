@@ -5,7 +5,7 @@ They do not depend on the earlier exercises in the course
 
 ## Exercise 8: Extreme programming with test-driven development, pair programming, refactoring and continuous integration
 
-<details open>
+<details>
 
 <summary>
 
@@ -142,7 +142,7 @@ See [Coding Dojo's description of Roman Numerals](https://codingdojo.org/kata/Ro
 
 ## Exercise 9: Writing tests for React and Express
 
-<details>
+<details open>
 <summary>
 
 > The purpose of exercise 9 is to teach you how to use
