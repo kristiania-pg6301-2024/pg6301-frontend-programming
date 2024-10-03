@@ -9,8 +9,9 @@ import "./application.css";
 export function Application() {
   const [user, setUser] = useState<User>();
 
-  function loadUser() {
-    setTimeout(() => setUser({ error: "Unauthenticated" }), 500);
+  async function loadUser() {
+    const res = await fetch("/api/login");
+    setUser(await res.json());
   }
 
   useEffect(() => {
@@ -25,9 +26,8 @@ export function Application() {
     return <ProgressIndicator />;
   }
 
-  if ("error" in user && user.error === "Unauthenticated") {
+  if ("error" in user) {
     return <LoginRedirect />;
   }
-
   return <UserProfile user={user} />;
 }

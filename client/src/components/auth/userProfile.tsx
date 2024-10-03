@@ -1,5 +1,12 @@
-export type User = { error: "Unauthenticated" } | { username: string };
+import React from "react";
 
-export function UserProfile(props: { user: User }) {
-  return null;
+interface AuthorizedUser {
+  name: string;
+  sub: string;
+}
+
+export type User = { error: "Unauthenticated" } | AuthorizedUser;
+
+export function UserProfile({ user: { name } }: { user: AuthorizedUser }) {
+  return <h1>User profile: {name}</h1>;
 }
