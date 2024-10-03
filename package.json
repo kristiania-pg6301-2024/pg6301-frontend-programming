@@ -5,6 +5,7 @@
   },
   "scripts": {
     "test": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "cd client && npm run dev"
   }
 }
