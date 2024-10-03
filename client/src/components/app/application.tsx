@@ -17,7 +17,7 @@ export function Application() {
     loadUser();
   }, []);
 
-  if (window.location.pathname === "/callback") {
+  if (window.location.pathname === "/login/callback") {
     return <LoginCallback />;
   }
 

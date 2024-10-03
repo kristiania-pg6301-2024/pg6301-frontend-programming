@@ -1,3 +1,21 @@
+import React from "react";
+
 export function LoginCallback() {
-  return null;
+  const params = Object.fromEntries(
+    new URLSearchParams(window.location.search).entries(),
+  );
+
+  if ("error" in params) {
+    return (
+      <div>
+        <h2>Error {params.error}</h2>
+        <p>{params.error_description}</p>
+        <p>
+          <a href={"/"}>Try again</a>
+        </p>
+      </div>
+    );
+  }
+
+  return <pre>{JSON.stringify(params, null, 2)}</pre>;
 }
