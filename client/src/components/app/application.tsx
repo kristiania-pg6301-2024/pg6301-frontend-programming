@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
-
-type User = { error: "Unauthenticated" } | { username: string };
-
-function LoginCallback() {
-  return null;
-}
-
-function ProgressIndicator() {
-  return null;
-}
-
-function LoginRedirect() {
-  return null;
-}
-
-function UserProfile(props: { user: User }) {
-  return null;
-}
+import { LoginCallback } from "../auth/loginCallback";
+import { LoginRedirect } from "../auth/loginRedirect";
+import { ProgressIndicator } from "../progressIndicator";
+import { User, UserProfile } from "../auth/userProfile";
 
 export function Application() {
   const [user, setUser] = useState<User>();
