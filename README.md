@@ -5,7 +5,7 @@ They do not depend on the earlier exercises in the course
 
 ## Exercise 8: Extreme programming with test-driven development, pair programming, refactoring and continuous integration
 
-<details>
+<details open>
 
 <summary>
 
