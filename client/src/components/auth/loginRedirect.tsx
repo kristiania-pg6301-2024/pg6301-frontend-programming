@@ -4,7 +4,11 @@ import { ProgressIndicator } from "../progressIndicator";
 export function LoginRedirect() {
   const [authorizationUri, setAuthorizationUri] = useState<string>();
   useEffect(() => {
-    setAuthorizationUri("https://www.google.com/search?q=openid+connect");
+    const authorizationEndpoint = "https://www.google.com/search";
+    const query = { q: "openid connect" };
+    setAuthorizationUri(
+      `${authorizationEndpoint}?${new URLSearchParams(query)}`,
+    );
   }, []);
 
   return authorizationUri ? (
