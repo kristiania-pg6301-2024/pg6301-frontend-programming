@@ -367,7 +367,7 @@ continue.
 <details>
 
 In this lecture we will implement "log in with Google"-functionality. We will also explore other identity
-services that also implement OpenID Connect, such as ID-porten and Active Directory.
+services that also implement OpenID Connect, such as LinkedIn and Microsoft Entra ID.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
@@ -623,6 +623,7 @@ you can access it at http://localhost:3000
 import express from "express";
 
 const app = express();
+express.use(express.static("../client/dist"));
 app.listen(3000);
 ```
 
@@ -792,6 +793,7 @@ app.use((req, res, next) => {
     // TODO: We probably should return 404 instead of index.html for api-calls as well
     res.sendFile(path.resolve("../client/dist/index.html"));
   } else {
+    // try other alternative Express actions, or return 404 if none match
     next();
   }
 });
@@ -842,27 +844,32 @@ see [Deploying with Git | Heroku Dev](https://devcenter.heroku.com/articles/git)
 4. In the server project, define `npm start`
     * `cd server`
     * `npm pkg set scripts.start="node server.js"`
-    * `cd ..`
+      > Note: If you're using Typescript, this should be `ts-node server.ts` instead
 5. In the server project, update `server.js` to let Heroku inject the server port as an environment variable:
-   ```js
-   app.listen(process.env.PORT || 3000);
-   ```
-6. Create an application and configure to deploy to heroku
+     ```js
+     app.listen(process.env.PORT || 3000);
+     ```
+6. In the server application, verify that `express` is configured to return the React code:
+     ```js
+     app.use(express.static("../client/dist"));
+     ```
+7. Create an application and configure to deploy to heroku
     1. Sign up at the [Heroku Dashboard](https://dashboard.heroku.com/apps/)
     2. [Create a new Heroku app](https://dashboard.heroku.com/new-app)
     3. Under Deployment for your new app, select Heroku Git as Deployment Method
-7. Download the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-8. From the command line, push your repository to Heroku
+8. Download the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
+9. From the command line, push your repository to Heroku
     1. `heroku login`
     2. `heroku git:remote -a <app name>`
     3. `git push heroku`
-    4. `heroku logs --tail` (optional): See the logs from Heroku in your console
-9. You can see the deployment log under Activity in the Heroku Dashboard for your app and the runtime log under More > View logs
+    4. `heroku open` (optional: opens a web browser to your Heroku application)
+    5. `heroku logs --tail` (optional): See the logs from Heroku in your console
+10. You can see the deployment log under Activity in the Heroku Dashboard for your app and the runtime log under More > View logs
 
 **Common problems:**
 
 * "Buildpack not found"
-    * Make sure that you have a top-level `package.json`-file
+    * Make sure that you have a **top-level** `package.json`-file
 * `express` not found
     * Make sure that the top level `package.json` has a script for `postinstall` which calls `npm install` in
       the `client` and `server` directories
@@ -873,6 +880,8 @@ see [Deploying with Git | Heroku Dev](https://devcenter.heroku.com/articles/git)
 * The application crashes
     * View the log from the command line with `heroku logs --tail`
     * Make sure that you have a top level `start` script which calls `cd server && npm start`
+* The application shows an empty page or a 404 warning
+    * Make sure that Express is set up to serve the React code: `app.use(express.static("../client/dist"));`
 
 </details>
 
@@ -1218,7 +1227,7 @@ server.on("upgrade", (req, socket, head) => {
 <details>
 
 "Implicit flow" means that the login provider (Google) will not require a client secret to complete the authentication.
-This is often not recommended, and for example Active Directory instead uses another mechanism called PKCE, which
+This is often not recommended, and for example Microsoft Entra ID instead uses another mechanism called PKCE, which
 protects against some security risks.
 
 1. Set up the application in [Google Cloud Console](https://console.cloud.google.com/apis/credentials). Create a new
@@ -1242,12 +1251,12 @@ function LoginButton() {
     const { authorization_endpoint } = await fetchJson(
       "https://accounts.google.com/.well-known/openid-configuration"
     );
-    // Tell Google how to authentication
+    // Tell Google how to perform the authentication
     const parameters = {
       response_type: "token",
       client_id:
         "<get this from Google Cloud Console>",
-      // Tell user to come back to http://localhost:3000/callback when logged in
+      // Tell user to come back to http://localhost:3000/login/callback when logged in
       redirect_uri: window.location.origin + "/login/callback",
       scope: "profile email",
     };
@@ -1266,9 +1275,48 @@ function LoginButton() {
 }
 ```
 
-In the case of Active Directory, you also need
+In the case of Entra ID, you also need
 parameters `response_type: "code"`, `response_mode: "fragment"`, `code_challenge_method` and `code_challenge` (the
 latest two are needed for PKCE).
+
+**For Entra ID: Generating `code_verifier` and `code_challenge`**
+
+When using Entra ID from the browser, you code must code prove that it was the same application that
+started the request and completed the request. This is called Proof of Key Challenge Exchange (PKCE,
+often pronounced "pixie"). You must create a random value and save it (I use `sessionStorage`).
+The authorization request must contain the property `code_challenge` which is the hash of the random
+value. When completing the logon with a token request (see below), your code must include the (unhashed)
+random value as a property `code_verifier`.
+
+```typescript
+// From https://stackoverflow.com/a/75809704/27658
+function randomString() {
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+// TODO: link to definition of base 64 encoding
+function encodeBytesAsBase64Url(bytes: ArrayBuffer): string {
+  return btoa(
+    String.fromCharCode.apply(null, Array.from(new Uint8Array(bytes))),
+  )
+    .split("=")[0]
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+}
+
+async function sha256hash(s: string): Promise<ArrayBuffer> {
+    return await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+}
+
+const code_verifier = randomString();
+sessionStorage.setItem("code_verifier", code_verifier);
+const code_challenge = base64url(await sha256hash(code_verifier));
+```
+
 
 </details>
 
@@ -1314,6 +1362,7 @@ export function LoginCallback() {
 For Active Directory, the hash will instead include a `code`, which you will then need to send to the `token_endpoint`
 along with the `client_id` and `redirect_uri` as well as `grant_type: "authorization_code"` and the `code_verifier`
 value from PKCE. This call will return the `access_token`.
+
 </details>
 
 #### Handle access_token on the backend
@@ -1321,15 +1370,14 @@ value from PKCE. This call will return the `access_token`.
 <details>
 
 ```javascript
-
 app.use(async (req, res, next) => {
-  const authorization = req.header("Authorization");
-  if (authorization) {
+  const { access_token } = req.signedCookies;
+  if (access_token) {
     const { userinfo_endpoint } = await fetchJSON(
       "https://accounts.google.com/.well-known/openid-configuration"
     );
     req.userinfo = await fetchJSON(userinfo_endpoint, {
-      headers: { authorization },
+      headers: { "Authorization": `Bearer ${access_token}` },
     });
   }
   next();
@@ -1343,7 +1391,9 @@ app.post("/api/login", (req, res) => {
 
 app.get("/profile", (req, res) => {
   if (!req.userinfo) {
-    return res.send(200);
+    res.send(401);
+  } else {
+    res.send(req.userinfo);
   }
 });
 ```
