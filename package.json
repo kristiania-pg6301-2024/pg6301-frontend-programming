@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest --watch=false",
+    "test": "vitest --watch=false && prettier --check .",
     "prepare": "husky"
   },
   "keywords": [],
@@ -12,6 +12,7 @@
   "description": "",
   "devDependencies": {
     "husky": "^9.1.6",
+    "prettier": "^3.3.3",
     "vitest": "^2.1.2"
   }
 }
