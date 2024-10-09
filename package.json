@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest --watch=false && prettier --check .",
+    "test:watch": "vitest",
     "prepare": "husky"
   },
   "keywords": [],
