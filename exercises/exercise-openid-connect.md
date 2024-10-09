@@ -2,7 +2,6 @@
 
 TODO:
 * [ ] Signup instructions for Entra ID (times 2)
-* [ ] Add link explaining what Base64 encoding is
 
 
 > The purpose of this exercise is to make you familiar with the OpenID protocol for login services.
@@ -181,7 +180,7 @@ user from having the code "sniffed". Since we're doing this part in the code, En
 mechanism to protect the user instead, namely Proof of Key Code Exchange (PKCE). This requires us to
 pass an additional `code_challenge` parameter to the authentication request.
 
-1. Set up the application in the [Azure Portal]().
+1. Set up the application in the [Azure Portal](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/CreateApplicationBlade/isMSAApp~/false).
 2. To start authentication, redirect the browser ([see code below](#generating-the-entra-authentication-redirect))
 3. To complete the authentication, use the `code` parameter when Entra redirects the browser back to the to
    fetch the access token and post the access token to the backend ([see code below](#handle-the-entra-callback))
@@ -320,7 +319,7 @@ the Entra ID `userinfo` endpoint. So, which one should we use?
 * Alternatively, we could send the `code` to the backend and perform the token request from Express. Since we
   got the `id_token` directly from Entra ID, we don't need to verify the signature. But if we do this, we need
   to store the user information in a Cookie and make sure that we don't accept cookies that has been tampered with.
-  (This can be done with [signed cookies](coo))
+  (This can be done with [signed cookies](https://expressjs.com/en/resources/middleware/cookie-parser.html))
 * The `access_token` doesn't need to be signed when we store it in a cookie, since we're authorizing it with 
   Entra ID. If the user tries to tamper with the `access_token` cookie, the `userinfo` call will fail with a 401-error
 * The `id_token` contains an expiration time that we also should respect. However, if the user signs out from 
@@ -339,7 +338,7 @@ When you have developed the login-functionality, you should try to deploy the ap
 
 1. Create a new Heroku application and get a hostname from Heroku
 2. In the configuration for [Google](https://console.cloud.google.com/apis/credentials) or
-   [Entra ID](), you should add the callback with Heroku's hostname. E.g. if your hostname
+   [Entra ID](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview), you should add the callback with Heroku's hostname. E.g. if your hostname
    on Heroku is `myapp-abc-123.herokuapp.com`, you should register `https://myapp-abc-123.herokuapp.com/login/callback`
 3. Follow the steps in the [course reference](../README.md#deploy-to-heroku) to set `postinstall`, `build` and `start`
    scripts to work with Heroku

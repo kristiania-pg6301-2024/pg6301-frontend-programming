@@ -293,11 +293,24 @@ Reference material
 
 <details open>
 
-Quality code, Prettier, Jest, Husky and GitHub Actions
+In this lecture, we will look at some popular and effective software engineering practices:
+
+* Test-driven development: Alternating between writing testing code and production code, writing the test code first
+* Pair-programming: Two developers working together on the same code with one keyboard and mouse, preferably alternating frequently who is at the keyboard
+* Refactoring: Improving the structure of the code without changing the behavior, preferably using refactoring support in the IDE
+* Continuous integration: Sharing the code frequently with the rest of the team, preferably running automated checks whenever the code is pushed
+
+These are some of the practices of Extreme Programming, the first Agile method to be widely documented and used. Related
+practices we will see are:
+
+* Coding standard: The team agreeing on things like code formatting and naming. We will enforce (some of) this with Prettier
+* Simple design: Only writing as much code as is needed to get the tests to pass. This relies on being able to refactor the code and verifying that it still works with automated tests
+
+Reference:
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/08)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/08)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/08/start/README.md)
+* [Exercise text](./exercises/exercise-testing.md#exercise-8)
 * [Reference: Vitest](#testing)
 * [Reference: GitHub Actions](#deploy-to-heroku)
 
@@ -318,31 +331,19 @@ Quality code, Prettier, Jest, Husky and GitHub Actions
 
 </details>
 
-### Lecture 9: Testing 
-
-> The React test examples will be updated with vitest and @testing-library/react
+### Lecture 9: Testing React and Express code
 
 <details>
 
-We continue on the code from lecture 6, making sure we have some tests and that Typescript is running before we
-continue.
+In this lecture, we will look at [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro/)
+for testing React applications and [Supertest](https://github.com/ladjs/supertest) for testing Express endpoints.
 
-* Using supertest to test post as well as get calls
-    * `await request(app).post("").send({ title: "My New Movie" }).expect(200)`
-    * `const res = await request(app).get("")`
-* Introduce typescript for the client code
-    * `npm install --save-dev typescript`
-    * `npx tsc --init`
-    * `npm pkg set scripts.check:typescript="tsc --noEmit"`
-    * `npm install --save-dev ts-jest`
-    * `npx ts-jest config:init`
-    * If you installed `babel-jest`, you can now uninstall this, along with `@babel/preset-*` and
-      removing `babel.config.js`
-* Test drive <AddMovieForm />
+We continue on the code from lecture 8, making sure we have some tests and that Typescript is running before we
+continue.
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/06/start/README.md)
+* [Exercise text](./exercises/exercise-testing.md#exercise-9)
 
 </details>
 <details>
@@ -362,8 +363,6 @@ continue.
 
 ### Lecture 10: Who's your user? OpenID Connect
 
-> This example will be updated with the current functionality of EntraID
-
 <details>
 
 In this lecture we will implement "log in with Google"-functionality. We will also explore other identity
@@ -371,7 +370,7 @@ services that also implement OpenID Connect, such as LinkedIn and Microsoft Entr
 
 * [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
 * [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/09/start/README.md)
+* [Exercise text](./exercises/exercise-openid-connect.md)
 
 </details>
 <details>
@@ -1298,7 +1297,7 @@ function randomString() {
     .join("");
 }
 
-// TODO: link to definition of base 64 encoding
+// URL-safe base 64 encoding is defined in https://datatracker.ietf.org/doc/html/rfc4648#page-7
 function encodeBytesAsBase64Url(bytes: ArrayBuffer): string {
   return btoa(
     String.fromCharCode.apply(null, Array.from(new Uint8Array(bytes))),
@@ -1455,4 +1454,5 @@ favorite refactorings like Extract method, Rename and Inline.
 * [Vitest](https://vitest.dev/)
 * [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 * [Supertest](https://github.com/ladjs/supertest)
+* Google Login
 * Entra ID (?)

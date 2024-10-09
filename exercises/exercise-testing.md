@@ -3,7 +3,9 @@
 These exercises are meant help you learn Vitest, test-driven development, pair programming and continuous integration.
 They do not depend on the earlier exercises in the course
 
-## Exercise 8: Extreme programming with test-driven development, pair programming, refactoring and continuous integration
+## Exercise 8
+
+### Extreme programming with test-driven development, pair programming, refactoring and continuous integration
 
 <details>
 
@@ -140,7 +142,9 @@ See [Coding Dojo's description of Roman Numerals](https://codingdojo.org/kata/Ro
 </details>
 
 
-## Exercise 9: Writing tests for React and Express
+## Exercise 9
+
+### Writing tests for React and Express
 
 <details>
 <summary>
