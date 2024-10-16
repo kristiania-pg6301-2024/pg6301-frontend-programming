@@ -1,17 +1,41 @@
-import React from "react";
-import { BillTypeValues, CoinTypeValues } from "../../shared/sumBalance";
+import React, { FormEvent, useState } from "react";
+import {
+  BillTypeValues,
+  CashSettlement,
+  CoinTypeValues,
+} from "../../shared/sumBalance";
 
-export function NewSettlementForm() {
+interface Settlement {
+  department: string;
+  balance: CashSettlement;
+}
+
+interface Props {
+  onNewSettlement(settlement: Settlement): void;
+}
+
+export function NewSettlementForm({ onNewSettlement }: Props) {
   const departments = ["Møbler", "Elektronikk", "Bøker"];
 
+  const [department, setDepartment] = useState("");
+  const [balance, setBalance] = useState<CashSettlement>({});
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    onNewSettlement({ department, balance });
+  }
+
   return (
-    <div className={"settlement"}>
+    <form className={"settlement"} onSubmit={handleSubmit}>
       <h1>Register new settlement</h1>
       <div>
         <label>
           Avdeling:
           <br />
-          <select>
+          <select
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+          >
             {departments.map((department) => (
               <option key={department}>{department}</option>
             ))}
@@ -22,7 +46,16 @@ export function NewSettlementForm() {
         {BillTypeValues.map((bill) => (
           <div>
             <label>
-              {bill.label}: <input />
+              {bill.label}:{" "}
+              <input
+                value={balance[bill.key] || ""}
+                onChange={(e) =>
+                  setBalance((old) => ({
+                    ...old,
+                    [bill.key]: parseInt(e.target.value),
+                  }))
+                }
+              />
             </label>
           </div>
         ))}
@@ -34,6 +67,9 @@ export function NewSettlementForm() {
           </div>
         ))}
       </div>
-    </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
   );
 }

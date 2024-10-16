@@ -22,7 +22,7 @@ interface CoinAmount {
   grams?: number;
 }
 
-type CashSettlement = Partial<Record<BillTypeDenomination, number>> &
+export type CashSettlement = Partial<Record<BillTypeDenomination, number>> &
   Partial<Record<CoinTypeDenomination, CoinAmount>>;
 
 export function sumBalance(cashSettlement: CashSettlement): number {

@@ -3,7 +3,7 @@
 exports[`that it hasn't changes 1`] = `
 <body>
   <div>
-    <div
+    <form
       class="settlement"
     >
       <h1>
@@ -32,36 +32,51 @@ exports[`that it hasn't changes 1`] = `
         <div>
           <label>
             Tusenlapper
-            : 
-            <input />
+            :
+             
+            <input
+              value=""
+            />
           </label>
         </div>
         <div>
           <label>
             500kr
-            : 
-            <input />
+            :
+             
+            <input
+              value=""
+            />
           </label>
         </div>
         <div>
           <label>
             200kr
-            : 
-            <input />
+            :
+             
+            <input
+              value=""
+            />
           </label>
         </div>
         <div>
           <label>
             100kr
-            : 
-            <input />
+            :
+             
+            <input
+              value=""
+            />
           </label>
         </div>
         <div>
           <label>
             50kr
-            : 
-            <input />
+            :
+             
+            <input
+              value=""
+            />
           </label>
         </div>
         <div>
@@ -93,7 +108,12 @@ exports[`that it hasn't changes 1`] = `
           </label>
         </div>
       </div>
-    </div>
+      <div>
+        <button>
+          Submit
+        </button>
+      </div>
+    </form>
   </div>
 </body>
 `;
