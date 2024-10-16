@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { sumBalance } from "./sumBalance";
+import { sumBalance } from "../sumBalance";
 
 test("that we can sum 1000 kr bills", () => {
   expect(sumBalance({ "1000kr": 10 })).toBe(10_000);

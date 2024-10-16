@@ -5,15 +5,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest --watch=false",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.0.1",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "vite": "^5.4.9"
+    "jsdom": "^25.0.1",
+    "vite": "^5.4.9",
+    "vitest": "^2.1.3"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest --watch=false && prettier --check .",
+    "test": "vitest --watch=false && npm run test:client && prettier --check .",
+    "test:client": "cd client && npm test",
     "test:watch": "vitest",
     "prepare": "husky"
   },

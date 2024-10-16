@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`that it hasn't changes 1`] = `
+<body>
+  <div>
+    <h1>
+      Register new settlement
+    </h1>
+    <div>
+      <label>
+        Avdeling:
+        <select>
+          <option>
+            Møbler
+          </option>
+          <option>
+            Elektronikk
+          </option>
+          <option>
+            Bøker
+          </option>
+        </select>
+      </label>
+    </div>
+  </div>
+</body>
+`;
