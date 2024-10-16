@@ -291,7 +291,7 @@ Reference material
 
 ### Lecture 8: Software engineering with test-driven development, pair programming and continuous integration
 
-<details open>
+<details>
 
 In this lecture, we will look at some popular and effective software engineering practices:
 
@@ -333,7 +333,9 @@ Reference:
 
 ### Lecture 9: Testing React and Express code
 
-<details>
+<details open>
+
+[Mentimenter](https://www.menti.com/almznypgkme6)
 
 In this lecture, we will look at [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro/)
 for testing React applications and [Supertest](https://github.com/ladjs/supertest) for testing Express endpoints.
