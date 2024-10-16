@@ -3,25 +3,96 @@
 exports[`that it hasn't changes 1`] = `
 <body>
   <div>
-    <h1>
-      Register new settlement
-    </h1>
-    <div>
-      <label>
-        Avdeling:
-        <br />
-        <select>
-          <option>
-            Møbler
-          </option>
-          <option>
-            Elektronikk
-          </option>
-          <option>
-            Bøker
-          </option>
-        </select>
-      </label>
+    <div
+      class="settlement"
+    >
+      <h1>
+        Register new settlement
+      </h1>
+      <div>
+        <label>
+          Avdeling:
+          <br />
+          <select>
+            <option>
+              Møbler
+            </option>
+            <option>
+              Elektronikk
+            </option>
+            <option>
+              Bøker
+            </option>
+          </select>
+        </label>
+      </div>
+      <div
+        class="money"
+      >
+        <div>
+          <label>
+            Tusenlapper
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            500kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            200kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            100kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            50kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            20kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            10kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            5kr
+            : 
+            <input />
+          </label>
+        </div>
+        <div>
+          <label>
+            1kr
+            : 
+            <input />
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </body>
