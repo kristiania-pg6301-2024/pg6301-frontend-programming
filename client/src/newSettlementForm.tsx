@@ -8,6 +8,7 @@ export function NewSettlementForm() {
       <div>
         <label>
           Avdeling:
+          <br />
           <select>
             {departments.map((department) => (
               <option key={department}>{department}</option>

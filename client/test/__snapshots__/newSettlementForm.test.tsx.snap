@@ -9,6 +9,7 @@ exports[`that it hasn't changes 1`] = `
     <div>
       <label>
         Avdeling:
+        <br />
         <select>
           <option>
             Møbler
