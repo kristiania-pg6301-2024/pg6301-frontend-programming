@@ -63,7 +63,7 @@ function LoginButton() {
     const { authorization_endpoint } = await configuration.json();
     const parameters = {
       response_type: "token",
-      scope: "profile",
+      scope: "profile email",
       redirect_uri: window.location.origin + "/login/google/callback",
       client_id,
     };
@@ -110,6 +110,7 @@ function FrontPage() {
     return (
       <>
         <h1>You are {user.name}</h1>
+        <div>Email: {user.email}</div>
         <img src={user.picture} />
       </>
     );

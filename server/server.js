@@ -7,7 +7,6 @@ app.use(cookieParser());
 
 app.get("/api/userinfo", async (req, res) => {
   const { access_token } = req.cookies;
-  console.log({ access_token });
 
   if (access_token) {
     const discoveryEndpoint =
@@ -19,9 +18,6 @@ app.get("/api/userinfo", async (req, res) => {
         Authorization: `Bearer ${access_token}`,
       },
     });
-    if (!userinfoRes.ok) {
-      console.log(userinfoRes.status + " " + userinfoRes.statusText);
-    }
     res.json(await userinfoRes.json());
     return;
   }
