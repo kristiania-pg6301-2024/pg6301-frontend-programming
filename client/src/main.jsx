@@ -13,9 +13,14 @@ function Application() {
   return (
     <Routes>
       <Route path={"/"} element={<Fragment />} />
+      <Route path={"/login/:provider/callback"} element={<LoginCallback />} />
       <Route path={"*"} element={<h1>Not Found</h1>} />
     </Routes>
   );
+}
+
+function LoginCallback() {
+  return <div>Vennligst vent mens vi fullfører logginn</div>;
 }
 
 function LoginButton() {
