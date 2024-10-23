@@ -107,7 +107,12 @@ function FrontPage() {
   }
 
   if (user) {
-    return <h1>You are {user.name}</h1>;
+    return (
+      <>
+        <h1>You are {user.name}</h1>
+        <img src={user.picture} />
+      </>
+    );
   }
 
   return <h1>Hello Who Are You</h1>;
