@@ -331,9 +331,9 @@ Reference:
 
 </details>
 
-### Lecture 9: Testing React and Express code
+### Lecture 9: Testing React code
 
-<details open>
+<details>
 
 [Mentimenter](https://www.menti.com/almznypgkme6)
 
@@ -343,8 +343,8 @@ for testing React applications and [Supertest](https://github.com/ladjs/supertes
 We continue on the code from lecture 8, making sure we have some tests and that Typescript is running before we
 continue.
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/06)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/06)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
 * [Exercise text](./exercises/exercise-testing.md#exercise-9)
 
 </details>
@@ -365,13 +365,13 @@ continue.
 
 ### Lecture 10: Who's your user? OpenID Connect
 
-<details>
+<details open>
 
 In this lecture we will implement "log in with Google"-functionality. We will also explore other identity
 services that also implement OpenID Connect, such as LinkedIn and Microsoft Entra ID.
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/09)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/10)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/10)
 * [Exercise text](./exercises/exercise-openid-connect.md)
 
 </details>
@@ -395,48 +395,33 @@ services that also implement OpenID Connect, such as LinkedIn and Microsoft Entr
 
 </details>
 
-### Lecture 11: Web Sockets
+### Lecture 11: Testing Express code
 
 <details>
 
-The purpose of web sockets is to enable responsive communication between the client
-and the server; especially for messages sent by the server. Websockets are established
-over HTTP, just like normal requests, but they keep the socket open for either
-party (client or server) to send arbitrary messages. In many cases, these messages
-are sent as JSON objects.
+In this lecture, we will look at [Supertest](https://github.com/ladjs/supertest) for testing Express endpoints.
 
-In our example, we will create a web application that lets users chat with each
-other.
+We continue on the code from lecture 9, making sure we have some tests and that Typescript is running before we
+continue.
 
-See [course reference material](#reference-material)
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/11)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/09)
+* [Exercise text](./exercises/exercise-testing.md#exercise-9)
 
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/10)
-* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/tree/reference/10)
-* [Exercise text](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/blob/exercise/10/start/README.md)
-
-Reference material
-
-* [Fireship.io video on Websockets](https://www.youtube.com/watch?v=1BfCnjr_Vjg)
-
-</details>
-<details>
-<summary>Material from previous years</summary>
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/lecture/10)
-* [Reference implementation](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/commits/reference/10)
-* [Exercise text](https://github.com/kristiania-pg6301-2023/pg6301-frontend-programming/blob/exercise/10/start/README.md)
-
-#### Material from 2022
-
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/09)
-* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/09)
 
 </details>
 
-#### Extra lecture from 2023 on OpenID Connect
+
+### Lecture 12: Open ID Connect revisited
 
 <details>
-<summary>Material from previous years</summary>
+
+* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/12)
+* [Reference implementation](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/reference/12)
+
+</details>
+<details>
+<summary>Extra lecture from 2023 on OpenID Connect</summary>
 
 In this lecture, I will demonstrate how to set up an already created OpenID Connect server with Active Directory, then
 implement the necessary steps using another ID-provider, so the exact code is left as an exercise
@@ -448,26 +433,6 @@ implement the necessary steps using another ID-provider, so the exact code is le
 
 * [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/11)
 * [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/11)
-
-</details>
-
-### Lecture 12: Getting ready for the exam
-
-<details>
-
-We start with a basic application and develop the student's favorite functionality during the lecture.
-
-* [Code from the lecture](https://github.com/kristiania-pg6301-2024/pg6301-frontend-programming/commits/lecture/12)
-
-</details>
-<details>
-<summary>Material from previous years</summary>
-
-#### Material from 2022
-
-* [Reference implementation](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/tree/reference/12)
-* [Commit log from live coding](https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/lectures/12)
-* [Mock Exam](./mock-exam.md)
 
 </details>
 

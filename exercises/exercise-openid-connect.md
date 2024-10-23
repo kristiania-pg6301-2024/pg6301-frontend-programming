@@ -1,9 +1,5 @@
 # Exercise: OpenID Connect
 
-TODO:
-* [ ] Signup instructions for Entra ID (times 2)
-
-
 > The purpose of this exercise is to make you familiar with the OpenID protocol for login services.
 > The exercise takes you through creating a "Login with Google"-function and then
 > "Login with your school account"
@@ -25,7 +21,7 @@ you need to go through the following steps:
 4. For some Identity Providers: use the authorization code from the callback to obtain the token
 5. Use the access token from the Identity Provider to get information about the user
 
-## OpenID Connect with Google
+## Exercise 10: OpenID Connect with Google
 
 1. Set up the application in [Google Cloud Console](https://console.cloud.google.com/apis/credentials). Create a new
    OAuth client ID and select Web Application. Make sure `http://localhost:5173` is added as an Authorized JavaScript
@@ -167,7 +163,7 @@ Hopefully, you will be able to make all the parts work together:
 In your React `<Application />` component, you should call `GET /api/login`. If the call returns 200,
 display the user information returned from Google, otherwise show the `<GoogleLoginButton />`
 
-## OpenID Connect with Microsoft Entra ID (optional)
+## Exercise 12: OpenID Connect with Microsoft Entra ID (optional)
 
 Entra ID can be used to authenticate with the Active Direct account on an organization, such as the school.
 
