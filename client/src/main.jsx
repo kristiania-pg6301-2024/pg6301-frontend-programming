@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 const root = createRoot(document.getElementById("root"));
 
 function LoginButton() {
+  const client_id =
+    "34816606807-m5gdfps6ijlopl5psnetie8f3722dmug.apps.googleusercontent.com";
   const discoveryEndpoint =
     "https://accounts.google.com/.well-known/openid-configuration";
   const [authorizationUrl, setAuthorizationUrl] = useState();
@@ -15,6 +17,7 @@ function LoginButton() {
       response_type: "token",
       scope: "profile",
       redirect_uri: window.location.origin + "/login/google/callback",
+      client_id,
     };
     setAuthorizationUrl(
       `${authorization_endpoint}?${new URLSearchParams(parameters)}`,
