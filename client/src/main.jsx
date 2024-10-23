@@ -72,7 +72,16 @@ function FrontPage() {
 }
 
 function LoginCallback() {
-  return <div>Please wait...</div>;
+  const callbackParameters = Object.fromEntries(
+    new URLSearchParams(window.location.hash.substring(1)).entries(),
+  );
+  return (
+    <>
+      <div>Please wait...</div>
+      <h2>Debugging</h2>
+      <pre>{callbackParameters.access_token}</pre>
+    </>
+  );
 }
 
 function Application() {
