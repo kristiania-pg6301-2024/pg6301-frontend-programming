@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +20,32 @@ function Application() {
 }
 
 function LoginCallback() {
-  return <div>Vennligst vent mens vi fullfører logginn</div>;
+  const navigate = useNavigate();
+  const responseValues = Object.fromEntries(
+    new URLSearchParams(window.location.hash.substring(1)).entries(),
+  );
+  const { access_token } = responseValues;
+
+  async function establishSession() {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify({ access_token }),
+    });
+    if (res.ok) {
+      navigate("/");
+    }
+  }
+
+  useEffect(() => {
+    establishSession();
+  }, [access_token]);
+
+  return (
+    <>
+      <div>Vennligst vent mens vi fullfører logginn</div>
+      <pre>{access_token}</pre>
+    </>
+  );
 }
 
 function LoginButton() {
