@@ -5,15 +5,29 @@ const root = createRoot(document.getElementById("root"));
 
 function Application() {
   const [user, setUser] = useState();
+  const [error, setError] = useState();
 
   async function loadUser() {
     const res = await fetch("/api/userinfo");
-    setUser(await res.json());
+    if (res.ok) {
+      setUser(await res.json());
+    } else {
+      setError(`${res.status} ${res.statusText}`);
+    }
   }
 
   useEffect(() => {
     loadUser();
   }, []);
+
+  if (error) {
+    return (
+      <>
+        <h1>Something went wrong</h1>
+        <div>{error}</div>
+      </>
+    );
+  }
 
   if (user) {
     return <h1>You are {user.name}</h1>;
