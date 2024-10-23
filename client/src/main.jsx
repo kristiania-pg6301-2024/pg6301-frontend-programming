@@ -3,6 +3,11 @@ import { createRoot } from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
 
+function LoginButton() {
+  const authorizationUrl = "https://accounts.google.com";
+  return <a href={authorizationUrl}>Logg inn</a>;
+}
+
 function Application() {
   const [user, setUser] = useState();
   const [error, setError] = useState();
@@ -25,6 +30,7 @@ function Application() {
       <>
         <h1>Something went wrong</h1>
         <div>{error}</div>
+        <LoginButton />
       </>
     );
   }
