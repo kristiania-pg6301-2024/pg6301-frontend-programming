@@ -3,5 +3,12 @@
     "concurrently": "^9.0.1",
     "husky": "^9.1.6",
     "prettier": "^3.3.3"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "test": "prettier --check .",
+    "dev": "concurrently npm:dev:client npm:dev:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev"
   }
 }
