@@ -11,7 +11,14 @@ function LoginButton() {
   async function createAuthorizationUrl() {
     const configuration = await fetch(discoveryEndpoint);
     const { authorization_endpoint } = await configuration.json();
-    setAuthorizationUrl(authorization_endpoint);
+    const parameters = {
+      response_type: "token",
+      scope: "profile",
+      redirect_uri: window.location.origin + "/login/google/callback",
+    };
+    setAuthorizationUrl(
+      `${authorization_endpoint}?${new URLSearchParams(parameters)}`,
+    );
   }
 
   useEffect(() => {
