@@ -28,8 +28,18 @@ function useUserInfo() {
 }
 
 function LoginButton() {
-  const authorizationUrl = "https://accounts.google.com";
-  return <a href={authorizationUrl}>Logg inn</a>;
+  const [authorizationUrl, setAuthorizationUrl] = useState();
+  async function loadConfiguration() {
+    const res = await fetch(
+      "https://accounts.google.com/.well-known/openid-configuration",
+    );
+    const openidConfiguration = await res.json();
+    setAuthorizationUrl(openidConfiguration.authorization_endpoint);
+  }
+  useEffect(() => {
+    loadConfiguration();
+  }, []);
+  return authorizationUrl ? <a href={authorizationUrl}>Logg inn</a> : null;
 }
 
 function Application() {
