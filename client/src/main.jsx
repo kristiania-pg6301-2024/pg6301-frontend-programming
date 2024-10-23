@@ -1,7 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <Application />
+  </BrowserRouter>,
+);
+
+function Application() {
+  return (
+    <Routes>
+      <Route path={"/"} element={<Fragment />} />
+      <Route path={"*"} element={<h1>Not Found</h1>} />
+    </Routes>
+  );
+}
 
 function LoginButton() {
   const client_id =
@@ -31,7 +46,7 @@ function LoginButton() {
   return authorizationUrl ? <a href={authorizationUrl}>Logg inn</a> : null;
 }
 
-function Application() {
+function FrontPage() {
   const [user, setUser] = useState();
   const [error, setError] = useState();
 
@@ -64,5 +79,3 @@ function Application() {
 
   return <h1>Hello Who Are You</h1>;
 }
-
-root.render(<Application />);
