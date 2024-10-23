@@ -27,6 +27,11 @@ function useUserInfo() {
   return { userinfo, error };
 }
 
+function LoginButton() {
+  const authorizationUrl = "https://accounts.google.com";
+  return <a href={authorizationUrl}>Logg inn</a>;
+}
+
 function Application() {
   const { userinfo, error } = useUserInfo();
 
@@ -35,6 +40,7 @@ function Application() {
       <>
         <h1>En feil har inntruffet</h1>
         <div>{error.toString()}</div>
+        <LoginButton />
       </>
     );
   }
