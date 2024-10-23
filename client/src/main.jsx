@@ -68,7 +68,12 @@ function FrontPage() {
   }
   if (!userinfo) return <div>Loading...</div>;
 
-  return <h1>Hello {userinfo.username}</h1>;
+  return (
+    <>
+      <h1>Hello {userinfo.name}</h1>
+      <img src={userinfo.picture} />
+    </>
+  );
 }
 
 function LoginCallback() {
