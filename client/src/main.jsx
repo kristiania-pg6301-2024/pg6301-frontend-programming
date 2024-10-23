@@ -38,8 +38,9 @@ function Application() {
       </>
     );
   }
+  if (!userinfo) return <div>Loading...</div>;
 
-  return <h1>Hello User</h1>;
+  return <h1>Hello {userinfo.username}</h1>;
 }
 
 root.render(<Application />);
