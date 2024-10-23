@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -72,9 +72,26 @@ function FrontPage() {
 }
 
 function LoginCallback() {
+  const navigate = useNavigate();
   const callbackParameters = Object.fromEntries(
     new URLSearchParams(window.location.hash.substring(1)).entries(),
   );
+
+  async function loginUser(accessToken) {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      body: new URLSearchParams({ accessToken }),
+    });
+    if (res.ok) {
+      navigate("/");
+    } else {
+      console.log(res);
+    }
+  }
+
+  useEffect(() => {
+    loginUser(callbackParameters.access_token);
+  }, [callbackParameters.access_token]);
   return (
     <>
       <div>Please wait...</div>
