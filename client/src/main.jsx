@@ -28,13 +28,24 @@ function useUserInfo() {
 }
 
 function LoginButton() {
+  const client_id =
+    "34816606807-9rtbidk4oltr6hob3mqlfmuka82e0sb2.apps.googleusercontent.com";
+
   const [authorizationUrl, setAuthorizationUrl] = useState();
   async function loadConfiguration() {
     const res = await fetch(
       "https://accounts.google.com/.well-known/openid-configuration",
     );
     const openidConfiguration = await res.json();
-    setAuthorizationUrl(openidConfiguration.authorization_endpoint);
+    const query = {
+      response_type: "token",
+      client_id,
+      scope: "profile",
+      redirect_uri: window.location.origin + "/login/google/callback",
+    };
+    setAuthorizationUrl(
+      `${openidConfiguration.authorization_endpoint}?${new URLSearchParams(query)}`,
+    );
   }
   useEffect(() => {
     loadConfiguration();
