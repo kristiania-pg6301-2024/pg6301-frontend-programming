@@ -16,6 +16,9 @@ async function fetchJson(url, options) {
 app.get("/api/userinfo", async (req, res) => {
   try {
     const { accessToken } = req.cookies;
+    if (!accessToken) {
+      return res.sendStatus(401);
+    }
     const { userinfo_endpoint } = await fetchJson(
       "https://accounts.google.com/.well-known/openid-configuration",
     );
