@@ -12,7 +12,7 @@ root.render(
 function Application() {
   return (
     <Routes>
-      <Route path={"/"} element={<Fragment />} />
+      <Route path={"/"} element={<FrontPage />} />
       <Route path={"/login/:provider/callback"} element={<LoginCallback />} />
       <Route path={"*"} element={<h1>Not Found</h1>} />
     </Routes>
@@ -30,6 +30,9 @@ function LoginCallback() {
     const res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({ access_token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     if (res.ok) {
       navigate("/");
