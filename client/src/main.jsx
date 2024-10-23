@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -53,7 +54,7 @@ function LoginButton() {
   return authorizationUrl ? <a href={authorizationUrl}>Logg inn</a> : null;
 }
 
-function Application() {
+function FrontPage() {
   const { userinfo, error } = useUserInfo();
 
   if (error) {
@@ -70,4 +71,22 @@ function Application() {
   return <h1>Hello {userinfo.username}</h1>;
 }
 
-root.render(<Application />);
+function LoginCallback() {
+  return <div>Please wait...</div>;
+}
+
+function Application() {
+  return (
+    <Routes>
+      <Route path="/" element={<FrontPage />} />
+      <Route path="/login/:idProvider/callback" element={<LoginCallback />} />
+      <Route path="*" element={<h1>Not Found</h1>} />
+    </Routes>
+  );
+}
+
+root.render(
+  <BrowserRouter>
+    <Application />
+  </BrowserRouter>,
+);
