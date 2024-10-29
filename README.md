@@ -365,7 +365,7 @@ continue.
 
 ### Lecture 10: Who's your user? OpenID Connect
 
-<details open>
+<details>
 
 In this lecture we will implement "log in with Google"-functionality. We will also explore other identity
 services that also implement OpenID Connect, such as LinkedIn and Microsoft Entra ID.
@@ -397,7 +397,7 @@ services that also implement OpenID Connect, such as LinkedIn and Microsoft Entr
 
 ### Lecture 11: Testing Express code
 
-<details>
+<details open>
 
 In this lecture, we will look at [Supertest](https://github.com/ladjs/supertest) for testing Express endpoints.
 
