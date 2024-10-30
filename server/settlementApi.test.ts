@@ -1,22 +1,11 @@
 import { expect, test } from "vitest";
 import express from "express";
 import request from "supertest";
-
-const settlementRouter = express.Router();
-const allSettlements: object[] = [];
-
-settlementRouter.get("/", (req, res) => {
-  res.json(allSettlements);
-});
-settlementRouter.post("/", (req, res) => {
-  const { department, balance } = req.body;
-  allSettlements.push({ department, balance });
-  res.sendStatus(201);
-});
+import { settlementRouter } from "./settlementRouter";
 
 const app = express();
 app.use(express.json());
-app.use(settlementRouter);
+app.use(settlementRouter());
 
 test("that submitted settlements are listed", async () => {
   const newSettlement = {

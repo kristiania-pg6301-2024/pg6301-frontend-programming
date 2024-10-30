@@ -1,9 +1,9 @@
 import express from "express";
+import { settlementRouter } from "./settlementRouter";
 
 const app = express();
 
-app.post("/api/settlements", (req, res) => {
-  res.sendStatus(201);
-});
+app.use(express.json());
+app.use("/api/settlements", settlementRouter());
 
 app.listen(3000);
