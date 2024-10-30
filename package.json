@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently npm:dev:client",
+    "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
     "test": "vitest --watch=false && npm run test:client && prettier --check .",
     "test:client": "cd client && npm test",
     "test:watch": "vitest",
