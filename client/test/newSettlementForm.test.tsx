@@ -26,9 +26,9 @@ test("that it hasn't changes", () => {
 });
 
 test("that we can submit new settlement", async () => {
-  const handleNewSettlement = vitest.fn();
+  const onNewSettlement = vitest.fn();
   const component = render(
-    <NewSettlementForm onNewSettlement={handleNewSettlement} />,
+    <NewSettlementForm onNewSettlement={onNewSettlement} />,
   );
 
   const department = "Elektronikk";
@@ -40,7 +40,7 @@ test("that we can submit new settlement", async () => {
   });
   fireEvent.submit(await component.findByText("Submit"));
 
-  expect(handleNewSettlement).toHaveBeenCalledWith({
+  expect(onNewSettlement).toHaveBeenCalledWith({
     department,
     balance: { "500kr": 5 },
   });

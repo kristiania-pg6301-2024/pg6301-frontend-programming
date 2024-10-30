@@ -6,7 +6,9 @@
     "test": "vitest --watch=false && npm run test:client && prettier --check .",
     "test:client": "cd client && npm test",
     "test:watch": "vitest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "npm run install:client",
+    "install:client": "cd client && npm install --include=dev"
   },
   "keywords": [],
   "author": "",
