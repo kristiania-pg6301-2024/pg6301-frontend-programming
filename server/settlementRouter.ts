@@ -1,15 +1,16 @@
 import express from "express";
+import { Db } from "mongodb";
 
-export function settlementRouter() {
+export function settlementRouter(db: Db) {
+  const settlements = db.collection("settlements");
   const router = express.Router();
-  const allSettlements: object[] = [];
 
-  router.get("/", (req, res) => {
-    res.json(allSettlements);
+  router.get("/", async (req, res) => {
+    res.json(await settlements.find().toArray());
   });
   router.post("/", (req, res) => {
     const { department, balance } = req.body;
-    allSettlements.push({ department, balance });
+    settlements.insertOne({ department, balance });
     res.sendStatus(201);
   });
   return router;

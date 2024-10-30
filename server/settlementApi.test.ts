@@ -1,11 +1,17 @@
-import { expect, test } from "vitest";
+import { beforeAll, expect, test } from "vitest";
 import express from "express";
 import request from "supertest";
 import { settlementRouter } from "./settlementRouter";
+import { MongoClient } from "mongodb";
 
 const app = express();
 app.use(express.json());
-app.use(settlementRouter());
+
+beforeAll(async () => {
+  const mongoClient = new MongoClient("mongodb://localhost:27017/");
+  const connection = await mongoClient.connect();
+  app.use(settlementRouter(connection.db("testdb")));
+});
 
 test("that submitted settlements are listed", async () => {
   const newSettlement = {
@@ -19,6 +25,10 @@ test("that submitted settlements are listed", async () => {
     .get("/")
     .expect(200)
     .then((response) => {
-      expect(response.body).toContainEqual(newSettlement);
+      expect(
+        (response.body as any[]).map(({ _id, ...rest }) => ({
+          ...rest,
+        })),
+      ).toContainEqual(newSettlement);
     });
 });
