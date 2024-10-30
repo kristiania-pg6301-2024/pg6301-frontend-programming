@@ -6,7 +6,7 @@ import {
   sumBalance,
 } from "../../shared/sumBalance";
 
-interface Settlement {
+export interface Settlement {
   department: string;
   balance: CashSettlement;
 }
