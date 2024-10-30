@@ -3,6 +3,7 @@ import {
   BillTypeValues,
   CashSettlement,
   CoinTypeValues,
+  sumBalance,
 } from "../../shared/sumBalance";
 
 interface Settlement {
@@ -68,7 +69,7 @@ export function NewSettlementForm({ onNewSettlement }: Props) {
         ))}
       </div>
       <div>
-        <button>Submit</button>
+        <button disabled={sumBalance(balance) === 0}>Submit</button>
       </div>
     </form>
   );

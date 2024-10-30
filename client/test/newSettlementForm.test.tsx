@@ -38,10 +38,19 @@ test("that we can submit new settlement", async () => {
   fireEvent.change(await component.findByLabelText("500kr:"), {
     target: { value: "5" },
   });
-  fireEvent.submit(await component.findByText("Submit"));
+  const submitButton = await component.findByText("Submit");
+  expect(submitButton.getAttribute("disabled")).toBeNull();
+  fireEvent.submit(submitButton);
 
   expect(onNewSettlement).toHaveBeenCalledWith({
     department,
     balance: { "500kr": 5 },
   });
+});
+
+test("that submit button is disabled no amount is entered", async () => {
+  const component = render(<NewSettlementForm onNewSettlement={vitest.fn()} />);
+  expect(
+    (await component.findByText("Submit")).getAttribute("disabled"),
+  ).toBeDefined();
 });

@@ -109,7 +109,9 @@ exports[`that it hasn't changes 1`] = `
         </div>
       </div>
       <div>
-        <button>
+        <button
+          disabled=""
+        >
           Submit
         </button>
       </div>
