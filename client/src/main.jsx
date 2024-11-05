@@ -77,8 +77,18 @@ function GoogleLoginButton() {
   });
 
   return authorizationUrl ? (
-    <a href={authorizationUrl}>Logg inn med Google</a>
+    <div>
+      <a href={authorizationUrl}>Logg inn med Google</a>
+    </div>
   ) : null;
+}
+
+function LinkedinLoginButton() {
+  return (
+    <div>
+      <a href="/api/login/linkedin/start">Logg inn med Linkedin</a>
+    </div>
+  );
 }
 
 function FrontPage() {
@@ -103,6 +113,7 @@ function FrontPage() {
       <>
         <h1>Something went wrong</h1>
         <div>{error}</div>
+        <LinkedinLoginButton />
         <GoogleLoginButton />
       </>
     );
