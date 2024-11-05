@@ -54,4 +54,6 @@ app.get("/api/userinfo", async (req, res) => {
   }
 });
 
+app.use(express.static("../client/dist"));
+
 app.listen(process.env.PORT || 3000);
