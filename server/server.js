@@ -19,7 +19,7 @@ app.get("/api/login/linkedin/start", async (req, res) => {
     "https://www.linkedin.com/oauth/.well-known/openid-configuration";
   const { authorization_endpoint } = await fetchJson(discoveryEndpoint);
   const client_id = "7792wb3of776if";
-  const redirect_uri = `${req.protocol}://${req.headers.host}/api/login/linkedin/callback`;
+  const redirect_uri = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.headers["x-forwarded-host"] || req.headers.host}/api/login/linkedin/callback`;
 
   const authorization_url = `${authorization_endpoint}?${new URLSearchParams({
     response_type: "code",
@@ -42,7 +42,7 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
       "https://www.linkedin.com/oauth/.well-known/openid-configuration";
     const client_id = "7792wb3of776if";
     const client_secret = process.env.LINKEDIN_CLIENT_SECRET;
-    const redirect_uri = `${req.protocol}://${req.headers.host}/api/login/linkedin/callback`;
+    const redirect_uri = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.headers["x-forwarded-host"] || req.headers.host}/api/login/linkedin/callback`;
     const { token_endpoint } = await fetchJson(discoveryEndpoint);
     const request = {
       code,
@@ -72,7 +72,7 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
 });
 
 app.get("/api/userinfo", async (req, res) => {
-  const { access_token } = req.cookies;
+  const { access_token, linkedin_access_token } = req.cookies;
 
   if (access_token) {
     const discoveryEndpoint =
@@ -84,10 +84,20 @@ app.get("/api/userinfo", async (req, res) => {
       },
     });
     res.json(await userinfoRes.json());
-    return;
+  } else if (linkedin_access_token) {
+    const discoveryEndpoint =
+      "https://www.linkedin.com/oauth/.well-known/openid-configuration";
+    const { userinfo_endpoint } = await fetchJson(discoveryEndpoint);
+    const userinfoRes = await fetch(userinfo_endpoint, {
+      headers: {
+        Authorization: `Bearer ${linkedin_access_token}`,
+      },
+    });
+    const json = await userinfoRes.json();
+    res.json(json);
+  } else {
+    res.sendStatus(401); // unauthorized
   }
-
-  res.sendStatus(401); // unauthorized
 });
 app.post("/api/login", (req, res) => {
   const { access_token } = req.body;
