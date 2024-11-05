@@ -5,29 +5,49 @@ import dotenv from "dotenv";
 
 dotenv.config({ debug: true });
 
+const GOOGLE = {
+  discovery_endpoint:
+    "https://accounts.google.com/.well-known/openid-configuration",
+};
+const LINKEDIN = {
+  discovery_endpoint:
+    "https://www.linkedin.com/oauth/.well-known/openid-configuration",
+  client_id: "7792wb3of776if",
+  client_secret: process.env.LINKEDIN_CLIENT_SECRET,
+  scope: "openid profile email",
+};
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use((req, res, next) => {
+  req.origin = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.headers["x-forwarded-host"] || req.headers.host}`;
+  next();
+});
 
 async function fetchJson(url) {
   const res = await fetch(url);
   return await res.json();
 }
 
-app.get("/api/login/linkedin/start", async (req, res) => {
-  const discoveryEndpoint =
-    "https://www.linkedin.com/oauth/.well-known/openid-configuration";
-  const { authorization_endpoint } = await fetchJson(discoveryEndpoint);
-  const client_id = "7792wb3of776if";
-  const redirect_uri = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.headers["x-forwarded-host"] || req.headers.host}/api/login/linkedin/callback`;
+app.get("/api/login/endSession", (req, res) => {
+  res.clearCookie("access_token");
+  res.clearCookie("linkedin_access_token");
+  res.redirect("/");
+});
 
-  const authorization_url = `${authorization_endpoint}?${new URLSearchParams({
-    response_type: "code",
-    scope: "profile email openid",
-    client_id,
-    redirect_uri,
-  })}`;
-  res.redirect(authorization_url);
+app.get("/api/login/linkedin/start", async (req, res) => {
+  const { discovery_endpoint, client_id, scope } = LINKEDIN;
+  const { authorization_endpoint } = await fetchJson(discovery_endpoint);
+  const redirect_uri = `${req.origin}/api/login/linkedin/callback`;
+  res.redirect(
+    `${authorization_endpoint}?${new URLSearchParams({
+      response_type: "code",
+      scope,
+      client_id,
+      redirect_uri,
+    })}`,
+  );
 });
 
 app.get("/api/login/linkedin/callback", async (req, res) => {
@@ -38,12 +58,9 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
       error_description,
     });
   } else if (code) {
-    const discoveryEndpoint =
-      "https://www.linkedin.com/oauth/.well-known/openid-configuration";
-    const client_id = "7792wb3of776if";
-    const client_secret = process.env.LINKEDIN_CLIENT_SECRET;
-    const redirect_uri = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.headers["x-forwarded-host"] || req.headers.host}/api/login/linkedin/callback`;
-    const { token_endpoint } = await fetchJson(discoveryEndpoint);
+    const { discovery_endpoint, client_id, client_secret } = LINKEDIN;
+    const redirect_uri = `${req.origin}/api/login/linkedin/callback`;
+    const { token_endpoint } = await fetchJson(discovery_endpoint);
     const request = {
       code,
       grant_type: "authorization_code",
@@ -61,7 +78,8 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
     if (response.status === 200) {
       const responseJson = await response.json();
       const { access_token } = responseJson;
-      res.cookie("linkedin_access_token", access_token);
+      res.cookie("access_token", access_token);
+      res.cookie("discovery_endpoint", discovery_endpoint);
       res.redirect("/");
     } else {
       res.status(response.status).json(await response.json());
@@ -72,36 +90,23 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
 });
 
 app.get("/api/userinfo", async (req, res) => {
-  const { access_token, linkedin_access_token } = req.cookies;
-
+  const { access_token, discovery_endpoint } = req.cookies;
   if (access_token) {
-    const discoveryEndpoint =
-      "https://accounts.google.com/.well-known/openid-configuration";
-    const { userinfo_endpoint } = await fetchJson(discoveryEndpoint);
+    const { userinfo_endpoint } = await fetchJson(discovery_endpoint);
     const userinfoRes = await fetch(userinfo_endpoint, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
     });
     res.json(await userinfoRes.json());
-  } else if (linkedin_access_token) {
-    const discoveryEndpoint =
-      "https://www.linkedin.com/oauth/.well-known/openid-configuration";
-    const { userinfo_endpoint } = await fetchJson(discoveryEndpoint);
-    const userinfoRes = await fetch(userinfo_endpoint, {
-      headers: {
-        Authorization: `Bearer ${linkedin_access_token}`,
-      },
-    });
-    const json = await userinfoRes.json();
-    res.json(json);
   } else {
     res.sendStatus(401); // unauthorized
   }
 });
-app.post("/api/login", (req, res) => {
+app.post("/api/google/login", (req, res) => {
   const { access_token } = req.body;
   res.cookie("access_token", access_token);
+  res.cookie("discovery_endpoint", GOOGLE.discovery_endpoint);
   res.sendStatus(201);
 });
 app.listen(process.env.PORT || 3000);

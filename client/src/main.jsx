@@ -1,6 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +26,7 @@ function Application() {
 }
 
 function LoginCallback() {
+  const { provider } = useParams();
   const navigate = useNavigate();
   const responseValues = Object.fromEntries(
     new URLSearchParams(window.location.hash.substring(1)).entries(),
@@ -27,7 +34,7 @@ function LoginCallback() {
   const { access_token } = responseValues;
 
   async function establishSession() {
-    const res = await fetch("/api/login", {
+    const res = await fetch(`/api/${provider}/login`, {
       method: "POST",
       body: JSON.stringify({ access_token }),
       headers: {
@@ -83,10 +90,10 @@ function GoogleLoginButton() {
   ) : null;
 }
 
-function LinkedinLoginButton() {
+function StartLoginButton({ provider, children }) {
   return (
     <div>
-      <a href="/api/login/linkedin/start">Logg inn med Linkedin</a>
+      <a href={`/api/login/${provider}/start`}>{children}</a>
     </div>
   );
 }
@@ -113,7 +120,9 @@ function FrontPage() {
       <>
         <h1>Something went wrong</h1>
         <div>{error}</div>
-        <LinkedinLoginButton />
+        <StartLoginButton provider={"linkedin"}>
+          Log in with LinkedIn
+        </StartLoginButton>
         <GoogleLoginButton />
       </>
     );
@@ -125,6 +134,9 @@ function FrontPage() {
         <h1>You are {user.name}</h1>
         <div>Email: {user.email}</div>
         <img src={user.picture} />
+        <div>
+          <a href={"/api/login/endSession"}>Log out</a>
+        </div>
       </>
     );
   }
