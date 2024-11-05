@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import { fetchJson } from "./fetchJson.js";
 import { loginRoutes } from "./loginRoutes.js";
 
-dotenv.config({ debug: true });
+dotenv.config();
 
 const GOOGLE = {
   client_id: process.env.GOOGLE_CLIENT_ID,
