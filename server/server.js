@@ -8,6 +8,8 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const LINKEDIN_CLIENT_ID = process.env.LINKEDIN_CLIENT_ID;
 const LINKEDIN_CLIENT_SECRET = process.env.LINKEDIN_CLIENT_SECRET;
+const ENTRAID_CLIENT_ID = process.env.ENTRAID_CLIENT_ID;
+const ENTRAID_CLIENT_SECRET = process.env.ENTRAID_CLIENT_SECRET;
 
 const app = express();
 app.use(express.json());
@@ -83,6 +85,22 @@ app.get("/api/login/google/start", async (req, res) => {
   res.redirect(authorization_url);
 });
 
+app.get("/api/login/entraid/start", async (req, res) => {
+  const discovery_endpoint =
+    "https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration";
+  const client_id = ENTRAID_CLIENT_ID;
+  const configuration = await fetch(discovery_endpoint);
+  const { authorization_endpoint } = await configuration.json();
+  const parameters = {
+    response_type: "code",
+    scope: "openid profile email",
+    client_id,
+    redirect_uri: req.origin + "/api/login/entraid/callback",
+  };
+  const authorization_url = `${authorization_endpoint}?${new URLSearchParams(parameters)}`;
+  res.redirect(authorization_url);
+});
+
 app.get("/api/login/linkedin/callback", async (req, res) => {
   const { error, error_description, code } = req.query;
 
@@ -114,6 +132,55 @@ app.get("/api/login/linkedin/callback", async (req, res) => {
           "://" +
           req.headers.host +
           "/api/login/linkedin/callback",
+      }),
+    });
+    if (tokenResult.ok) {
+      const { access_token } = await tokenResult.json();
+
+      res.cookie("access_token", access_token);
+      res.cookie("discovery_endpoint", discovery_endpoint);
+
+      return res.redirect("/");
+    } else {
+      return res.json({
+        status: "error",
+        json: await tokenResult.json(),
+      });
+    }
+  }
+
+  res.json({
+    hello: "world",
+  });
+});
+
+app.get("/api/login/entraid/callback", async (req, res) => {
+  const { error, error_description, code } = req.query;
+
+  if (error) {
+    return res.json({
+      status: "error",
+      error,
+      error_description,
+    });
+  }
+  if (code) {
+    const discovery_endpoint =
+      "https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration";
+    const configuration = await fetch(discovery_endpoint);
+    const { token_endpoint } = await configuration.json();
+
+    const tokenResult = await fetch(token_endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        grant_type: "authorization_code",
+        client_id: ENTRAID_CLIENT_ID,
+        client_secret: ENTRAID_CLIENT_SECRET,
+        code,
+        redirect_uri: req.origin + "/api/login/entraid/callback",
       }),
     });
     if (tokenResult.ok) {

@@ -115,6 +115,7 @@ function FrontPage() {
         <div>{error}</div>
         <LoginButton provider={"google"}>Log in med Google</LoginButton>
         <LoginButton provider={"linkedin"}>Log in med linkedin</LoginButton>
+        <LoginButton provider={"entraid"}>Log in med EntraID</LoginButton>
       </>
     );
   }
