@@ -25,11 +25,13 @@ function LoginCallback() {
     new URLSearchParams(window.location.hash.substring(1)).entries(),
   );
   const { access_token } = responseValues;
+  const discovery_endpoint =
+    "https://accounts.google.com/.well-known/openid-configuration";
 
   async function establishSession() {
     const res = await fetch("/api/login", {
       method: "POST",
-      body: JSON.stringify({ access_token }),
+      body: JSON.stringify({ access_token, discovery_endpoint }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -81,10 +83,10 @@ function GoogleLoginButton() {
   ) : null;
 }
 
-function LinkedinLoginButton() {
+function LoginButton({ provider, children }) {
   return (
     <div>
-      <a href={"/api/login/linkedin/start"}>Log in with Linkedin</a>
+      <a href={`/api/login/${provider}/start`}>{children}</a>
     </div>
   );
 }
@@ -111,8 +113,8 @@ function FrontPage() {
       <>
         <h1>Something went wrong</h1>
         <div>{error}</div>
-        <GoogleLoginButton />
-        <LinkedinLoginButton />
+        <LoginButton provider={"google"}>Log in med Google</LoginButton>
+        <LoginButton provider={"linkedin"}>Log in med linkedin</LoginButton>
       </>
     );
   }
