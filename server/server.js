@@ -13,6 +13,14 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  req.origin =
+    (req.headers["x-forwarded-proto"] || req.protocol) +
+    "://" +
+    (req.headers["x-forwarded-host"] || req.headers.host);
+  next();
+});
+
 app.get("/api/userinfo", async (req, res) => {
   const { access_token, discovery_endpoint } = req.cookies;
 
@@ -69,8 +77,7 @@ app.get("/api/login/google/start", async (req, res) => {
     response_type: "code",
     scope: "openid profile email",
     client_id,
-    redirect_uri:
-      req.protocol + "://" + req.headers.host + "/api/login/google/callback",
+    redirect_uri: req.origin + "/api/login/google/callback",
   };
   const authorization_url = `${authorization_endpoint}?${new URLSearchParams(parameters)}`;
   res.redirect(authorization_url);
