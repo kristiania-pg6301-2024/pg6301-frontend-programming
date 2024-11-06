@@ -176,7 +176,13 @@ user from having the code "sniffed". Since we're doing this part in the code, En
 mechanism to protect the user instead, namely Proof of Key Code Exchange (PKCE). This requires us to
 pass an additional `code_challenge` parameter to the authentication request.
 
-1. Set up the application in the [Azure Portal](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/CreateApplicationBlade/isMSAApp~/false).
+1. Set up the application in the [Azure Portal](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/CreateApplicationBlade/isMSAApp~/false):
+   1. Log in with your school account in the [Azure Portal](https://portal.azure.com)
+   2. In the panel search menu, search for [Azure Active Directory B2C](https://portal.azure.com/#create/Microsoft.AzureADB2C)
+   3. If you haven't done so, you need to complete "Start with an Azure free trial"
+   4. When you have completed creating a new tenant (under Azure Active Directory B2C), you can switch to this tenant by clicking the Gears (⚙️) icon in the menu
+   5. Under the left-menu, select Microsoft Entra ID > Manage > App registration
+   6. Here you can find Entra ID's discovery endpoint and your client_id, setup the redirect_uri values and create a client_secret 
 2. To start authentication, redirect the browser ([see code below](#generating-the-entra-authentication-redirect))
 3. To complete the authentication, use the `code` parameter when Entra redirects the browser back to the to
    fetch the access token and post the access token to the backend ([see code below](#handle-the-entra-callback))
@@ -338,3 +344,4 @@ When you have developed the login-functionality, you should try to deploy the ap
    on Heroku is `myapp-abc-123.herokuapp.com`, you should register `https://myapp-abc-123.herokuapp.com/login/callback`
 3. Follow the steps in the [course reference](../README.md#deploy-to-heroku) to set `postinstall`, `build` and `start`
    scripts to work with Heroku
+4. On the [Heroku dashboard](https://dashboard.heroku.com/apps/), select the app, select Settings and add the client_id and client_secret under Config Vars

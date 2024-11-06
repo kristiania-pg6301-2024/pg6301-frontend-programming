@@ -397,7 +397,7 @@ services that also implement OpenID Connect, such as LinkedIn and Microsoft Entr
 
 ### Lecture 11: Testing Express code
 
-<details open>
+<details>
 
 In this lecture, we will look at [Supertest](https://github.com/ladjs/supertest) for testing Express endpoints.
 
@@ -885,6 +885,12 @@ new MongoClient(process.env.MONGODB_URL)
     console.error("while connecting to MongoDB", error);
   });
 ```
+
+In this example, the database username, password and databasename is provided in `MONGODB_URL`. During local development, this value should be placed in a `server/.env`-file, which should be added to `.gitignore`.
+
+When deploying to Heroku, add `MONGODN_URL` to the application under Settings > Config Vars.
+
+When deploying to Heroku using [Atlas MongoDB](https://cloud.mongodb.com/), you also need to make sure Heroku has network access to your database under Security > Network Access. Here, you need to add `0.0.0.0/0` as an IP-address.
 
 </details>
 
