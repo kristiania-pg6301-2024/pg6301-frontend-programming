@@ -63,7 +63,7 @@ function GoogleLoginButton() {
     const { authorization_endpoint } = await configuration.json();
     const parameters = {
       response_type: "token",
-      scope: "profile email",
+      scope: "openid profile email",
       redirect_uri: window.location.origin + "/login/google/callback",
       client_id,
     };
@@ -79,6 +79,14 @@ function GoogleLoginButton() {
   return authorizationUrl ? (
     <a href={authorizationUrl}>Log in with Google</a>
   ) : null;
+}
+
+function LinkedinLoginButton() {
+  return (
+    <div>
+      <a href={"/api/login/linkedin/start"}>Log in with Linkedin</a>
+    </div>
+  );
 }
 
 function FrontPage() {
@@ -104,6 +112,7 @@ function FrontPage() {
         <h1>Something went wrong</h1>
         <div>{error}</div>
         <GoogleLoginButton />
+        <LinkedinLoginButton />
       </>
     );
   }
