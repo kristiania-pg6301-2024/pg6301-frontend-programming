@@ -29,4 +29,10 @@ app.post("/api/login", (req, res) => {
   res.cookie("access_token", access_token);
   res.sendStatus(201);
 });
+
+app.get("/api/login/end_session", async (req, res) => {
+  res.clearCookie("access_token");
+  res.redirect("/");
+});
+
 app.listen(process.env.PORT || 3000);

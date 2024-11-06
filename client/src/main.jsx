@@ -51,7 +51,7 @@ function LoginCallback() {
   );
 }
 
-function LoginButton() {
+function GoogleLoginButton() {
   const client_id =
     "34816606807-m5gdfps6ijlopl5psnetie8f3722dmug.apps.googleusercontent.com";
   const discoveryEndpoint =
@@ -76,7 +76,9 @@ function LoginButton() {
     createAuthorizationUrl();
   });
 
-  return authorizationUrl ? <a href={authorizationUrl}>Logg inn</a> : null;
+  return authorizationUrl ? (
+    <a href={authorizationUrl}>Log in with Google</a>
+  ) : null;
 }
 
 function FrontPage() {
@@ -101,7 +103,7 @@ function FrontPage() {
       <>
         <h1>Something went wrong</h1>
         <div>{error}</div>
-        <LoginButton />
+        <GoogleLoginButton />
       </>
     );
   }
@@ -112,6 +114,9 @@ function FrontPage() {
         <h1>You are {user.name}</h1>
         <div>Email: {user.email}</div>
         <img src={user.picture} />
+        <div>
+          <a href={"/api/login/end_session"}>Log out</a>
+        </div>
       </>
     );
   }
